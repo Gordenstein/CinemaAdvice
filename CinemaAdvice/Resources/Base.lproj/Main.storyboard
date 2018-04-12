@@ -42,28 +42,33 @@
                                                         <constraint firstAttribute="width" constant="90" id="8fd-5h-4bE"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnU-pO-sFz">
-                                                    <rect key="frame" x="39" y="177" width="44" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wy3-Au-WA2">
-                                                    <rect key="frame" x="48" y="208" width="26.5" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="12m-xG-WCt">
+                                                    <rect key="frame" x="8" y="177" width="107" height="28"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnU-pO-sFz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="107" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wy3-Au-WA2">
+                                                            <rect key="frame" x="0.0" y="16" width="107" height="12"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="12m-xG-WCt" firstAttribute="centerX" secondItem="eee-8x-oLh" secondAttribute="centerX" id="2PO-kg-qeO"/>
+                                            <constraint firstItem="12m-xG-WCt" firstAttribute="top" secondItem="pdY-Zt-MGL" secondAttribute="bottom" constant="8" id="6N7-Z3-T8b"/>
                                             <constraint firstItem="pdY-Zt-MGL" firstAttribute="centerX" secondItem="eee-8x-oLh" secondAttribute="centerX" id="B7d-y6-nyI"/>
-                                            <constraint firstItem="Wy3-Au-WA2" firstAttribute="centerX" secondItem="eee-8x-oLh" secondAttribute="centerX" id="K4h-Zp-nNW"/>
-                                            <constraint firstItem="XnU-pO-sFz" firstAttribute="centerX" secondItem="eee-8x-oLh" secondAttribute="centerX" id="bH2-Dx-Vbx"/>
+                                            <constraint firstItem="12m-xG-WCt" firstAttribute="leading" secondItem="eee-8x-oLh" secondAttribute="leading" constant="8" id="CHc-0P-sWz"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="12m-xG-WCt" secondAttribute="bottom" constant="8" id="KNR-kC-MrU"/>
+                                            <constraint firstAttribute="trailing" secondItem="12m-xG-WCt" secondAttribute="trailing" constant="8" id="Nww-7A-I6t"/>
                                             <constraint firstItem="pdY-Zt-MGL" firstAttribute="top" secondItem="eee-8x-oLh" secondAttribute="top" constant="9" id="cRr-hM-GBy"/>
-                                            <constraint firstItem="Wy3-Au-WA2" firstAttribute="top" secondItem="XnU-pO-sFz" secondAttribute="bottom" constant="10" id="g75-CT-fN1"/>
-                                            <constraint firstAttribute="bottom" secondItem="Wy3-Au-WA2" secondAttribute="bottom" constant="10" id="ilr-Kt-1jq"/>
-                                            <constraint firstItem="XnU-pO-sFz" firstAttribute="top" secondItem="pdY-Zt-MGL" secondAttribute="bottom" constant="8" id="qkz-Pa-eLc"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="genreLabel" destination="Wy3-Au-WA2" id="71w-pX-BM1"/>
@@ -77,7 +82,7 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="p3Y-PL-QFs"/>
                                 </connections>
                             </collectionView>
-                            <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Кино, сериалы, жанры, актеры, режиссёры..." translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
                                 <rect key="frame" x="0.0" y="70" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>

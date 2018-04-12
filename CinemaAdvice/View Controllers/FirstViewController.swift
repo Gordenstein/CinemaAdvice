@@ -26,7 +26,7 @@ class FirstViewController: UIViewController {
     super.viewDidLoad()
     collectionView.contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
     testSearch()
-    searchBar.becomeFirstResponder()
+//    searchBar.becomeFirstResponder()
   }
 
   override func didReceiveMemoryWarning() {
