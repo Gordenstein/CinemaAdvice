@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  SecondViewController.swift
 //  CinemaAdvice
 //
 //  Created by Hero on 11.04.2018.
@@ -8,11 +8,15 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class SecondViewController: UIViewController {
 
+  @IBOutlet weak var button: UIButton!
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    button.layer.cornerRadius = 100
+
   }
 
   override func didReceiveMemoryWarning() {
