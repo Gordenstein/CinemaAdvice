@@ -42,7 +42,7 @@ class LibraryCell: UITableViewCell {
     if result.artistName.isEmpty {
       genreLabel.text = "Unknown"
     } else {
-      genreLabel.text = String(format: "%@ (%@)", result.artistName, result.type)
+      genreLabel.text = String(format: "%@ (%@)", result.artistName, result.genre)
     }
     artworkImageView.image = UIImage(named: "Placeholder")
     if let largeURL = URL(string: result.imageLarge) {

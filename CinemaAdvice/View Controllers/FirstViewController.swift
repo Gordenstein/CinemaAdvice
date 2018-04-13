@@ -15,6 +15,7 @@ class FirstViewController: UIViewController {
   
   
   var searchResults = [SearchResult]()
+  var libraryItems = [SearchResult]()
   var hasSearched = false
   var isLoading = false
   var dataTask: URLSessionDataTask?
@@ -39,7 +40,7 @@ class FirstViewController: UIViewController {
     
     let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
     
-    let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=200&entity=movie"
+    let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=200&entity=movie&media=movie&country=ru"
     let url = URL(string: urlString)
     return url!
   }
@@ -98,6 +99,40 @@ class FirstViewController: UIViewController {
     dataTask?.resume()
   }
   
+  // MARK: Safe And Load Data
+  func saveResults() {
+    print("Documents folder is \(documentsDirectory())")
+    print("Data file path is \(dataFilePath())")
+    let encoder = JSONEncoder()
+    do {
+      let data = try encoder.encode(libraryItems)
+      try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+    } catch {
+      print("Error encoding item array!")
+    }
+  }
+  
+  func loadResults() {
+    let path = dataFilePath()
+    if let data = try? Data(contentsOf: path) {
+      let decoder = JSONDecoder()
+      do {
+        searchResults = try decoder.decode([SearchResult].self, from: data)
+      } catch {
+        print("Error decoding item array!")
+      }
+    }
+  }
+  
+  func documentsDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    
+    return paths[0]
+  }
+  
+  func dataFilePath() -> URL {
+    return documentsDirectory().appendingPathComponent("Result.json")
+  }
   
 }
 
@@ -177,6 +212,12 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! SearchResultCell
       return cell
     }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let index = indexPath.row
+    libraryItems.append(searchResults[index])
+    saveResults()
   }
   
 }
