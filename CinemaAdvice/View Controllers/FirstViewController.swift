@@ -19,7 +19,6 @@ class FirstViewController: UIViewController {
   var hasSearched = false
   var isLoading = false
   var dataTask: URLSessionDataTask?
-  
   var downloadTask: URLSessionDownloadTask?
 
   
@@ -27,6 +26,7 @@ class FirstViewController: UIViewController {
     super.viewDidLoad()
     collectionView.contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
     testSearch()
+    loadResults()
 //    searchBar.becomeFirstResponder()
   }
 
@@ -117,7 +117,7 @@ class FirstViewController: UIViewController {
     if let data = try? Data(contentsOf: path) {
       let decoder = JSONDecoder()
       do {
-        searchResults = try decoder.decode([SearchResult].self, from: data)
+        libraryItems = try decoder.decode([SearchResult].self, from: data)
       } catch {
         print("Error decoding item array!")
       }
@@ -216,8 +216,16 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let index = indexPath.row
-    libraryItems.append(searchResults[index])
-    saveResults()
+    var contains = false
+    for item in libraryItems {
+      if item.trackName == searchResults[index].trackName {
+        contains = true
+      }
+    }
+    if !contains {
+      libraryItems.append(searchResults[index])
+      saveResults()
+    }
   }
   
 }

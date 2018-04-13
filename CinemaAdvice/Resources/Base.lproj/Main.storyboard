@@ -62,18 +62,18 @@
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="12m-xG-WCt" firstAttribute="centerX" secondItem="eee-8x-oLh" secondAttribute="centerX" id="2PO-kg-qeO"/>
                                             <constraint firstItem="12m-xG-WCt" firstAttribute="top" secondItem="pdY-Zt-MGL" secondAttribute="bottom" constant="8" id="6N7-Z3-T8b"/>
                                             <constraint firstItem="pdY-Zt-MGL" firstAttribute="centerX" secondItem="eee-8x-oLh" secondAttribute="centerX" id="B7d-y6-nyI"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="12m-xG-WCt" secondAttribute="bottom" id="KNR-kC-MrU"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="12m-xG-WCt" secondAttribute="trailing" constant="8" id="Nww-7A-I6t"/>
+                                            <constraint firstItem="12m-xG-WCt" firstAttribute="centerX" secondItem="eee-8x-oLh" secondAttribute="centerX" id="Uds-oH-Whu"/>
                                             <constraint firstItem="pdY-Zt-MGL" firstAttribute="top" secondItem="eee-8x-oLh" secondAttribute="top" constant="8" id="cRr-hM-GBy"/>
                                             <constraint firstItem="12m-xG-WCt" firstAttribute="leading" secondItem="pdY-Zt-MGL" secondAttribute="leading" id="qnF-Hb-7zd"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="genreLabel" destination="Wy3-Au-WA2" id="71w-pX-BM1"/>
                                             <outlet property="imageView" destination="pdY-Zt-MGL" id="JL2-ud-ZwR"/>
-                                            <outlet property="movieTitle" destination="XnU-pO-sFz" id="P6c-lk-taU"/>
+                                            <outlet property="titleLabel" destination="XnU-pO-sFz" id="P6c-lk-taU"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -82,7 +82,7 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="p3Y-PL-QFs"/>
                                 </connections>
                             </collectionView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Кино, сериалы, жанры, актеры, режиссёры..." translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
+                            <searchBar contentMode="redraw" placeholder="Кино, сериалы, жанры, актеры, режиссёры..." translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
                                 <rect key="frame" x="0.0" y="70" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>

@@ -12,7 +12,7 @@ class SearchResultCell: UICollectionViewCell {
 
   
   @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet weak var movieTitle: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var genreLabel: UILabel!
   
   var downloadTask: URLSessionDownloadTask?
@@ -38,14 +38,13 @@ class SearchResultCell: UICollectionViewCell {
   
   //MARK: Public Methods
   func configure(for result: SearchResult) {
-    movieTitle.adjustsFontForContentSizeCategory = true
+    titleLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
-    movieTitle.text = result.name
+    titleLabel.text = result.name
 
     if result.artistName.isEmpty {
       genreLabel.text = "Unknown"
     } else {
-//      genreLabel.text = String(format: "%@ (%@)", result.artistName, result.genre)
       genreLabel.text = result.genre
     }
     imageView.image = UIImage(named: "Placeholder")
