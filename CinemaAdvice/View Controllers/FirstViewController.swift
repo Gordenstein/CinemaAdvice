@@ -28,6 +28,7 @@ class FirstViewController: UIViewController {
     testSearch()
     loadResults()
 //    searchBar.becomeFirstResponder()
+    
   }
 
   override func didReceiveMemoryWarning() {
@@ -215,6 +216,11 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    collectionView.deselectItem(at: indexPath, animated: true)
+    performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+    
+    // Add item to the Library
     let index = indexPath.row
     var contains = false
     for item in libraryItems {

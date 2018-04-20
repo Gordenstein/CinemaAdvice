@@ -22,6 +22,7 @@
 		C479AF14207E94ED00B8A1C9 /* LibraryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C479AF12207E94ED00B8A1C9 /* LibraryCell.xib */; };
 		C479AF15207E94ED00B8A1C9 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C479AF13207E94ED00B8A1C9 /* LoadingCell.xib */; };
 		C479AF17207F428100B8A1C9 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AF16207F428100B8A1C9 /* SearchResultCell.swift */; };
+		C4CB6B2E208A24D900596266 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB6B2D208A24D900596266 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		C479AF12207E94ED00B8A1C9 /* LibraryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryCell.xib; sourceTree = "<group>"; };
 		C479AF13207E94ED00B8A1C9 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		C479AF16207F428100B8A1C9 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		C4CB6B2D208A24D900596266 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */,
 				C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */,
 				C479AF04207E73FA00B8A1C9 /* ThirdViewController.swift */,
+				C4CB6B2D208A24D900596266 /* DetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CB6B2E208A24D900596266 /* DetailViewController.swift in Sources */,
 				C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */,
 				C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */,
 				C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */,
