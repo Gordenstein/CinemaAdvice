@@ -48,6 +48,17 @@ class FirstViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
+  override func prepare(for segue: UIStoryboardSegue,
+                        sender: Any?) {
+    if segue.identifier == "ShowDetailView" {
+      let detailViewController = segue.destination
+        as! DetailViewController
+      let indexPath = sender as! IndexPath
+      let searchResult = searchResults[indexPath.row]
+      detailViewController.searchResult = searchResult
+    }
+  }
+  
   // MARK: Private Methods
   func iTunesURL(searchText: String) -> URL {
     

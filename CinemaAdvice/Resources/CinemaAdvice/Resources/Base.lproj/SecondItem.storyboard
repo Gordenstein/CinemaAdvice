@@ -59,10 +59,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-me-1dD">
-                                <rect key="frame" x="25" y="45" width="25" height="25"/>
+                                <rect key="frame" x="18" y="38" width="17" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="oyB-JH-Lyf"/>
-                                    <constraint firstAttribute="width" constant="25" id="zGJ-Ie-4Jt"/>
+                                    <constraint firstAttribute="height" constant="17" id="oyB-JH-Lyf"/>
+                                    <constraint firstAttribute="width" constant="17" id="zGJ-Ie-4Jt"/>
                                 </constraints>
                                 <state key="normal" image="CloseButton"/>
                                 <connections>
@@ -72,15 +72,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ifg-me-1dD" firstAttribute="top" secondItem="ChS-ic-KVG" secondAttribute="top" constant="25" id="Cgl-44-c9O"/>
-                            <constraint firstItem="Ifg-me-1dD" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="25" id="SgN-S5-Vg8"/>
+                            <constraint firstItem="Ifg-me-1dD" firstAttribute="top" secondItem="ChS-ic-KVG" secondAttribute="top" constant="18" id="Cgl-44-c9O"/>
+                            <constraint firstItem="Ifg-me-1dD" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="18" id="SgN-S5-Vg8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ChS-ic-KVG"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecB-VB-IlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2414" y="797"/>
+            <point key="canvasLocation" x="2413.5999999999999" y="796.55172413793105"/>
         </scene>
     </scenes>
     <resources>
