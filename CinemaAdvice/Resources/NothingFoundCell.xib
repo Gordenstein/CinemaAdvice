@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NothingFoundCell" id="Ibg-xi-ixb">
+            <rect key="frame" x="0.0" y="0.0" width="123" height="204"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="123" height="204"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mox-Wj-BL2">
+                        <rect key="frame" x="6" y="67" width="110" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🤷🏻‍♂️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14n-pt-lmE">
+                        <rect key="frame" x="48.5" y="92" width="26" height="26.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try to search somthing else" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b21-wW-HuS">
+                        <rect key="frame" x="4" y="140" width="115" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="Cf0-Mg-5ay"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="b21-wW-HuS" firstAttribute="leading" secondItem="Ibg-xi-ixb" secondAttribute="leading" constant="4" id="0L5-pR-eA1"/>
+                <constraint firstAttribute="trailing" secondItem="b21-wW-HuS" secondAttribute="trailing" constant="4" id="O1a-eX-l3p"/>
+                <constraint firstItem="b21-wW-HuS" firstAttribute="centerX" secondItem="Ibg-xi-ixb" secondAttribute="centerX" id="OFC-9p-Y9U"/>
+                <constraint firstItem="Mox-Wj-BL2" firstAttribute="centerX" secondItem="Ibg-xi-ixb" secondAttribute="centerX" id="Sp8-U6-VM4"/>
+                <constraint firstAttribute="bottom" secondItem="b21-wW-HuS" secondAttribute="bottom" constant="20" id="XJ9-QV-INZ"/>
+                <constraint firstItem="14n-pt-lmE" firstAttribute="top" secondItem="Mox-Wj-BL2" secondAttribute="bottom" constant="4" id="fxP-09-Map"/>
+                <constraint firstItem="14n-pt-lmE" firstAttribute="centerX" secondItem="Ibg-xi-ixb" secondAttribute="centerX" id="hZH-SW-Wjs"/>
+                <constraint firstItem="b21-wW-HuS" firstAttribute="top" secondItem="14n-pt-lmE" secondAttribute="bottom" constant="21.5" id="kA2-45-iae"/>
+                <constraint firstItem="Mox-Wj-BL2" firstAttribute="top" secondItem="Ibg-xi-ixb" secondAttribute="top" constant="67" id="kze-bW-sfB"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZVx-e3-Edp"/>
+            <point key="canvasLocation" x="58.5" y="-5"/>
+        </collectionViewCell>
+    </objects>
+</document>

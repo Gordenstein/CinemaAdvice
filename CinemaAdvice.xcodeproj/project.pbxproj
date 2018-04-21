@@ -20,9 +20,12 @@
 		C479AF10207E8D3100B8A1C9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AF0D207E8D3100B8A1C9 /* SearchResult.swift */; };
 		C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AF0E207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift */; };
 		C479AF14207E94ED00B8A1C9 /* LibraryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C479AF12207E94ED00B8A1C9 /* LibraryCell.xib */; };
-		C479AF15207E94ED00B8A1C9 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C479AF13207E94ED00B8A1C9 /* LoadingCell.xib */; };
 		C479AF17207F428100B8A1C9 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AF16207F428100B8A1C9 /* SearchResultCell.swift */; };
 		C4CB6B2E208A24D900596266 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB6B2D208A24D900596266 /* DetailViewController.swift */; };
+		C4CB6B30208A59ED00596266 /* SearchCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB6B2F208A59ED00596266 /* SearchCollectionReusableView.swift */; };
+		C4CB6B36208B4E2200596266 /* SelectionResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */; };
+		C4CB6B38208B5C0100596266 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CB6B37208B5C0100596266 /* LoadingCell.xib */; };
+		C4CB6B3C208B899300596266 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CB6B3B208B899300596266 /* NothingFoundCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,9 +44,12 @@
 		C479AF0D207E8D3100B8A1C9 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		C479AF0E207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		C479AF12207E94ED00B8A1C9 /* LibraryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryCell.xib; sourceTree = "<group>"; };
-		C479AF13207E94ED00B8A1C9 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		C479AF16207F428100B8A1C9 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		C4CB6B2D208A24D900596266 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C4CB6B2F208A59ED00596266 /* SearchCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionReusableView.swift; sourceTree = "<group>"; };
+		C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionResultViewController.swift; sourceTree = "<group>"; };
+		C4CB6B37208B5C0100596266 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		C4CB6B3B208B899300596266 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +97,9 @@
 				C479AEEE207E6F1D00B8A1C9 /* Main.storyboard */,
 				C479AEFF207E719F00B8A1C9 /* SecondItem.storyboard */,
 				C479AF02207E71D200B8A1C9 /* ThirdItem.storyboard */,
-				C479AF13207E94ED00B8A1C9 /* LoadingCell.xib */,
 				C479AF12207E94ED00B8A1C9 /* LibraryCell.xib */,
+				C4CB6B37208B5C0100596266 /* LoadingCell.xib */,
+				C4CB6B3B208B899300596266 /* NothingFoundCell.xib */,
 				C479AEF1207E6F1F00B8A1C9 /* Assets.xcassets */,
 				C479AEF3207E6F1F00B8A1C9 /* LaunchScreen.storyboard */,
 			);
@@ -103,9 +110,11 @@
 			isa = PBXGroup;
 			children = (
 				C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */,
-				C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */,
-				C479AF04207E73FA00B8A1C9 /* ThirdViewController.swift */,
 				C4CB6B2D208A24D900596266 /* DetailViewController.swift */,
+				C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */,
+				C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */,
+				C479AF04207E73FA00B8A1C9 /* ThirdViewController.swift */,
+				C4CB6B2F208A59ED00596266 /* SearchCollectionReusableView.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -179,10 +188,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C479AF15207E94ED00B8A1C9 /* LoadingCell.xib in Resources */,
+				C4CB6B3C208B899300596266 /* NothingFoundCell.xib in Resources */,
 				C479AEF5207E6F1F00B8A1C9 /* LaunchScreen.storyboard in Resources */,
 				C479AF03207E71D200B8A1C9 /* ThirdItem.storyboard in Resources */,
 				C479AEF2207E6F1F00B8A1C9 /* Assets.xcassets in Resources */,
+				C4CB6B38208B5C0100596266 /* LoadingCell.xib in Resources */,
 				C479AEF0207E6F1D00B8A1C9 /* Main.storyboard in Resources */,
 				C479AF14207E94ED00B8A1C9 /* LibraryCell.xib in Resources */,
 				C479AF01207E719F00B8A1C9 /* SecondItem.storyboard in Resources */,
@@ -197,6 +207,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4CB6B2E208A24D900596266 /* DetailViewController.swift in Sources */,
+				C4CB6B30208A59ED00596266 /* SearchCollectionReusableView.swift in Sources */,
+				C4CB6B36208B4E2200596266 /* SelectionResultViewController.swift in Sources */,
 				C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */,
 				C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */,
 				C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */,

@@ -28,6 +28,9 @@
                                 <state key="normal" title="Подбери мне фильм!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="startSelection:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="WpV-fq-VWW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,14 +43,48 @@
                     <tabBarItem key="tabBarItem" title="Киносовет" image="genius" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="button" destination="nnT-KZ-y8m" id="ECX-AF-hF6"/>
+                        <segue destination="4L0-QX-wdB" kind="presentation" identifier="ShowResult" id="GP4-eu-FiD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1417" y="798"/>
         </scene>
+        <!--Selection Result View Controller-->
+        <scene sceneID="URc-XN-rZP">
+            <objects>
+                <viewController id="4L0-QX-wdB" customClass="SelectionResultViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sPK-5m-tqr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-me-1dD">
+                                <rect key="frame" x="25" y="45" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="oyB-JH-Lyf"/>
+                                    <constraint firstAttribute="width" constant="25" id="zGJ-Ie-4Jt"/>
+                                </constraints>
+                                <state key="normal" image="CloseButton"/>
+                                <connections>
+                                    <action selector="close:" destination="4L0-QX-wdB" eventType="touchUpInside" id="ORN-fa-GJo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ifg-me-1dD" firstAttribute="top" secondItem="ChS-ic-KVG" secondAttribute="top" constant="25" id="Cgl-44-c9O"/>
+                            <constraint firstItem="Ifg-me-1dD" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="25" id="SgN-S5-Vg8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ChS-ic-KVG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecB-VB-IlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2414" y="797"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="CloseButton" width="32" height="32"/>
         <image name="genius" width="30" height="30"/>
     </resources>
 </document>

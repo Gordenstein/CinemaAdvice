@@ -9,9 +9,16 @@
 import UIKit
 
 class FirstViewController: UIViewController {
+  
+  
+  
+  struct CollectionViewCellIdentifiers {
+    static let searchResultCell = "CollectionViewCell"
+    static let nothingFoundCell = "NothingFoundCell"
+    static let loadingCell = "LoadingCell"
+  }
 
   @IBOutlet weak var collectionView: UICollectionView!
-  @IBOutlet weak var searchBar: UISearchBar!
   
   
   var searchResults = [SearchResult]()
@@ -24,7 +31,12 @@ class FirstViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
+    var cellNib = UINib(nibName: CollectionViewCellIdentifiers.loadingCell, bundle: nil)
+    collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.loadingCell)
+    cellNib = UINib(nibName: CollectionViewCellIdentifiers.nothingFoundCell, bundle: nil)
+    collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell)
+    
+    collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     testSearch()
     loadResults()
 //    searchBar.becomeFirstResponder()
@@ -142,10 +154,10 @@ class FirstViewController: UIViewController {
 extension FirstViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     print("The search text is: '\(searchBar.text!)'")
-    performSearch()
+    performSearch(searchBar: searchBar)
   }
   
-  func performSearch() {
+  func performSearch(searchBar: UISearchBar) {
     if !searchBar.text!.isEmpty {
       searchBar.resignFirstResponder()
       dataTask?.cancel()
@@ -193,7 +205,7 @@ extension FirstViewController: UISearchBarDelegate {
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if isLoading {
-      return 1
+      return 9
     } else if !hasSearched {
       return 0
     } else if searchResults.count == 0 {
@@ -204,13 +216,18 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    if hasSearched && !isLoading {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! SearchResultCell
-      let searchResult = searchResults[indexPath.row]
-      cell.configure(for: searchResult)
+    if isLoading {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
+      let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
+      spinner.startAnimating()
+      return cell
+    } else if searchResults.count == 0 {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell, for: indexPath)
       return cell
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! SearchResultCell
+      let searchResult = searchResults[indexPath.row]
+      cell.configure(for: searchResult)
       return cell
     }
   }
@@ -218,8 +235,7 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
     collectionView.deselectItem(at: indexPath, animated: true)
-    performSegue(withIdentifier: "ShowDetail", sender: indexPath)
-    
+    performSegue(withIdentifier: "ShowDetailView", sender: indexPath)
     // Add item to the Library
     let index = indexPath.row
     var contains = false
@@ -232,6 +248,18 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
       libraryItems.append(searchResults[index])
       saveResults()
     }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+      let headerView:UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeader", for: indexPath)
+      
+      return headerView
+    }
+    
+    return UICollectionReusableView()
+    
   }
   
 }

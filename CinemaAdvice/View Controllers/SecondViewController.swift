@@ -13,6 +13,9 @@ class SecondViewController: UIViewController {
   @IBOutlet weak var button: UIButton!
   
   
+  @IBAction func startSelection(_ sender: Any) {
+    performSegue(withIdentifier: "ShowResult", sender: nil)
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     button.layer.cornerRadius = 100

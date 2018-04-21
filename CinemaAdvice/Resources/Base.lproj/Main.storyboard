@@ -23,13 +23,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="V9U-Ar-wxI">
                                     <size key="itemSize" width="123" height="204"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="eee-8x-oLh" customClass="SearchResultCell" customModule="CinemaAdvice" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="123" height="204"/>
+                                        <rect key="frame" x="0.0" y="50" width="123" height="204"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="204"/>
@@ -77,41 +77,112 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CollectionViewHeader" id="NpW-gZ-OVM" customClass="SearchCollectionReusableView" customModule="CinemaAdvice" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Кино, сериалы, жанры, актеры, режиссёры..." translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
+                                            <rect key="frame" x="0.0" y="15" width="375" height="35"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="9pv-A4-QxB" id="VP8-bP-DOt"/>
+                                            </connections>
+                                        </searchBar>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Yzt-jj-hD1" secondAttribute="bottom" id="48M-Ps-rIt"/>
+                                        <constraint firstItem="Yzt-jj-hD1" firstAttribute="top" secondItem="NpW-gZ-OVM" secondAttribute="top" constant="15" id="4cr-3J-2c2"/>
+                                        <constraint firstAttribute="trailing" secondItem="Yzt-jj-hD1" secondAttribute="trailing" id="fth-A7-DQC"/>
+                                        <constraint firstItem="Yzt-jj-hD1" firstAttribute="leading" secondItem="NpW-gZ-OVM" secondAttribute="leading" id="xh8-pO-e2J"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="searchBar" destination="Yzt-jj-hD1" id="093-IN-ZIj"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="JNR-Ei-2NJ"/>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="p3Y-PL-QFs"/>
                                 </connections>
                             </collectionView>
-                            <searchBar contentMode="redraw" placeholder="Кино, сериалы, жанры, актеры, режиссёры..." translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
-                                <rect key="frame" x="0.0" y="70" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="9pv-A4-QxB" id="VP8-bP-DOt"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zN6-eH-WPe" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="Bcb-WI-Iif"/>
-                            <constraint firstItem="Yzt-jj-hD1" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="6" id="Bu2-ee-Xmh"/>
                             <constraint firstItem="zN6-eH-WPe" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="Byf-Lb-30s"/>
-                            <constraint firstItem="Yzt-jj-hD1" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="LsY-tP-bXS"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="zN6-eH-WPe" secondAttribute="bottom" id="QbR-z3-gRe"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="zN6-eH-WPe" secondAttribute="trailing" id="axF-g6-tBt"/>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="Yzt-jj-hD1" secondAttribute="trailing" id="i0e-3Q-nyX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <navigationItem key="navigationItem" id="XFR-r6-6OA"/>
+                    <navigationItem key="navigationItem" title="Поиск фильмов" id="XFR-r6-6OA">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="settings" id="xyh-s1-H6i">
+                            <connections>
+                                <segue destination="obR-dK-7kS" kind="show" id="qGB-lD-DkX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="zN6-eH-WPe" id="PM4-I6-5dR"/>
-                        <outlet property="searchBar" destination="Yzt-jj-hD1" id="jPk-Dl-0YY"/>
-                        <segue destination="f2X-FG-5Ep" kind="presentation" identifier="ShowDetail" id="HGl-mp-VKR"/>
+                        <segue destination="f2X-FG-5Ep" kind="show" identifier="ShowDetailView" id="fKZ-fS-w5S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1951.2" y="-0.44977511244377816"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6Rs-QV-lFD">
+            <objects>
+                <viewController id="obR-dK-7kS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bjT-ru-tRf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="quE-BF-9KJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="aFS-Vv-tGJ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aFS-Vv-tGJ" id="BEt-1c-FkN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ulc-bV-aTL">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ulc-bV-aTL" id="AY2-om-Geo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="k0Z-Ve-Wb4">
+                                        <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k0Z-Ve-Wb4" id="by2-dp-vBP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zRb-hO-jAN" firstAttribute="trailing" secondItem="quE-BF-9KJ" secondAttribute="trailing" id="VAr-b5-X71"/>
+                            <constraint firstItem="quE-BF-9KJ" firstAttribute="top" secondItem="zRb-hO-jAN" secondAttribute="top" id="a7Y-8v-YEt"/>
+                            <constraint firstItem="zRb-hO-jAN" firstAttribute="bottom" secondItem="quE-BF-9KJ" secondAttribute="bottom" id="eec-Lq-3tq"/>
+                            <constraint firstItem="quE-BF-9KJ" firstAttribute="leading" secondItem="zRb-hO-jAN" secondAttribute="leading" id="x2M-Hz-3DW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zRb-hO-jAN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eG4-Rs-dZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2917.5999999999999" y="384.55772113943033"/>
         </scene>
         <!--Detail-->
         <scene sceneID="Mkq-zj-1el">
@@ -133,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibd-Zg-5yn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2904.8000000000002" y="-398.05097451274366"/>
+            <point key="canvasLocation" x="2918" y="-328"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -196,5 +267,6 @@
     </scenes>
     <resources>
         <image name="search" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
     </resources>
 </document>
