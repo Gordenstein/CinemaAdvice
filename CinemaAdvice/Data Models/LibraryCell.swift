@@ -13,6 +13,7 @@ class LibraryCell: UITableViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var genreLabel: UILabel!
   @IBOutlet weak var artworkImageView: UIImageView!
+  @IBOutlet weak var opinionImageView: UIImageView!
   
   var downloadTask: URLSessionDownloadTask?
   
@@ -38,6 +39,12 @@ class LibraryCell: UITableViewCell {
     nameLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
     nameLabel.text = result.name
+    
+    if result.opinion! {
+      opinionImageView.image = #imageLiteral(resourceName: "thumbUp")
+    } else {
+      opinionImageView.image = #imageLiteral(resourceName: "thumbDown")
+    }
     
     if result.artistName.isEmpty {
       genreLabel.text = "Unknown"

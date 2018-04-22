@@ -42,11 +42,20 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ife-1c-t27" userLabel="Opinion Image View">
+                        <rect key="frame" x="272" y="19" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Ag3-gt-dqs"/>
+                            <constraint firstAttribute="height" constant="40" id="BXy-n5-BKx"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="q7T-Am-Hrn" firstAttribute="top" secondItem="hjX-sY-x3W" secondAttribute="top" constant="10" id="0IB-uM-fOx"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ffE-gI-fz8" secondAttribute="trailing" constant="16" id="VtC-Ju-4Zp"/>
+                    <constraint firstItem="Ife-1c-t27" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ffE-gI-fz8" secondAttribute="trailing" constant="8" id="N3e-sG-dn2"/>
+                    <constraint firstItem="Ife-1c-t27" firstAttribute="centerY" secondItem="hjX-sY-x3W" secondAttribute="centerY" id="dFf-2t-sLW"/>
                     <constraint firstItem="ffE-gI-fz8" firstAttribute="centerY" secondItem="hjX-sY-x3W" secondAttribute="centerY" id="m3n-I4-ekl"/>
+                    <constraint firstAttribute="trailing" secondItem="Ife-1c-t27" secondAttribute="trailing" constant="8" id="roG-6W-RfB"/>
                     <constraint firstItem="ffE-gI-fz8" firstAttribute="leading" secondItem="q7T-Am-Hrn" secondAttribute="trailing" constant="8" id="uyW-UY-8oc"/>
                     <constraint firstItem="q7T-Am-Hrn" firstAttribute="leading" secondItem="hjX-sY-x3W" secondAttribute="leading" constant="16" id="wb5-x9-ngz"/>
                 </constraints>
@@ -55,6 +64,7 @@
                 <outlet property="artworkImageView" destination="q7T-Am-Hrn" id="hJA-6B-LKY"/>
                 <outlet property="genreLabel" destination="i4A-hR-mMc" id="mld-L9-bGI"/>
                 <outlet property="nameLabel" destination="Wsk-8j-mvu" id="TpO-9g-aIt"/>
+                <outlet property="opinionImageView" destination="Ife-1c-t27" id="sXN-e7-ZLp"/>
             </connections>
             <point key="canvasLocation" x="26" y="-55"/>
         </tableViewCell>

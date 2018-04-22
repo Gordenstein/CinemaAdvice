@@ -69,11 +69,22 @@
                                     <action selector="close:" destination="4L0-QX-wdB" eventType="touchUpInside" id="ORN-fa-GJo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Скоро здесь будет крутой фильм, который тебе стоит посмотреть!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgT-r2-3Y0">
+                                <rect key="frame" x="37.5" y="313" width="300" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="xgn-dT-8bH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ifg-me-1dD" firstAttribute="top" secondItem="ChS-ic-KVG" secondAttribute="top" constant="18" id="Cgl-44-c9O"/>
                             <constraint firstItem="Ifg-me-1dD" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="18" id="SgN-S5-Vg8"/>
+                            <constraint firstItem="XgT-r2-3Y0" firstAttribute="centerY" secondItem="sPK-5m-tqr" secondAttribute="centerY" id="f4s-fE-FcQ"/>
+                            <constraint firstItem="XgT-r2-3Y0" firstAttribute="centerX" secondItem="sPK-5m-tqr" secondAttribute="centerX" id="msd-Pj-4KQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ChS-ic-KVG"/>
                     </view>

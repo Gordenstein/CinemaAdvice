@@ -19,11 +19,12 @@ class SearchResult:Codable, CustomStringConvertible {
   var longDescription:String?
   var imageLarge = ""
   var collectionName:String?
+  var opinion:Bool?
   
   enum CodingKeys: String, CodingKey {
     case imageLarge = "artworkUrl100"
     case itemGenre = "primaryGenreName"
-    case artistName, trackName, longDescription, kind, contentAdvisoryRating
+    case artistName, trackName, longDescription, kind, contentAdvisoryRating, opinion
   }
   
   var name:String {
