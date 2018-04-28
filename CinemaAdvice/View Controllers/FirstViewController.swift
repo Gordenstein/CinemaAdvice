@@ -247,18 +247,6 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     collectionView.deselectItem(at: indexPath, animated: true)
     performSegue(withIdentifier: "ShowDetailView", sender: indexPath)
-    // Add item to the Library
-//    let index = indexPath.row
-//    var contains = false
-//    for item in libraryItems {
-//      if item.trackName == searchResults[index].trackName {
-//        contains = true
-//      }
-//    }
-//    if !contains {
-//      libraryItems.append(searchResults[index])
-//      saveResults()
-//    }
   }
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

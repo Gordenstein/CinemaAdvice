@@ -24,32 +24,20 @@ class DetailViewController: UIViewController {
   
   @IBAction func noButton(_ sender: Any) {
     searchResult.opinion = false
-    var contains = false
-    for item in libraryItems {
-      if item.trackName == searchResult.trackName {
-        item.opinion = searchResult.opinion
-        contains = true
-      }
+    if let opinion = searchResult.opinion {
+      recordItem(opinion: opinion)
+    } else {
+      print("Opinion is nil.")
     }
-    if !contains {
-      libraryItems.append(searchResult)
-    }
-    saveResults()
     navigationController?.popViewController(animated: true)
   }
   @IBAction func yesButton(_ sender: Any) {
     searchResult.opinion = true
-    var contains = false
-    for item in libraryItems {
-      if item.trackName == searchResult.trackName {
-        item.opinion = searchResult.opinion
-        contains = true
-      }
+    if let opinion = searchResult.opinion {
+      recordItem(opinion: opinion)
+    } else {
+      print("Opinion is nil.")
     }
-    if !contains {
-      libraryItems.append(searchResult)
-    }
-    saveResults()
     navigationController?.popViewController(animated: true)
   }
   
@@ -65,7 +53,20 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+  
+  func recordItem( opinion: Bool) {
+    var contains = false
+    for item in libraryItems {
+      if item.trackName == searchResult.trackName {
+        item.opinion = opinion
+        contains = true
+      }
+    }
+    if !contains {
+      libraryItems.append(searchResult)
+    }
+    saveResults()
+  }
 
   func updateUI() {
     titleLabel.text = searchResult.trackName

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C44E04EE208DD1FA0017D408 /* TwistOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E04ED208DD1FA0017D408 /* TwistOutAnimationController.swift */; };
+		C44E04F0208DD5770017D408 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */; };
 		C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */; };
 		C479AEEB207E6F1D00B8A1C9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */; };
 		C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C44E04ED208DD1FA0017D408 /* TwistOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistOutAnimationController.swift; sourceTree = "<group>"; };
+		C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
 		C479AEE5207E6F1D00B8A1C9 /* CinemaAdvice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinemaAdvice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 				C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */,
 				C479AF04207E73FA00B8A1C9 /* ThirdViewController.swift */,
 				C4CB6B2F208A59ED00596266 /* SearchCollectionReusableView.swift */,
+				C44E04ED208DD1FA0017D408 /* TwistOutAnimationController.swift */,
+				C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -211,8 +217,10 @@
 				C4CB6B36208B4E2200596266 /* SelectionResultViewController.swift in Sources */,
 				C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */,
 				C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */,
+				C44E04EE208DD1FA0017D408 /* TwistOutAnimationController.swift in Sources */,
 				C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */,
 				C479AF05207E73FA00B8A1C9 /* ThirdViewController.swift in Sources */,
+				C44E04F0208DD5770017D408 /* ButtonAnimationExtension.swift in Sources */,
 				C479AEEB207E6F1D00B8A1C9 /* FirstViewController.swift in Sources */,
 				C479AF10207E8D3100B8A1C9 /* SearchResult.swift in Sources */,
 				C479AF17207F428100B8A1C9 /* SearchResultCell.swift in Sources */,

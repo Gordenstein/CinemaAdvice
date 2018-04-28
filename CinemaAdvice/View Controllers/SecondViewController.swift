@@ -13,20 +13,31 @@ class SecondViewController: UIViewController {
   @IBOutlet weak var button: UIButton!
   
   
-  @IBAction func startSelection(_ sender: Any) {
+  @IBAction func startSelection(_ sender: UIButton) {
+    sender.fadeOut()
     performSegue(withIdentifier: "ShowResult", sender: nil)
   }
   override func viewDidLoad() {
     super.viewDidLoad()
     button.layer.cornerRadius = 100
-
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    button.pulsate()
+  }
+
+}
 
 
+extension SecondViewController: UIViewControllerTransitioningDelegate {
+  func animationController(forDismissed dismissed:
+    UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return TwistOutAnimationController()
+  }
 }
 
