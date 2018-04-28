@@ -44,9 +44,11 @@ class DetailViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
     if searchResult != nil {
-      updateUI() }
-    loadResults()
-    
+      updateUI()
+    }
+    if let results = loadResults() {
+      libraryItems = results
+    }
   }
 
     override func didReceiveMemoryWarning() {
@@ -54,18 +56,20 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
   
-  func recordItem( opinion: Bool) {
+  func recordItem( opinion: Bool) {  // Remaster
     var contains = false
-    for item in libraryItems {
+    for (index,item) in libraryItems.enumerated() {
       if item.trackName == searchResult.trackName {
+        libraryItems.remove(at: index)
         item.opinion = opinion
+        libraryItems.append(searchResult)
         contains = true
       }
     }
     if !contains {
       libraryItems.append(searchResult)
     }
-    saveResults()
+    saveResults(results: libraryItems)
   }
 
   func updateUI() {
@@ -84,39 +88,4 @@ class DetailViewController: UIViewController {
       downloadTask = artworkImage.loadImage(url: largeURL)
     }
   }
-  
-  func saveResults() {
-    print("Documents folder is \(documentsDirectory())")
-    print("Data file path is \(dataFilePath())")
-    let encoder = JSONEncoder()
-    do {
-      let data = try encoder.encode(libraryItems)
-      try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
-    } catch {
-      print("Error encoding item array!")
-    }
-  }
-
-  func loadResults() {
-    let path = dataFilePath()
-    if let data = try? Data(contentsOf: path) {
-      let decoder = JSONDecoder()
-      do {
-        libraryItems = try decoder.decode([SearchResult].self, from: data)
-      } catch {
-        print("Error decoding item array!")
-      }
-    }
-  }
-  
-  func documentsDirectory() -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    
-    return paths[0]
-  }
-  
-  func dataFilePath() -> URL {
-    return documentsDirectory().appendingPathComponent("Result.json")
-  }
-  
 }

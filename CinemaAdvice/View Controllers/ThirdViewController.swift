@@ -28,38 +28,14 @@ class ThirdViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    loadResults()
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
-  
-  func loadResults() {
-    print("Start Load!")
-    tableView.reloadData()
-    hasSearched = true
-    libraryItems = []
-    let path = dataFilePath()
-    if let data = try? Data(contentsOf: path) {
-      let decoder = JSONDecoder()
-      do {
-        libraryItems = try decoder.decode([SearchResult].self, from: data)
-      } catch {
-        print("Error decoding item array!")
-      }
+    if let results = loadResults() {
+      libraryItems = results
     }
     tableView.reloadData()
   }
   
-  func documentsDirectory() -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    
-    return paths[0]
-  }
-  
-  func dataFilePath() -> URL {
-    return documentsDirectory().appendingPathComponent("Result.json")
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
   }
 }
 
