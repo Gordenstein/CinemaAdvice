@@ -15,9 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    customizeAppearance()
     return true
   }
+  
 
   func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -41,6 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
-
+  // MARK:- Helper Methods
+  func customizeAppearance() {
+    UINavigationBar.appearance().barTintColor = UIColor.black
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white ]
+    UITabBar.appearance().barTintColor = UIColor.black
+//    UIApplication.shared.statusBarStyle = .lightContent
+//    let tintColor = UIColor(red: 255/255.0, green: 238/255.0,
+//                            blue: 136/255.0, alpha: 1.0)
+//    UITabBar.appearance().tintColor = tintColor
+  }
 }
 

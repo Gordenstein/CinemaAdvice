@@ -19,8 +19,8 @@ class FirstViewController: UIViewController {
   private let search = Search()
   var libraryItems = [SearchResult]()
   var downloadTask: URLSessionDownloadTask?
-
   
+
   override func viewDidLoad() {
     super.viewDidLoad()
     var cellNib = UINib(nibName: CollectionViewCellIdentifiers.loadingCell, bundle: nil)

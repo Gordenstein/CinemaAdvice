@@ -31,13 +31,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsk-8j-mvu">
                                 <rect key="frame" x="0.0" y="0.0" width="81.5" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4A-hR-mMc">
                                 <rect key="frame" x="0.0" y="24.5" width="81.5" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="0.51926369863013699" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -50,6 +50,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.080000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="q7T-Am-Hrn" firstAttribute="top" secondItem="hjX-sY-x3W" secondAttribute="top" constant="10" id="0IB-uM-fOx"/>
                     <constraint firstItem="Ife-1c-t27" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ffE-gI-fz8" secondAttribute="trailing" constant="8" id="N3e-sG-dn2"/>
@@ -60,6 +61,7 @@
                     <constraint firstItem="q7T-Am-Hrn" firstAttribute="leading" secondItem="hjX-sY-x3W" secondAttribute="leading" constant="16" id="wb5-x9-ngz"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.080000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="artworkImageView" destination="q7T-Am-Hrn" id="hJA-6B-LKY"/>
                 <outlet property="genreLabel" destination="i4A-hR-mMc" id="mld-L9-bGI"/>

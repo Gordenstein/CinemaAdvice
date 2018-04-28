@@ -22,11 +22,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7a-Hu-vzS">
                         <rect key="frame" x="12.5" y="8" width="98" height="139.5"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lAk-HG-fuW">
-                                <rect key="frame" x="39" y="59" width="20" height="20.5"/>
+                            <activityIndicatorView opaque="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="lAk-HG-fuW">
+                                <rect key="frame" x="39" y="59" width="20" height="21"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lAk-HG-fuW" firstAttribute="top" secondItem="o7a-Hu-vzS" secondAttribute="top" constant="59" id="CBS-DI-1Lc"/>
                             <constraint firstItem="lAk-HG-fuW" firstAttribute="leading" secondItem="o7a-Hu-vzS" secondAttribute="leading" constant="39" id="J7l-uQ-vrn"/>
@@ -36,7 +36,7 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0V-Za-jyf">
                         <rect key="frame" x="12" y="155.5" width="98" height="14.5"/>
-                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14.5" id="R0U-OY-cjl"/>
                             <constraint firstAttribute="width" constant="98" id="phS-ei-LRH"/>
@@ -44,7 +44,7 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPh-0V-hZv">
                         <rect key="frame" x="12" y="174" width="79" height="13"/>
-                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="6FV-Le-VfH"/>
                             <constraint firstAttribute="width" constant="79" id="hph-co-BSa"/>

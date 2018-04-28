@@ -24,5 +24,7 @@ class SelectionResultViewController: UIViewController {
     dismiss(animated: true, completion: nil)
   }
   
-
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return UIStatusBarStyle.default
+  }
 }

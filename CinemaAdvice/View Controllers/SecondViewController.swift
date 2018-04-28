@@ -31,6 +31,10 @@ class SecondViewController: UIViewController {
     button.pulsate()
   }
 
+  
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return UIStatusBarStyle.lightContent
+  }
 }
 
 

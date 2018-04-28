@@ -22,6 +22,7 @@ class DetailViewController: UIViewController {
   var downloadTask: URLSessionDownloadTask?
   var libraryItems = [SearchResult]()
   
+
   @IBAction func noButton(_ sender: Any) {
     searchResult.opinion = false
     if let opinion = searchResult.opinion {
