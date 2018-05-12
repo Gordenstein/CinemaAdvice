@@ -27,7 +27,7 @@ class ThirdViewController: UIViewController {
     let cellNib = UINib(nibName: libraryCell, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: libraryCell)
 //    tableView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
-    tableView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+//    tableView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
   }
   
   override func viewWillAppear(_ animated: Bool) {
