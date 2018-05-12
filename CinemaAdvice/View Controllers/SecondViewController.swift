@@ -38,10 +38,10 @@ class SecondViewController: UIViewController {
 }
 
 
-extension SecondViewController: UIViewControllerTransitioningDelegate {
-  func animationController(forDismissed dismissed:
-    UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    return TwistOutAnimationController()
-  }
-}
+//extension SecondViewController: UIViewControllerTransitioningDelegate {
+//  func animationController(forDismissed dismissed:
+//    UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//    return TwistOutAnimationController()
+//  }
+//}
 

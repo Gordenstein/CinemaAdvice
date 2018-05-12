@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64E20B299D23C1BD81A39BA8 /* libPods-CinemaAdvice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */; };
 		C44E04EE208DD1FA0017D408 /* TwistOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E04ED208DD1FA0017D408 /* TwistOutAnimationController.swift */; };
 		C44E04F0208DD5770017D408 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */; };
+		C45DBA1520A734FD004F5711 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */; };
+		C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */; };
 		C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */; };
 		C479AEEB207E6F1D00B8A1C9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */; };
 		C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */; };
@@ -32,8 +35,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CinemaAdvice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44E04ED208DD1FA0017D408 /* TwistOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistOutAnimationController.swift; sourceTree = "<group>"; };
 		C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
+		C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultFire.swift; sourceTree = "<group>"; };
 		C479AEE5207E6F1D00B8A1C9 /* CinemaAdvice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinemaAdvice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +62,8 @@
 		C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionResultViewController.swift; sourceTree = "<group>"; };
 		C4CB6B37208B5C0100596266 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		C4CB6B3B208B899300596266 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		DFA67476831D07E8A9804353 /* Pods-CinemaAdvice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinemaAdvice.release.xcconfig"; path = "Pods/Target Support Files/Pods-CinemaAdvice/Pods-CinemaAdvice.release.xcconfig"; sourceTree = "<group>"; };
+		EF0A3B6CEF04D9352D4A82A2 /* Pods-CinemaAdvice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinemaAdvice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CinemaAdvice/Pods-CinemaAdvice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +71,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E20B299D23C1BD81A39BA8 /* libPods-CinemaAdvice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7097AAA4543CB9968128EE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C479AEDC207E6F1D00B8A1C9 = {
 			isa = PBXGroup;
 			children = (
 				C479AEE7207E6F1D00B8A1C9 /* CinemaAdvice */,
 				C479AEE6207E6F1D00B8A1C9 /* Products */,
+				F126FB6F1872C47F25644434 /* Pods */,
+				A7097AAA4543CB9968128EE1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +112,7 @@
 				C479AEFC207E707100B8A1C9 /* Resources */,
 				C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */,
 				C479AEF6207E6F1F00B8A1C9 /* Info.plist */,
+				C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */,
 			);
 			path = CinemaAdvice;
 			sourceTree = "<group>";
@@ -131,12 +151,22 @@
 			isa = PBXGroup;
 			children = (
 				C479AF0D207E8D3100B8A1C9 /* SearchResult.swift */,
+				C4A0B0FC2094CC1E005E5D6A /* Search.swift */,
+				C479AF0E207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift */,
 				C479AF0C207E8D3100B8A1C9 /* LibraryCell.swift */,
 				C479AF16207F428100B8A1C9 /* SearchResultCell.swift */,
-				C479AF0E207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift */,
-				C4A0B0FC2094CC1E005E5D6A /* Search.swift */,
+				C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		F126FB6F1872C47F25644434 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF0A3B6CEF04D9352D4A82A2 /* Pods-CinemaAdvice.debug.xcconfig */,
+				DFA67476831D07E8A9804353 /* Pods-CinemaAdvice.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +176,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C479AEF9207E6F1F00B8A1C9 /* Build configuration list for PBXNativeTarget "CinemaAdvice" */;
 			buildPhases = (
+				521784F9728DBC3F6D86AB72 /* [CP] Check Pods Manifest.lock */,
 				C479AEE1207E6F1D00B8A1C9 /* Sources */,
 				C479AEE2207E6F1D00B8A1C9 /* Frameworks */,
 				C479AEE3207E6F1D00B8A1C9 /* Resources */,
@@ -199,6 +230,7 @@
 			files = (
 				C4CB6B3C208B899300596266 /* NothingFoundCell.xib in Resources */,
 				C479AEF5207E6F1F00B8A1C9 /* LaunchScreen.storyboard in Resources */,
+				C45DBA1520A734FD004F5711 /* GoogleService-Info.plist in Resources */,
 				C479AF03207E71D200B8A1C9 /* ThirdItem.storyboard in Resources */,
 				C479AEF2207E6F1F00B8A1C9 /* Assets.xcassets in Resources */,
 				C4CB6B38208B5C0100596266 /* LoadingCell.xib in Resources */,
@@ -210,6 +242,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		521784F9728DBC3F6D86AB72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CinemaAdvice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C479AEE1207E6F1D00B8A1C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -218,6 +271,7 @@
 				C4CB6B2E208A24D900596266 /* DetailViewController.swift in Sources */,
 				C4CB6B30208A59ED00596266 /* SearchCollectionReusableView.swift in Sources */,
 				C4CB6B36208B4E2200596266 /* SelectionResultViewController.swift in Sources */,
+				C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */,
 				C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */,
 				C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */,
 				C44E04EE208DD1FA0017D408 /* TwistOutAnimationController.swift in Sources */,
@@ -378,6 +432,7 @@
 		};
 		C479AEFA207E6F1F00B8A1C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF0A3B6CEF04D9352D4A82A2 /* Pods-CinemaAdvice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +451,7 @@
 		};
 		C479AEFB207E6F1F00B8A1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFA67476831D07E8A9804353 /* Pods-CinemaAdvice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

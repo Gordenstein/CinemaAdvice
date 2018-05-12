@@ -37,19 +37,31 @@ class SearchResultCell: UICollectionViewCell {
   }
   
   //MARK: Public Methods
-  func configure(for result: SearchResult) {
+//  func configure(for result: SearchResult) {
+//    titleLabel.adjustsFontForContentSizeCategory = true
+//    genreLabel.adjustsFontForContentSizeCategory = true
+//    titleLabel.text = result.name
+//
+//    if result.artistName.isEmpty {
+//      genreLabel.text = "Unknown"
+//    } else {
+//      genreLabel.text = result.genre
+//    }
+//    imageView.image = UIImage(named: "Placeholder")
+//    if let largeURL = URL(string: result.imageLarge) {
+//      downloadTask = imageView.loadImage(url: largeURL)
+//    }
+//  }
+  
+  func configure(for result: SearchResultFire) {
     titleLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
-    titleLabel.text = result.name
-
-    if result.artistName.isEmpty {
-      genreLabel.text = "Unknown"
-    } else {
-      genreLabel.text = result.genre
-    }
+    titleLabel.text = result.nameRu
+    genreLabel.text = result.nameEn
     imageView.image = UIImage(named: "Placeholder")
-    if let largeURL = URL(string: result.imageLarge) {
+    if let largeURL = URL(string: result.imageUrl) {
       downloadTask = imageView.loadImage(url: largeURL)
     }
   }
+  
 }

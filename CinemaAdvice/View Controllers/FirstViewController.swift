@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class FirstViewController: UIViewController {
+  
   struct CollectionViewCellIdentifiers {
     static let nothingFoundCell = "NothingFoundCell"
     static let loadingCell = "LoadingCell"
@@ -16,10 +18,11 @@ class FirstViewController: UIViewController {
 
   @IBOutlet weak var collectionView: UICollectionView!
   
-  private let search = Search()
-  var libraryItems = [SearchResult]()
-  var downloadTask: URLSessionDownloadTask?
+//  private let search = Search()
+//  var libraryItems = [SearchResult]()
   
+  var searchResultFire: [SearchResultFire] = []
+  var temporaryFlag = true
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,13 +30,35 @@ class FirstViewController: UIViewController {
     collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.loadingCell)
     cellNib = UINib(nibName: CollectionViewCellIdentifiers.nothingFoundCell, bundle: nil)
     collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell)
-    
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    welcomingSearch()
-    if let results = loadResults() {
-      libraryItems = results
+    
+    
+//    welcomingSearch()
+//    if let results = loadResults() {
+//      libraryItems = results
+//    }
+    
+    let searchResultReference = Database.database().reference(withPath: "films")
+    let rootReference = Database.database().reference()
+
+
+    searchResultReference.observe(.value) { (snapshot) in
+      print(snapshot)
     }
-//    searchBar.becomeFirstResponder()
+    
+    searchResultReference.observe(.value) { (snapshot) in
+      var newItems: [SearchResultFire] = []
+      for item in snapshot.children {
+        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+        newItems.append(searchItem)
+      }
+      self.searchResultFire = newItems
+      self.temporaryFlag = false
+      self.collectionView.reloadData()
+    }
+    
+    
+    
   }
 
   override func didReceiveMemoryWarning() {
@@ -44,34 +69,34 @@ class FirstViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue,
                         sender: Any?) {
     if segue.identifier == "ShowDetailView"{
-      if case .results(let list) = search.state {
+      if !temporaryFlag {
         let detailViewController = segue.destination as! DetailViewController
         let indexPath = sender as! IndexPath
-        let searchResult = list[indexPath.row]
+        let searchResult = searchResultFire[indexPath.row]
         detailViewController.searchResult = searchResult
       }
     }
   }
   
   // MARK: Private Methods
-  func showNetworkError() {
-    let alert = UIAlertController(title: "Whoops...", message: "There was an error accessing the iTunes Store." + "Please try again.", preferredStyle: .alert)
-    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-    alert.addAction(action)
-    present(alert, animated: true, completion: nil)
-  }
-  
-  private func welcomingSearch () {
-    let searchText = "Marvel"
-    search.performSearch(for: searchText,
-                         completion: {success in
-                          if !success {
-                            self.showNetworkError()
-                          }
-                          self.collectionView.reloadData()
-    })
-    collectionView.reloadData()
-  }
+//  func showNetworkError() {
+//    let alert = UIAlertController(title: "Whoops...", message: "There was an error accessing the iTunes Store." + "Please try again.", preferredStyle: .alert)
+//    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+//    alert.addAction(action)
+//    present(alert, animated: true, completion: nil)
+//  }
+//
+//  private func welcomingSearch () {
+//    let searchText = "Marvel"
+//    search.performSearch(for: searchText,
+//                         completion: {success in
+//                          if !success {
+//                            self.showNetworkError()
+//                          }
+//                          self.collectionView.reloadData()
+//    })
+//    collectionView.reloadData()
+//  }
 }
 
 
@@ -79,20 +104,20 @@ class FirstViewController: UIViewController {
 extension FirstViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     print("The search text is: '\(searchBar.text!)'")
-    performSearch(searchBar: searchBar)
+//    performSearch(searchBar: searchBar)
   }
   
-  func performSearch(searchBar: UISearchBar) {
-    search.performSearch(for: searchBar.text!,
-                         completion: {success in
-                          if !success {
-                            self.showNetworkError()
-                          }
-                          self.collectionView.reloadData()
-    })
-    collectionView.reloadData()
-    searchBar.resignFirstResponder()
-  }
+//  func performSearch(searchBar: UISearchBar) {
+//    search.performSearch(for: searchBar.text!,
+//                         completion: {success in
+//                          if !success {
+//                            self.showNetworkError()
+//                          }
+//                          self.collectionView.reloadData()
+//    })
+//    collectionView.reloadData()
+//    searchBar.resignFirstResponder()
+//  }
   
   func position(for bar: UIBarPositioning) -> UIBarPosition {
     return .topAttached
@@ -103,38 +128,55 @@ extension FirstViewController: UISearchBarDelegate {
 // MARK:- Collection View Delegate
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    switch search.state {
-    case .notSearchedYet:
-      return 0
-    case .loading:
-      return 9
-    case .noResults:
+//    switch search.state {
+//    case .notSearchedYet:
+//      return 0
+//    case .loading:
+//      return 9
+//    case .noResults:
+//      return 1
+//    case .results(let list):
+//      return list.count
+//    }
+    if temporaryFlag {
       return 1
-    case .results(let list):
-      return list.count
+    } else {
+      return searchResultFire.count
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    switch search.state {
-    case .notSearchedYet:
-      fatalError("Should never get here")
-    case .loading:
+//    switch search.state {
+//    case .notSearchedYet:
+//      fatalError("Should never get here")
+//    case .loading:
+//      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
+//      let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
+//      spinner.startAnimating()
+//      return cell
+//    case .noResults:
+//      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell, for: indexPath)
+//      return cell
+//    case .results(let list):
+//      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! SearchResultCell
+//      let searchResult = list[indexPath.row]
+//      cell.configure(for: searchResult)
+//      return cell
+//    }
+    
+    if temporaryFlag {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
       let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
       spinner.startAnimating()
       return cell
-    case .noResults:
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell, for: indexPath)
-      return cell
-    case .results(let list):
+    } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! SearchResultCell
-      let searchResult = list[indexPath.row]
+      let searchResult = searchResultFire[indexPath.row]
       cell.configure(for: searchResult)
       return cell
     }
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     collectionView.deselectItem(at: indexPath, animated: true)
     performSegue(withIdentifier: "ShowDetailView", sender: indexPath)
