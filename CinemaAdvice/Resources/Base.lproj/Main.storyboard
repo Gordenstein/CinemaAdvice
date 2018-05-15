@@ -129,7 +129,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Поиск фильмов" id="XFR-r6-6OA">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="HaK-ID-Pb7"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="filter2" style="plain" id="xyh-s1-H6i">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="filter2" id="xyh-s1-H6i">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
                             <connections>
                                 <segue destination="jh7-BH-9vh" kind="show" identifier="ShowFilters" id="F4I-Je-3ct"/>

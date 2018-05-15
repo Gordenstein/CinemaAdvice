@@ -9,8 +9,6 @@
 import UIKit
 
 class SearchResultCell: UICollectionViewCell {
-
-  
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var genreLabel: UILabel!
@@ -24,12 +22,6 @@ class SearchResultCell: UICollectionViewCell {
     selectedBackgroundView = selectedView
   }
   
-//  override func setSelected(_ selected: Bool, animated: Bool) {
-//    super.setSelected(selected, animated: animated)
-//
-//    // Configure the view for the selected state
-//  }
-  
   override func prepareForReuse() {
     super.prepareForReuse()
     downloadTask?.cancel()
@@ -37,22 +29,6 @@ class SearchResultCell: UICollectionViewCell {
   }
   
   //MARK: Public Methods
-//  func configure(for result: SearchResult) {
-//    titleLabel.adjustsFontForContentSizeCategory = true
-//    genreLabel.adjustsFontForContentSizeCategory = true
-//    titleLabel.text = result.name
-//
-//    if result.artistName.isEmpty {
-//      genreLabel.text = "Unknown"
-//    } else {
-//      genreLabel.text = result.genre
-//    }
-//    imageView.image = UIImage(named: "Placeholder")
-//    if let largeURL = URL(string: result.imageLarge) {
-//      downloadTask = imageView.loadImage(url: largeURL)
-//    }
-//  }
-  
   func configure(for result: SearchResultFire) {
     titleLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true

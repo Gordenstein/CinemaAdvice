@@ -10,22 +10,19 @@ import UIKit
 import Firebase
 
 class FirstViewController: UIViewController, FiltersViewControllerDelegate {
-  
+  //MARK: Filters View Controller Delegate
   func finishEditingFilters(_ controller: FiltersViewController, newFilters: Filters) {
     filters = newFilters
   }
   
-  
+  // MARK: Start
   struct CollectionViewCellIdentifiers {
     static let nothingFoundCell = "NothingFoundCell"
     static let loadingCell = "LoadingCell"
   }
   
   @IBOutlet weak var collectionView: UICollectionView!
-  
-  //  private let search = Search()
-  //  var libraryItems = [SearchResult]()
-  
+
   var filters = Filters()
   var searchResultFire: [SearchResultFire] = []
   var temporaryFlag = true
@@ -38,19 +35,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
     collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell)
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
-    //    welcomingSearch()
-    //    if let results = loadResults() {
-    //      libraryItems = results
-    //    }
-    
     let searchResultReference = Database.database().reference(withPath: "films")
-    let rootReference = Database.database().reference()
-    
-    
-//    searchResultReference.observe(.value) { (snapshot) in
-//      print(snapshot)
-//    }
-    
     searchResultReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
       for item in snapshot.children {
@@ -62,11 +47,29 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
       self.collectionView.reloadData()
 //      self.checkNil()
     }
-  
+  }
+ 
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
   }
   
-
+  override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
+    if segue.identifier == "ShowDetailView" {
+      if !temporaryFlag {
+        let detailViewController = segue.destination as! DetailViewController
+        let indexPath = sender as! IndexPath
+        let searchResult = searchResultFire[indexPath.row]
+        detailViewController.searchResult = searchResult
+      }
+    }
+    if segue.identifier == "ShowFilters" {
+      let filtersViewController = segue.destination as! FiltersViewController
+      filtersViewController.filters = filters
+      filtersViewController.delegate = self
+    }
+  }
   
+  // MARK: Private Methods
   func checkNil() {
     print("budget \n_________________________________________")
     for item in searchResultFire {
@@ -110,71 +113,16 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
         print(item.key, item.nameRu)
       }
     }
-    
   }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
-    if segue.identifier == "ShowDetailView" {
-      if !temporaryFlag {
-        let detailViewController = segue.destination as! DetailViewController
-        let indexPath = sender as! IndexPath
-        let searchResult = searchResultFire[indexPath.row]
-        detailViewController.searchResult = searchResult
-      }
-    }
-    if segue.identifier == "ShowFilters" {
-      let filtersViewController = segue.destination as! FiltersViewController
-      filtersViewController.filters = filters
-      filtersViewController.delegate = self
-    }
-    
-  }
-  
-  // MARK: Private Methods
-  //  func showNetworkError() {
-  //    let alert = UIAlertController(title: "Whoops...", message: "There was an error accessing the iTunes Store." + "Please try again.", preferredStyle: .alert)
-  //    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-  //    alert.addAction(action)
-  //    present(alert, animated: true, completion: nil)
-  //  }
-  //
-  //  private func welcomingSearch () {
-  //    let searchText = "Marvel"
-  //    search.performSearch(for: searchText,
-  //                         completion: {success in
-  //                          if !success {
-  //                            self.showNetworkError()
-  //                          }
-  //                          self.collectionView.reloadData()
-  //    })
-  //    collectionView.reloadData()
-  //  }
 }
+
 
 
 // MARK:- Search Bar
 extension FirstViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     print("The search text is: '\(searchBar.text!)'")
-    //    performSearch(searchBar: searchBar)
   }
-  
-  //  func performSearch(searchBar: UISearchBar) {
-  //    search.performSearch(for: searchBar.text!,
-  //                         completion: {success in
-  //                          if !success {
-  //                            self.showNetworkError()
-  //                          }
-  //                          self.collectionView.reloadData()
-  //    })
-  //    collectionView.reloadData()
-  //    searchBar.resignFirstResponder()
-  //  }
   
   func position(for bar: UIBarPositioning) -> UIBarPosition {
     return .topAttached
@@ -182,45 +130,17 @@ extension FirstViewController: UISearchBarDelegate {
 }
 
 
-// MARK:- Collection View Delegate
+// MARK:- Collection View Delegates
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //    switch search.state {
-    //    case .notSearchedYet:
-    //      return 0
-    //    case .loading:
-    //      return 9
-    //    case .noResults:
-    //      return 1
-    //    case .results(let list):
-    //      return list.count
-    //    }
     if temporaryFlag {
-      return 1
+      return 9
     } else {
       return searchResultFire.count
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //    switch search.state {
-    //    case .notSearchedYet:
-    //      fatalError("Should never get here")
-    //    case .loading:
-    //      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
-    //      let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
-    //      spinner.startAnimating()
-    //      return cell
-    //    case .noResults:
-    //      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell, for: indexPath)
-    //      return cell
-    //    case .results(let list):
-    //      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! SearchResultCell
-    //      let searchResult = list[indexPath.row]
-    //      cell.configure(for: searchResult)
-    //      return cell
-    //    }
-    
     if temporaryFlag {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
       let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView

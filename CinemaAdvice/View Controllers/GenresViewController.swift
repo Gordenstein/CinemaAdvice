@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol GenresViewControllerDelegate: class {
   func finishEditing(_ controller: GenresViewController, newFilters: Filters)
 }
@@ -30,6 +29,7 @@ class GenresViewController: UITableViewController {
     delegate?.finishEditing(self, newFilters: filters)
   }
   
+  //MARK: Table View Delegates
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return filters.genres.count
   }

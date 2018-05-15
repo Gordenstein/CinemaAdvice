@@ -12,17 +12,10 @@ import Firebase
 class ThirdViewController: UIViewController {
   
   let libraryCell = "LibraryCell"
-  
-  //  var libraryItems = [SearchResult]()
-  //  var hasSearched = false
-  //  var isLoading = false
-  //  var dataTask: URLSessionDataTask?
-  
   var libraryItems: [SearchResultFire] = []
   var temporaryFlag = true
   
   @IBOutlet weak var tableView: UITableView!
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,10 +26,6 @@ class ThirdViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    //    if let results = loadResults() {
-    //      libraryItems = results
-    //    }
-    
     let libraryReference = Database.database().reference(withPath: "library-")
     libraryReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
@@ -56,7 +45,7 @@ class ThirdViewController: UIViewController {
   }
 }
 
-// MARK: Table View
+// MARK: Table View Delegates
 extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if temporaryFlag {
@@ -95,5 +84,4 @@ extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
       tableView.deleteRows(at: indexPaths, with: .automatic)
     }
   }
-  
 }

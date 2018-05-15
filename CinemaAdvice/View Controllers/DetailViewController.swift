@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class DetailViewController: UIViewController {
-  
+  // MARK: Outlets
   @IBOutlet weak var artworkImage: UIImageView!
   @IBOutlet weak var titleLabelRu: UILabel!
   @IBOutlet weak var titleLabelEn: UILabel!
@@ -18,16 +18,9 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var genreLabel: UILabel!
   @IBOutlet weak var contentAdvisoryRating: UILabel!
   @IBOutlet weak var longDescription: UITextView!
+
   
-  //  var searchResult: SearchResult!
-  //  var libraryItems = [SearchResult]()
-  
-  var downloadTask: URLSessionDownloadTask?
-  var searchResult: SearchResultFire!
-  var libraryItems: [SearchResultFire] = []
-  
-  
-  
+  // MARK: Actions
   @IBAction func noButton(_ sender: Any) {
     searchResult.opinion = false
     if let opinion = searchResult.opinion {
@@ -47,75 +40,46 @@ class DetailViewController: UIViewController {
     navigationController?.popViewController(animated: true)
   }
   
-  func recordItem( opinion: Bool) {  // Remaster
-    //    var contains = false
-    //    for (index,item) in libraryItems.enumerated() {
-    //      if item.trackName == searchResult.trackName {
-    //        libraryItems.remove(at: index)
-    //        item.opinion = opinion
-    //        libraryItems.append(searchResult)
-    //        contains = true
-    //      }
-    //    }
-    //    if !contains {
-    //      libraryItems.append(searchResult)
-    //    }
-    //    saveResults(results: libraryItems)
+  func recordItem( opinion: Bool) {
     let libraryReference = Database.database().reference(withPath: "library-")
     let libraryItemReference = libraryReference.child(searchResult.key)
     let values: [String: Any] = ["nameRu": searchResult.nameRu,
-                                 "nameEn": searchResult.nameEn,
+                                 "nameEn": searchResult.nameEn ?? "",
                                  "imageUrl": searchResult.imageUrl,
                                  "year": searchResult.year,
                                  "countries": searchResult.countries,
                                  "tagline": searchResult.tagline,
-                                 "directors": searchResult.directors,
-                                 "producers": searchResult.producers,
+                                 "directors": searchResult.directors ?? [],
+                                 "producers": searchResult.producers ?? [],
                                  "genres": searchResult.genres,
-                                 "budget": searchResult.budget,
-                                 "ageLimit": searchResult.ageLimit,
+                                 "budget": searchResult.budget ?? "",
+                                 "ageLimit": searchResult.ageLimit ?? 0,
                                  "ratingKinopoisk": searchResult.ratingKinopoisk,
-                                 "ratingMpaa": searchResult.ratingMpaa,
+                                 "ratingMpaa": searchResult.ratingMpaa ?? "",
                                  "duration": searchResult.duration,
-                                 "actors": searchResult.actors,
+                                 "actors": searchResult.actors ?? [],
                                  "description": searchResult.description,
-                                 "keywords": searchResult.keywords,
+                                 "keywords": searchResult.keywords ?? [],
                                  "opinion": searchResult.opinion ?? true]
     libraryItemReference.setValue(values)
     
   }
   
-  
+  // MARK: Start
+  var downloadTask: URLSessionDownloadTask?
+  var searchResult: SearchResultFire!
+  var libraryItems: [SearchResultFire] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
     if searchResult != nil {
       updateUI()
     }
-    //    if let results = loadResults() {
-    //      libraryItems = results
-    //    }
-    
-    
-    
-    //    let libraryReference = Database.database().reference(withPath: "library-")
-    //    libraryReference.observe(.value) { (snapshot) in
-    //      var newItems: [SearchResultFire] = []
-    //      for item in snapshot.children {
-    //        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-    //        newItems.append(searchItem)
-    //      }
-    //      self.libraryItems = newItems
-    //      self.temporaryFlag = false
-    //      self.tableView.reloadData()
-    //    }
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
-  
   
   func updateUI() {
     titleLabelRu.text = searchResult.nameRu

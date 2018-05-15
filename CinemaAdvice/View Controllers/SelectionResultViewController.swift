@@ -28,8 +28,6 @@ class SelectionResultViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
-    
     let libraryReference = Database.database().reference(withPath: "library-")
     let searchResultReference = Database.database().reference(withPath: "films")
     
@@ -51,7 +49,6 @@ class SelectionResultViewController: UIViewController {
       self.searchResultFire = newItems
       self.updateUI()
     }
-    
   }
   
   func updateUI() {
@@ -74,18 +71,17 @@ class SelectionResultViewController: UIViewController {
     temporaryString = ""
     temporaryString += String(searchItem.ageLimit ?? 0) + "+    " + String(searchItem.ratingMpaa ?? "")
     ageAndMpaa.text = temporaryString
-    ratingKinopoisk.text = String(Double(searchItem.ratingKinopoisk))
+    ratingKinopoisk.text = String(Double(truncating: searchItem.ratingKinopoisk))
     filmDescription.text = searchItem.description
     if let largeURL = URL(string: searchItem.imageUrl) {
       downloadTask = artwork.loadImage(url: largeURL)
     }
   }
   
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
+  
   @IBAction func close(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }

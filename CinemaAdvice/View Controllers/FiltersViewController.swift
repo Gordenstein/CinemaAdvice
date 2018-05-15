@@ -13,11 +13,12 @@ protocol FiltersViewControllerDelegate: class {
 }
 
 class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPickerViewDelegate, GenresViewControllerDelegate {
+  //MARK: Genres View Controller Delegate
   func finishEditing(_ controller: GenresViewController, newFilters: Filters) {
     filters = newFilters
   }
-
   
+  // MARK: Start
   var filters = Filters()
   var yearPickerVisible = false
   var whoOpenYear: IndexPath?
@@ -38,20 +39,15 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   @IBOutlet weak var startAgeLabel: UILabel!
   @IBOutlet weak var endAgeLabel: UILabel!
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     for i in 1890...2018 {
       valueForYear.append(i)
     }
-    
     startYearLabel.text = String(filters.startYear)
     endYearLabel.text = String(filters.endYear)
     startAgeLabel.text = valueForAge[filters.startAge]
     endAgeLabel.text = valueForAge[filters.endAge]
-
-  
     yearPicker.delegate = self
     yearPicker.dataSource = self
     agePicker.delegate = self
@@ -65,7 +61,6 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   override func viewWillDisappear(_ animated: Bool) {
     delegate?.finishEditingFilters(self, newFilters: filters)
   }
-  
   
   //MARK:- Picker view methoods and data source
   func showYearPicker(opener: IndexPath) {
@@ -125,8 +120,6 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
       tableView.endUpdates()
     }
   }
-  
-  
   
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
