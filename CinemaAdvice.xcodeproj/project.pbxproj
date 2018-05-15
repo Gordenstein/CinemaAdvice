@@ -12,6 +12,7 @@
 		C44E04F0208DD5770017D408 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */; };
 		C45DBA1520A734FD004F5711 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */; };
 		C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */; };
+		C45DBA1920A84B81004F5711 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45DBA1820A84B81004F5711 /* FiltersViewController.swift */; };
 		C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */; };
 		C479AEEB207E6F1D00B8A1C9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */; };
 		C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */; };
@@ -32,6 +33,7 @@
 		C4CB6B36208B4E2200596266 /* SelectionResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */; };
 		C4CB6B38208B5C0100596266 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CB6B37208B5C0100596266 /* LoadingCell.xib */; };
 		C4CB6B3C208B899300596266 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CB6B3B208B899300596266 /* NothingFoundCell.xib */; };
+		C4E6C3AC20AADACB0038F5F7 /* GenresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C3AB20AADACB0038F5F7 /* GenresViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,7 @@
 		C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
 		C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultFire.swift; sourceTree = "<group>"; };
+		C45DBA1820A84B81004F5711 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		C479AEE5207E6F1D00B8A1C9 /* CinemaAdvice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinemaAdvice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 		C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionResultViewController.swift; sourceTree = "<group>"; };
 		C4CB6B37208B5C0100596266 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		C4CB6B3B208B899300596266 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		C4E6C3AB20AADACB0038F5F7 /* GenresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewController.swift; sourceTree = "<group>"; };
 		DFA67476831D07E8A9804353 /* Pods-CinemaAdvice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinemaAdvice.release.xcconfig"; path = "Pods/Target Support Files/Pods-CinemaAdvice/Pods-CinemaAdvice.release.xcconfig"; sourceTree = "<group>"; };
 		EF0A3B6CEF04D9352D4A82A2 /* Pods-CinemaAdvice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinemaAdvice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CinemaAdvice/Pods-CinemaAdvice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +141,8 @@
 			children = (
 				C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */,
 				C4CB6B2D208A24D900596266 /* DetailViewController.swift */,
+				C45DBA1820A84B81004F5711 /* FiltersViewController.swift */,
+				C4E6C3AB20AADACB0038F5F7 /* GenresViewController.swift */,
 				C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */,
 				C4CB6B35208B4E2200596266 /* SelectionResultViewController.swift */,
 				C479AF04207E73FA00B8A1C9 /* ThirdViewController.swift */,
@@ -270,6 +276,7 @@
 			files = (
 				C4CB6B2E208A24D900596266 /* DetailViewController.swift in Sources */,
 				C4CB6B30208A59ED00596266 /* SearchCollectionReusableView.swift in Sources */,
+				C4E6C3AC20AADACB0038F5F7 /* GenresViewController.swift in Sources */,
 				C4CB6B36208B4E2200596266 /* SelectionResultViewController.swift in Sources */,
 				C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */,
 				C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */,
@@ -282,6 +289,7 @@
 				C479AF10207E8D3100B8A1C9 /* SearchResult.swift in Sources */,
 				C479AF17207F428100B8A1C9 /* SearchResultCell.swift in Sources */,
 				C479AF0F207E8D3100B8A1C9 /* LibraryCell.swift in Sources */,
+				C45DBA1920A84B81004F5711 /* FiltersViewController.swift in Sources */,
 				C4A0B0FD2094CC1E005E5D6A /* Search.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,7 +34,7 @@ extension UIButton {
     fade.repeatCount = 1
     
     layer.add(fade, forKey: "fade")
-
+    
   }
   
 }

@@ -10,13 +10,13 @@ import UIKit
 import Firebase
 
 class ThirdViewController: UIViewController {
-
+  
   let libraryCell = "LibraryCell"
-
-//  var libraryItems = [SearchResult]()
-//  var hasSearched = false
-//  var isLoading = false
-//  var dataTask: URLSessionDataTask?
+  
+  //  var libraryItems = [SearchResult]()
+  //  var hasSearched = false
+  //  var isLoading = false
+  //  var dataTask: URLSessionDataTask?
   
   var libraryItems: [SearchResultFire] = []
   var temporaryFlag = true
@@ -33,9 +33,9 @@ class ThirdViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-//    if let results = loadResults() {
-//      libraryItems = results
-//    }
+    //    if let results = loadResults() {
+    //      libraryItems = results
+    //    }
     
     let libraryReference = Database.database().reference(withPath: "library-")
     libraryReference.observe(.value) { (snapshot) in
@@ -83,6 +83,17 @@ extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-      return indexPath
+    return indexPath
   }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    let item = libraryItems[indexPath.row]
+    item.ref?.removeValue()
+    if editingStyle == .delete {
+      libraryItems.remove(at: indexPath.row)
+      let indexPaths = [indexPath]
+      tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+  }
+  
 }

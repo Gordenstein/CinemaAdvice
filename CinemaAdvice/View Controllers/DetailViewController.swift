@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class DetailViewController: UIViewController {
-
+  
   @IBOutlet weak var artworkImage: UIImageView!
   @IBOutlet weak var titleLabelRu: UILabel!
   @IBOutlet weak var titleLabelEn: UILabel!
@@ -19,15 +19,15 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var contentAdvisoryRating: UILabel!
   @IBOutlet weak var longDescription: UITextView!
   
-//  var searchResult: SearchResult!
-//  var libraryItems = [SearchResult]()
+  //  var searchResult: SearchResult!
+  //  var libraryItems = [SearchResult]()
   
   var downloadTask: URLSessionDownloadTask?
   var searchResult: SearchResultFire!
   var libraryItems: [SearchResultFire] = []
-
   
-
+  
+  
   @IBAction func noButton(_ sender: Any) {
     searchResult.opinion = false
     if let opinion = searchResult.opinion {
@@ -48,19 +48,19 @@ class DetailViewController: UIViewController {
   }
   
   func recordItem( opinion: Bool) {  // Remaster
-//    var contains = false
-//    for (index,item) in libraryItems.enumerated() {
-//      if item.trackName == searchResult.trackName {
-//        libraryItems.remove(at: index)
-//        item.opinion = opinion
-//        libraryItems.append(searchResult)
-//        contains = true
-//      }
-//    }
-//    if !contains {
-//      libraryItems.append(searchResult)
-//    }
-//    saveResults(results: libraryItems)
+    //    var contains = false
+    //    for (index,item) in libraryItems.enumerated() {
+    //      if item.trackName == searchResult.trackName {
+    //        libraryItems.remove(at: index)
+    //        item.opinion = opinion
+    //        libraryItems.append(searchResult)
+    //        contains = true
+    //      }
+    //    }
+    //    if !contains {
+    //      libraryItems.append(searchResult)
+    //    }
+    //    saveResults(results: libraryItems)
     let libraryReference = Database.database().reference(withPath: "library-")
     let libraryItemReference = libraryReference.child(searchResult.key)
     let values: [String: Any] = ["nameRu": searchResult.nameRu,
@@ -79,6 +79,7 @@ class DetailViewController: UIViewController {
                                  "duration": searchResult.duration,
                                  "actors": searchResult.actors,
                                  "description": searchResult.description,
+                                 "keywords": searchResult.keywords,
                                  "opinion": searchResult.opinion ?? true]
     libraryItemReference.setValue(values)
     
@@ -87,40 +88,40 @@ class DetailViewController: UIViewController {
   
   
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
     if searchResult != nil {
       updateUI()
     }
-//    if let results = loadResults() {
-//      libraryItems = results
-//    }
+    //    if let results = loadResults() {
+    //      libraryItems = results
+    //    }
     
     
     
-//    let libraryReference = Database.database().reference(withPath: "library-")
-//    libraryReference.observe(.value) { (snapshot) in
-//      var newItems: [SearchResultFire] = []
-//      for item in snapshot.children {
-//        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-//        newItems.append(searchItem)
-//      }
-//      self.libraryItems = newItems
-//      self.temporaryFlag = false
-//      self.tableView.reloadData()
-//    }
+    //    let libraryReference = Database.database().reference(withPath: "library-")
+    //    libraryReference.observe(.value) { (snapshot) in
+    //      var newItems: [SearchResultFire] = []
+    //      for item in snapshot.children {
+    //        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+    //        newItems.append(searchItem)
+    //      }
+    //      self.libraryItems = newItems
+    //      self.temporaryFlag = false
+    //      self.tableView.reloadData()
+    //    }
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
   
-
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  
   func updateUI() {
     titleLabelRu.text = searchResult.nameRu
     titleLabelEn.text = searchResult.nameEn
-    artistLabel.text = searchResult.directors[0]
-    contentAdvisoryRating.text = String(searchResult.ageLimit)
+//    artistLabel.text = searchResult.directors[0]
+    contentAdvisoryRating.text = String(searchResult.ageLimit ?? 100)
     longDescription.text = searchResult.description
     genreLabel.text = searchResult.genres[0]
     if let largeURL = URL(string: searchResult.imageUrl) {

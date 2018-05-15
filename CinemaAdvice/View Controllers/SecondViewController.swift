@@ -9,7 +9,7 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-
+  
   @IBOutlet weak var button: UIButton!
   
   
@@ -21,7 +21,7 @@ class SecondViewController: UIViewController {
     super.viewDidLoad()
     button.layer.cornerRadius = 100
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -30,7 +30,7 @@ class SecondViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     button.pulsate()
   }
-
+  
   
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return UIStatusBarStyle.lightContent
