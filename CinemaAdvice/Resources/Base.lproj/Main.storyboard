@@ -129,7 +129,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Поиск фильмов" id="XFR-r6-6OA">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="HaK-ID-Pb7"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="filter2" id="xyh-s1-H6i">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="funnel" id="xyh-s1-H6i">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
                             <connections>
                                 <segue destination="jh7-BH-9vh" kind="show" identifier="ShowFilters" id="F4I-Je-3ct"/>
@@ -288,9 +288,17 @@
                             <outlet property="delegate" destination="jh7-BH-9vh" id="Rb4-Ob-EPo"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Фильтры" id="dq4-lW-2Pz">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Готово" id="HOr-He-Lkp">
+                            <connections>
+                                <action selector="doneBarButton:" destination="jh7-BH-9vh" id="bwr-fW-iAU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="agePicker" destination="EFl-63-vps" id="7su-n8-mHf"/>
                         <outlet property="agePickerCell" destination="LKH-Re-aB1" id="NyK-X5-isH"/>
+                        <outlet property="doneBarButton" destination="HOr-He-Lkp" id="7iZ-1V-zQk"/>
                         <outlet property="endAgeLabel" destination="Fc4-li-Jio" id="Vao-vN-qnF"/>
                         <outlet property="endYearLabel" destination="NPd-YN-EnX" id="FXO-u9-W3U"/>
                         <outlet property="startAgeLabel" destination="Zyt-cN-h0Q" id="yg1-Fl-Bzb"/>
@@ -604,7 +612,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="filter2" width="30" height="35"/>
+        <image name="funnel" width="30" height="35"/>
         <image name="search" width="30" height="30"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

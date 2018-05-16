@@ -12,7 +12,9 @@ import Firebase
 class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   //MARK: Filters View Controller Delegate
   func finishEditingFilters(_ controller: FiltersViewController, newFilters: Filters) {
+    navigationController?.popViewController(animated: true)
     filters = newFilters
+    changeFilters = true
   }
   
   // MARK: Start
@@ -24,6 +26,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   @IBOutlet weak var collectionView: UICollectionView!
 
   var filters = Filters()
+  var changeFilters = false
   var searchResultFire: [SearchResultFire] = []
   var temporaryFlag = true
   

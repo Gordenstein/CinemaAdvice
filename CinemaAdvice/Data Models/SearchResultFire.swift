@@ -68,6 +68,7 @@ struct SearchResultFire {
   }
 }
 
+
 struct Filters {
   
   var startYear: Int
@@ -104,6 +105,21 @@ struct Filters {
     endYear = 2018
     startAge = 0
     endAge = 4
+  }
+  
+  
+  func changeFilters(first filter1: Filters, second filter2: Filters) -> Bool {
+    var change = false
+    for item in 0...filter1.genres.count - 1 {
+      if filter1.genres[item] != filter2.genres[item] {
+        change = true
+      }
+    }
+    if (filter1.startAge != filter2.startAge) || (filter1.endAge != filter2.endAge) ||
+      (filter1.startYear != filter2.startYear) || (filter1.endYear != filter2.endYear) {
+      change = true
+    }
+    return change
   }
   
 }

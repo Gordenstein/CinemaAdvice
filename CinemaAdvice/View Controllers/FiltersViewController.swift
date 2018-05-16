@@ -20,6 +20,8 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   
   // MARK: Start
   var filters = Filters()
+  var startFilters = Filters()
+  var changeFilters = false
   var yearPickerVisible = false
   var whoOpenYear: IndexPath?
   let startYearIndex = IndexPath(row: 0, section: 1)
@@ -38,12 +40,14 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   @IBOutlet weak var endYearLabel: UILabel!
   @IBOutlet weak var startAgeLabel: UILabel!
   @IBOutlet weak var endAgeLabel: UILabel!
+  @IBOutlet weak var doneBarButton: UIBarButtonItem!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     for i in 1890...2018 {
       valueForYear.append(i)
     }
+    startFilters = filters
     startYearLabel.text = String(filters.startYear)
     endYearLabel.text = String(filters.endYear)
     startAgeLabel.text = valueForAge[filters.startAge]
@@ -58,11 +62,102 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
     super.didReceiveMemoryWarning()
   }
   
-  override func viewWillDisappear(_ animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
+    changeFilters = filters.changeFilters(first: startFilters, second: filters)
+    if changeFilters {
+      doneBarButton.isEnabled = true
+    } else {
+      doneBarButton.isEnabled = false
+    }
+  }
+  
+  @IBAction func doneBarButton(_ sender: Any) {
     delegate?.finishEditingFilters(self, newFilters: filters)
   }
   
   //MARK:- Picker view methoods and data source
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    if pickerView == yearPicker {
+      return valueForYear.count
+    } else {
+      return valueForAge.count
+    }
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    if pickerView == yearPicker {
+      return String(valueForYear[row])
+    } else {
+      return String(valueForAge[row])
+    }
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    if pickerView == yearPicker {
+      setYear(pickerView, didSelectRow: row)
+    } else {
+      setAge(pickerView, didSelectRow: row)
+    }
+    changeFilters = filters.changeFilters(first: startFilters, second: filters)
+    if changeFilters {
+      doneBarButton.isEnabled = true
+    } else {
+      doneBarButton.isEnabled = false
+    }
+  }
+  
+  func setYear (_ pickerView: UIPickerView, didSelectRow row: Int) {
+    if whoOpenYear == startYearIndex {
+      let endYear = filters.endYear-1890
+      if row > endYear {
+        pickerView.selectRow(endYear, inComponent: 0, animated: true)
+        filters.startYear = valueForYear[endYear]
+        startYearLabel.text = String(valueForYear[endYear])
+      } else {
+        filters.startYear = valueForYear[row]
+        startYearLabel.text = String(valueForYear[row])
+      }
+    } else {
+      let startYear = filters.startYear-1890
+      if row < startYear {
+        pickerView.selectRow(startYear, inComponent: 0, animated: true)
+        filters.endYear = valueForYear[startYear]
+        endYearLabel.text = String(valueForYear[startYear])
+      } else {
+        filters.endYear = valueForYear[row]
+        endYearLabel.text = String(valueForYear[row])
+      }
+    }
+  }
+  
+  func setAge (_ pickerView: UIPickerView, didSelectRow row: Int) {
+    if whoOpenAge == startAgeIndex {
+      let endAge = filters.endAge
+      if row > endAge {
+        pickerView.selectRow(endAge, inComponent: 0, animated: true)
+        filters.startAge = endAge
+        startAgeLabel.text = valueForAge[endAge]
+      } else {
+        filters.startAge = row
+        startAgeLabel.text = valueForAge[row]
+      }
+    } else {
+      let startAge = filters.startAge
+      if row < startAge {
+        pickerView.selectRow(startAge, inComponent: 0, animated: true)
+        filters.endAge = startAge
+        endAgeLabel.text = valueForAge[startAge]
+      } else {
+        filters.endAge = row
+        endAgeLabel.text = valueForAge[row]
+      }
+    }
+  }
+ 
   func showYearPicker(opener: IndexPath) {
     yearPickerVisible = true
     whoOpenYear = opener
@@ -121,83 +216,6 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
     }
   }
   
-  func numberOfComponents(in pickerView: UIPickerView) -> Int {
-    return 1
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    if pickerView == yearPicker {
-      return valueForYear.count
-    } else {
-      return valueForAge.count
-    }
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    if pickerView == yearPicker {
-      return String(valueForYear[row])
-    } else {
-      return String(valueForAge[row])
-    }
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    if pickerView == yearPicker {
-      setYear(pickerView, didSelectRow: row)
-    } else {
-      setAge(pickerView, didSelectRow: row)
-    }
-  }
-  
-  func setYear (_ pickerView: UIPickerView, didSelectRow row: Int) {
-    if whoOpenYear == startYearIndex {
-      let endYear = filters.endYear-1890
-      if row > endYear {
-        pickerView.selectRow(endYear, inComponent: 0, animated: true)
-        filters.startYear = valueForYear[endYear]
-        startYearLabel.text = String(valueForYear[endYear])
-      } else {
-        filters.startYear = valueForYear[row]
-        startYearLabel.text = String(valueForYear[row])
-      }
-    } else {
-      let startYear = filters.startYear-1890
-      if row < startYear {
-        pickerView.selectRow(startYear, inComponent: 0, animated: true)
-        filters.endYear = valueForYear[startYear]
-        endYearLabel.text = String(valueForYear[startYear])
-      } else {
-        filters.endYear = valueForYear[row]
-        endYearLabel.text = String(valueForYear[row])
-      }
-    }
-  }
-  
-  func setAge (_ pickerView: UIPickerView, didSelectRow row: Int) {
-    if whoOpenAge == startAgeIndex {
-      let endAge = filters.endAge
-      if row > endAge {
-        pickerView.selectRow(endAge, inComponent: 0, animated: true)
-        filters.startAge = endAge
-        startAgeLabel.text = valueForAge[endAge]
-      } else {
-        filters.startAge = row
-        startAgeLabel.text = valueForAge[row]
-      }
-    } else {
-      let startAge = filters.startAge
-      if row < startAge {
-        pickerView.selectRow(startAge, inComponent: 0, animated: true)
-        filters.endAge = startAge
-        endAgeLabel.text = valueForAge[startAge]
-      } else {
-        filters.endAge = row
-        endAgeLabel.text = valueForAge[row]
-      }
-    }
-  }
-  
-
   // MARK: - Table view data source
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 3
