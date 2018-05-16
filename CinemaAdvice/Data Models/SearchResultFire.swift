@@ -58,6 +58,14 @@ struct SearchResultFire {
     keywords = snapshotValue["keywords"] as! [String]?
     ref = snapshot.ref
   }
+  
+  func getDuration() -> String {
+    let minutes: Int
+    let hours: Int
+    hours = duration / 60
+    minutes = duration - 60 * hours
+    return String(hours) + ":" + String(minutes)
+  }
 }
 
 struct Filters {

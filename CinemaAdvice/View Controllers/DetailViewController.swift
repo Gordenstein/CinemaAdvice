@@ -14,11 +14,16 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var artworkImage: UIImageView!
   @IBOutlet weak var titleLabelRu: UILabel!
   @IBOutlet weak var titleLabelEn: UILabel!
-  @IBOutlet weak var artistLabel: UILabel!
-  @IBOutlet weak var genreLabel: UILabel!
-  @IBOutlet weak var contentAdvisoryRating: UILabel!
+  @IBOutlet weak var genresLabel: UILabel!
+  @IBOutlet weak var countriesLabel: UILabel!
+  @IBOutlet weak var ageAndMpaa: UILabel!
   @IBOutlet weak var longDescription: UITextView!
-
+  @IBOutlet weak var tagline: UILabel!
+  
+  @IBOutlet weak var noButton: UIButton!
+  @IBOutlet weak var yesButton: UIButton!
+  @IBOutlet weak var doNotWatchButton: UIButton!
+  
   
   // MARK: Actions
   @IBAction func noButton(_ sender: Any) {
@@ -39,6 +44,11 @@ class DetailViewController: UIViewController {
     }
     navigationController?.popViewController(animated: true)
   }
+  
+  @IBAction func doNotWatchButton(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
+  
   
   func recordItem( opinion: Bool) {
     let libraryReference = Database.database().reference(withPath: "library-")
@@ -72,6 +82,9 @@ class DetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    noButton.layer.cornerRadius = 5
+    yesButton.layer.cornerRadius = 5
+    doNotWatchButton.layer.cornerRadius = 5
     if searchResult != nil {
       updateUI()
     }
@@ -83,11 +96,30 @@ class DetailViewController: UIViewController {
   
   func updateUI() {
     titleLabelRu.text = searchResult.nameRu
-    titleLabelEn.text = searchResult.nameEn
-//    artistLabel.text = searchResult.directors[0]
-    contentAdvisoryRating.text = String(searchResult.ageLimit ?? 100)
+    if let nameEn = searchResult.nameEn  {
+      titleLabelEn.text = nameEn + "(" + String(searchResult.year) + ")"
+    } else {
+      titleLabelEn.text = "(" + String(searchResult.year) + ")"
+    }
+    var temporaryString = ""
+    var countOfGenres = searchResult.genres.count
+    for genre in searchResult.genres {
+      if countOfGenres == 1 {
+        temporaryString += genre
+      } else {
+        temporaryString += genre + ", "
+      }
+      countOfGenres -= 1
+    }
+    genresLabel.text = temporaryString
+    temporaryString = ""
+    for country in searchResult.countries {temporaryString += country + ", "}
+    countriesLabel.text = temporaryString + searchResult.getDuration()
+    tagline.text = searchResult.tagline
+    temporaryString = ""
+    temporaryString += String(searchResult.ratingMpaa ?? "") + "  " + String(searchResult.ageLimit ?? 0) + "+" 
+    ageAndMpaa.text = temporaryString
     longDescription.text = searchResult.description
-    genreLabel.text = searchResult.genres[0]
     if let largeURL = URL(string: searchResult.imageUrl) {
       downloadTask = artworkImage.loadImage(url: largeURL)
     }

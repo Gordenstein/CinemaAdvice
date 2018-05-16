@@ -35,13 +35,18 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
     collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell)
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
-    let searchResultReference = Database.database().reference(withPath: "films")
+    var searchResultReference = Database.database().reference(withPath: "films")
+    searchResultReference = searchResultReference.child("100")
     searchResultReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
-      for item in snapshot.children {
-        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-        newItems.append(searchItem)
-      }
+//      for item in snapshot.children {
+//        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+//        newItems.append(searchItem)
+//      }
+      
+      let searchItem = SearchResultFire(snapshot: snapshot )
+      newItems.append(searchItem)
+      
       self.searchResultFire = newItems
       self.temporaryFlag = false
       self.collectionView.reloadData()

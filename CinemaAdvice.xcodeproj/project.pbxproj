@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64E20B299D23C1BD81A39BA8 /* libPods-CinemaAdvice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */; };
+		C43E132820AB8F9B0008A275 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43E132720AB8F9A0008A275 /* Assets.xcassets */; };
 		C44E04F0208DD5770017D408 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */; };
 		C45DBA1520A734FD004F5711 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */; };
 		C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */; };
@@ -16,7 +17,6 @@
 		C479AEEB207E6F1D00B8A1C9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */; };
 		C479AEED207E6F1D00B8A1C9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */; };
 		C479AEF0207E6F1D00B8A1C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C479AEEE207E6F1D00B8A1C9 /* Main.storyboard */; };
-		C479AEF2207E6F1F00B8A1C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C479AEF1207E6F1F00B8A1C9 /* Assets.xcassets */; };
 		C479AEF5207E6F1F00B8A1C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C479AEF3207E6F1F00B8A1C9 /* LaunchScreen.storyboard */; };
 		C479AF01207E719F00B8A1C9 /* SecondItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C479AEFF207E719F00B8A1C9 /* SecondItem.storyboard */; };
 		C479AF03207E71D200B8A1C9 /* ThirdItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C479AF02207E71D200B8A1C9 /* ThirdItem.storyboard */; };
@@ -35,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CinemaAdvice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C43E132720AB8F9A0008A275 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
 		C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultFire.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		C479AEEA207E6F1D00B8A1C9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		C479AEEC207E6F1D00B8A1C9 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C479AEEF207E6F1D00B8A1C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C479AEF1207E6F1F00B8A1C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C479AEF4207E6F1F00B8A1C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C479AEF6207E6F1F00B8A1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C479AF00207E719F00B8A1C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CinemaAdvice/Resources/Base.lproj/SecondItem.storyboard; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				C479AF12207E94ED00B8A1C9 /* LibraryCell.xib */,
 				C4CB6B37208B5C0100596266 /* LoadingCell.xib */,
 				C4CB6B3B208B899300596266 /* NothingFoundCell.xib */,
-				C479AEF1207E6F1F00B8A1C9 /* Assets.xcassets */,
+				C43E132720AB8F9A0008A275 /* Assets.xcassets */,
 				C479AEF3207E6F1F00B8A1C9 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -229,10 +229,10 @@
 				C479AEF5207E6F1F00B8A1C9 /* LaunchScreen.storyboard in Resources */,
 				C45DBA1520A734FD004F5711 /* GoogleService-Info.plist in Resources */,
 				C479AF03207E71D200B8A1C9 /* ThirdItem.storyboard in Resources */,
-				C479AEF2207E6F1F00B8A1C9 /* Assets.xcassets in Resources */,
 				C4CB6B38208B5C0100596266 /* LoadingCell.xib in Resources */,
 				C479AEF0207E6F1D00B8A1C9 /* Main.storyboard in Resources */,
 				C479AF14207E94ED00B8A1C9 /* LibraryCell.xib in Resources */,
+				C43E132820AB8F9B0008A275 /* Assets.xcassets in Resources */,
 				C479AF01207E719F00B8A1C9 /* SecondItem.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
