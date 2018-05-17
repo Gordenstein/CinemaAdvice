@@ -36,7 +36,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fiq-Bz-euQ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Проссмотренные фильмы" id="KcI-JP-mp2"/>
+                    <navigationItem key="navigationItem" title="Проссмотренные фильмы" id="KcI-JP-mp2">
+                        <barButtonItem key="rightBarButtonItem" title="Выход" image="exit" id="9fC-hp-LrV">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="signoutButtonPressed:" destination="ip4-Sd-oTf" id="h4b-wa-S9a"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="urm-yR-lq4" id="bts-XM-BGS"/>
                     </connections>
@@ -70,5 +77,6 @@
     </scenes>
     <resources>
         <image name="Movie" width="30" height="30"/>
+        <image name="exit" width="30" height="30"/>
     </resources>
 </document>

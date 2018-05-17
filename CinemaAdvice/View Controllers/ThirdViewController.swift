@@ -14,6 +14,10 @@ class ThirdViewController: UIViewController {
   let libraryCell = "LibraryCell"
   var libraryItems: [SearchResultFire] = []
   var temporaryFlag = true
+  let libraryReference = Database.database().reference(withPath: "libraries")
+  var currentUserReference = Database.database().reference()
+  var user: User!
+
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -23,11 +27,20 @@ class ThirdViewController: UIViewController {
     // Register nib files
     let cellNib = UINib(nibName: libraryCell, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: libraryCell)
+    
+    Auth.auth().addStateDidChangeListener {
+      auth, user in
+      if let user = user {
+        self.user = User(uid: user.uid, email: user.email!)
+        self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
+        self.downloadData()
+      }
+    }
+    
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    let libraryReference = Database.database().reference(withPath: "library-")
-    libraryReference.observe(.value) { (snapshot) in
+  func downloadData() {
+    currentUserReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
       for item in snapshot.children {
         let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
@@ -42,6 +55,24 @@ class ThirdViewController: UIViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  
+
+  @IBAction func signoutButtonPressed(_ sender: Any) {
+    let user = Auth.auth().currentUser!
+    let onlineRef = Database.database().reference(withPath: "online/\(user.uid)")
+    onlineRef.removeValue { (error, _) in
+      if let error = error {
+        print("Removing online failed: \(error)")
+        return
+      }
+      do {
+        try Auth.auth().signOut()
+        self.dismiss(animated: true, completion: nil)
+      } catch (let error) {
+        print("Auth sign out failed: \(error)")
+      }
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OVp-j8-sbM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -145,10 +145,10 @@
             </objects>
             <point key="canvasLocation" x="1951.2" y="-0.44977511244377816"/>
         </scene>
-        <!--Фильтры-->
+        <!--Filters-->
         <scene sceneID="uVL-bI-iLA">
             <objects>
-                <tableViewController title="Фильтры" id="jh7-BH-9vh" customClass="FiltersViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Фильтры" id="jh7-BH-9vh" userLabel="Filters" customClass="FiltersViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vjJ-Le-Tv7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -339,10 +339,10 @@
             </objects>
             <point key="canvasLocation" x="2959" y="586"/>
         </scene>
-        <!--Genres View Controller-->
+        <!--Genres-->
         <scene sceneID="FwO-RG-XFN">
             <objects>
-                <tableViewController id="yRp-NY-oCX" customClass="GenresViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yRp-NY-oCX" userLabel="Genres" customClass="GenresViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NfZ-ix-WOB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -506,10 +506,12 @@
                                     <constraint firstItem="54t-Rx-u5v" firstAttribute="top" secondItem="moL-Fb-ksu" secondAttribute="top" constant="58" id="Rou-dI-yXV"/>
                                     <constraint firstItem="gOP-LK-dMd" firstAttribute="centerX" secondItem="moL-Fb-ksu" secondAttribute="centerX" id="Tfc-ox-MU0"/>
                                     <constraint firstItem="IfR-Uw-5C1" firstAttribute="top" secondItem="moL-Fb-ksu" secondAttribute="top" constant="58" id="Uzd-bg-S3E"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="plj-TW-OGo" secondAttribute="trailing" constant="5" id="WLq-im-h6j"/>
                                     <constraint firstItem="IfR-Uw-5C1" firstAttribute="leading" secondItem="moL-Fb-ksu" secondAttribute="leading" constant="15" id="WOS-0y-i3T"/>
                                     <constraint firstItem="hUv-qd-Jsw" firstAttribute="top" secondItem="54t-Rx-u5v" secondAttribute="bottom" constant="16" id="dFt-NU-YtE"/>
                                     <constraint firstItem="gGa-17-zDc" firstAttribute="top" secondItem="gOP-LK-dMd" secondAttribute="bottom" constant="32" id="fao-cF-agS"/>
                                     <constraint firstItem="tn3-Dl-f75" firstAttribute="leading" secondItem="moL-Fb-ksu" secondAttribute="leading" constant="15" id="fdA-0m-Wuf"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HhL-yh-2iV" secondAttribute="trailing" constant="50" id="fu4-dw-Fpj"/>
                                     <constraint firstAttribute="trailing" secondItem="d5t-c0-dry" secondAttribute="trailing" constant="11" id="g1Y-hX-Az1"/>
                                     <constraint firstItem="54t-Rx-u5v" firstAttribute="leading" secondItem="IfR-Uw-5C1" secondAttribute="trailing" constant="16" id="iD0-Fu-Ix0"/>
                                     <constraint firstAttribute="trailing" secondItem="ieU-U8-87v" secondAttribute="trailing" constant="15" id="iUL-4F-sv3"/>
@@ -548,6 +550,116 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibd-Zg-5yn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2957.5999999999999" y="-336.88155922038982"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="mig-Ae-1zt">
+            <objects>
+                <viewController id="OVp-j8-sbM" userLabel="Login View Controller" customClass="LoginViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ujz-T7-hvE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BlU-Ua-cM5">
+                                <rect key="frame" x="70" y="410" width="235" height="30"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HXG-HC-aWF"/>
+                                    <constraint firstAttribute="width" constant="235" id="WST-tu-yon"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="loginDidTouch:" destination="OVp-j8-sbM" eventType="editingDidEndOnExit" id="SOZ-Cb-guF"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBZ-ZX-yDF">
+                                <rect key="frame" x="70" y="460" width="235" height="38"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="GwC-xB-0Ak"/>
+                                    <constraint firstAttribute="height" constant="38" id="LuE-8q-OVw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="0.080000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginDidTouch:" destination="OVp-j8-sbM" eventType="touchUpInside" id="aHb-OG-nDc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQv-xE-Fgg">
+                                <rect key="frame" x="70" y="514" width="235" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="EgL-zZ-9FF"/>
+                                    <constraint firstAttribute="height" constant="38" id="Z3h-O5-kKY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Sign up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signUpDidTouch:" destination="OVp-j8-sbM" eventType="touchUpInside" id="7RJ-7a-oQ1"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-5l-mws">
+                                <rect key="frame" x="70" y="372" width="235" height="30"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="22Q-Yg-kWD"/>
+                                    <constraint firstAttribute="width" constant="235" id="Eq6-w0-mW0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="choosePasswordTextField:" destination="OVp-j8-sbM" eventType="editingDidEndOnExit" id="t38-FB-dvQ"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожаловать  в CinemaAdvice!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuP-cZ-n9S">
+                                <rect key="frame" x="58" y="123" width="259" height="72"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.080000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jQv-xE-Fgg" firstAttribute="top" secondItem="oBZ-ZX-yDF" secondAttribute="bottom" constant="16" id="7ai-o2-F3Y"/>
+                            <constraint firstItem="BlU-Ua-cM5" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="Cpt-o8-Jfc"/>
+                            <constraint firstItem="JuP-cZ-n9S" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="S7J-0h-vpc"/>
+                            <constraint firstItem="GuA-5l-mws" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="bED-kP-gIE"/>
+                            <constraint firstItem="BlU-Ua-cM5" firstAttribute="top" secondItem="GuA-5l-mws" secondAttribute="bottom" constant="8" id="fL8-KU-MHw"/>
+                            <constraint firstItem="ldK-k8-jw4" firstAttribute="bottom" secondItem="jQv-xE-Fgg" secondAttribute="bottom" constant="115" id="hPa-oL-Lu3"/>
+                            <constraint firstItem="oBZ-ZX-yDF" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="lEM-vU-Dga"/>
+                            <constraint firstItem="oBZ-ZX-yDF" firstAttribute="top" secondItem="BlU-Ua-cM5" secondAttribute="bottom" constant="20" id="oo5-MF-zUs"/>
+                            <constraint firstItem="jQv-xE-Fgg" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="u4V-WI-NgS"/>
+                            <constraint firstItem="JuP-cZ-n9S" firstAttribute="top" secondItem="ldK-k8-jw4" secondAttribute="top" constant="103" id="xiy-c2-foW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ldK-k8-jw4"/>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="oBZ-ZX-yDF" id="Nga-gm-Q0n"/>
+                        <outlet property="signUpButton" destination="jQv-xE-Fgg" id="7jC-Ld-4V4"/>
+                        <outlet property="textFieldLoginEmail" destination="GuA-5l-mws" id="4yz-BH-uRH"/>
+                        <outlet property="textFieldLoginPassword" destination="BlU-Ua-cM5" id="lM8-SH-Vp4"/>
+                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="LoginToList" id="7HN-wa-Lob"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h7F-IR-lvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-940" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

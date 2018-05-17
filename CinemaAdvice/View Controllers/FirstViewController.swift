@@ -24,11 +24,15 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   }
   
   @IBOutlet weak var collectionView: UICollectionView!
-
+  
   var filters = Filters()
   var changeFilters = false
   var searchResultFire: [SearchResultFire] = []
-  var temporaryFlag = true
+  var wholeData: [SearchResultFire] = []
+  var hasSearched = false
+  let testShot = true
+  var user: User!
+  let usersReference = Database.database().reference(withPath: "online")
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,33 +41,57 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
     cellNib = UINib(nibName: CollectionViewCellIdentifiers.nothingFoundCell, bundle: nil)
     collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell)
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    
+    Auth.auth().addStateDidChangeListener {
+      auth, user in
+      if let user = user {
+        self.user = User(uid: user.uid, email: user.email!)
+        let currentUserReference = self.usersReference.child(self.user.uid)
+        currentUserReference.setValue(self.user.email)
+        currentUserReference.onDisconnectRemoveValue()
+      }
+    }
+    firstDownloadData()
+  }
+  
+  
+  func firstDownloadData() {
     var searchResultReference = Database.database().reference(withPath: "films")
-    searchResultReference = searchResultReference.child("100")
-    searchResultReference.observe(.value) { (snapshot) in
-      var newItems: [SearchResultFire] = []
-//      for item in snapshot.children {
-//        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-//        newItems.append(searchItem)
-//      }
-      
-      let searchItem = SearchResultFire(snapshot: snapshot )
-      newItems.append(searchItem)
-      
-      self.searchResultFire = newItems
-      self.temporaryFlag = false
-      self.collectionView.reloadData()
-//      self.checkNil()
+    if testShot {
+      searchResultReference = searchResultReference.child("100")
+      searchResultReference.observe(.value) { (snapshot) in
+        var newItems: [SearchResultFire] = []
+        let searchItem = SearchResultFire(snapshot: snapshot)
+        newItems.append(searchItem)
+        self.wholeData = newItems
+        self.setSearchResult()
+      }
+    } else {
+      searchResultReference.observe(.value) { (snapshot) in
+        var newItems: [SearchResultFire] = []
+              for item in snapshot.children {
+                let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+                newItems.append(searchItem)
+              }
+        self.wholeData = newItems
+        self.setSearchResult()
+        //      self.checkNil()
+      }
     }
   }
- 
+  
+  func setSearchResult() {
+    searchResultFire = wholeData
+    hasSearched = true
+    collectionView.reloadData()
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   
   override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
     if segue.identifier == "ShowDetailView" {
-      if !temporaryFlag {
+      if hasSearched {
         let detailViewController = segue.destination as! DetailViewController
         let indexPath = sender as! IndexPath
         let searchResult = searchResultFire[indexPath.row]
@@ -79,44 +107,45 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   
   // MARK: Private Methods
   func checkNil() {
+    
     print("budget \n_________________________________________")
-    for item in searchResultFire {
+    for item in wholeData {
       if item.budget == nil {
         print(item.key, item.nameRu)
       }
     }
     print("nameEn имя \n_________________________________________")
-    for item in searchResultFire {
+    for item in wholeData {
       if item.nameEn == nil {
         print(item.key, item.nameRu)
       }
     }
     print("directors \n_________________________________________")
-    for item in searchResultFire {
+    for item in wholeData {
       if item.directors == nil {
         print(item.key, item.nameRu)
       }
     }
     print("producers \n_________________________________________")
-    for item in searchResultFire {
+    for item in wholeData {
       if item.producers == nil {
         print(item.key, item.nameRu)
       }
     }
     print("ratingMpaa \n_________________________________________")
-    for item in searchResultFire {
+    for item in wholeData {
       if item.ratingMpaa == nil {
         print(item.key, item.nameRu)
       }
     }
     print("ageLimit \n_________________________________________")
-    for item in searchResultFire {
+    for item in wholeData {
       if item.ageLimit == nil {
         print(item.key, item.nameRu)
       }
     }
     print("keywords \n_________________________________________")
-    for item in searchResultFire {
+    for item in wholeData {
       if item.keywords == nil {
         print(item.key, item.nameRu)
       }
@@ -141,7 +170,7 @@ extension FirstViewController: UISearchBarDelegate {
 // MARK:- Collection View Delegates
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    if temporaryFlag {
+    if !hasSearched {
       return 9
     } else {
       return searchResultFire.count
@@ -149,7 +178,7 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    if temporaryFlag {
+    if !hasSearched {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
       let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
       spinner.startAnimating()

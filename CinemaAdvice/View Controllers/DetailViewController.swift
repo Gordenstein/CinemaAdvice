@@ -49,10 +49,41 @@ class DetailViewController: UIViewController {
     navigationController?.popViewController(animated: true)
   }
   
+  // MARK: Start
+  var downloadTask: URLSessionDownloadTask?
+  var searchResult: SearchResultFire!
+  var libraryItems: [SearchResultFire] = []
+  
+  let libraryReference = Database.database().reference(withPath: "libraries")
+  var currentUserReference = Database.database().reference()
+  var user: User!
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    noButton.layer.cornerRadius = 5
+    yesButton.layer.cornerRadius = 5
+    doNotWatchButton.layer.cornerRadius = 5
+    if searchResult != nil {
+      updateUI()
+    }
+    
+    Auth.auth().addStateDidChangeListener {
+      auth, user in
+      if let user = user {
+        self.user = User(uid: user.uid, email: user.email!)
+        self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
+      }
+    }
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
   
   func recordItem( opinion: Bool) {
-    let libraryReference = Database.database().reference(withPath: "library-")
-    let libraryItemReference = libraryReference.child(searchResult.key)
+//    let libraryReference = Database.database().reference(withPath: "library-")
+    let libraryItemReference = currentUserReference.child(searchResult.key)
     let values: [String: Any] = ["nameRu": searchResult.nameRu,
                                  "nameEn": searchResult.nameEn ?? "",
                                  "imageUrl": searchResult.imageUrl,
@@ -73,25 +104,6 @@ class DetailViewController: UIViewController {
                                  "opinion": searchResult.opinion ?? true]
     libraryItemReference.setValue(values)
     
-  }
-  
-  // MARK: Start
-  var downloadTask: URLSessionDownloadTask?
-  var searchResult: SearchResultFire!
-  var libraryItems: [SearchResultFire] = []
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    noButton.layer.cornerRadius = 5
-    yesButton.layer.cornerRadius = 5
-    doNotWatchButton.layer.cornerRadius = 5
-    if searchResult != nil {
-      updateUI()
-    }
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
   }
   
   func updateUI() {
