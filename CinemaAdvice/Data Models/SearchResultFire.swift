@@ -101,7 +101,7 @@ struct Filters {
                                   ("фэнтези", false)] // 24
   
   init () {
-    startYear = 1960
+    startYear = 1939
     endYear = 2018
     startAge = 0
     endAge = 4

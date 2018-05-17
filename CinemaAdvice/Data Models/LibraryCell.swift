@@ -41,9 +41,9 @@ class LibraryCell: UITableViewCell {
     nameLabel.text = result.nameRu
     
     if result.opinion! {
-      opinionImageView.image = #imageLiteral(resourceName: "thumbUp")
+      opinionImageView.image = #imageLiteral(resourceName: "goodStar")
     } else {
-      opinionImageView.image = #imageLiteral(resourceName: "thumbDown")
+      opinionImageView.image = #imageLiteral(resourceName: "badStar")
     }
     genreLabel.text = String(format: "%@ (%@)", result.genres[0], String(result.year))
     artworkImageView.image = UIImage(named: "Placeholder")

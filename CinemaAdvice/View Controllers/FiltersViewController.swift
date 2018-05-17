@@ -44,7 +44,7 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    for i in 1890...2018 {
+    for i in 1939...2018 {
       valueForYear.append(i)
     }
     startFilters = filters
@@ -112,7 +112,7 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   
   func setYear (_ pickerView: UIPickerView, didSelectRow row: Int) {
     if whoOpenYear == startYearIndex {
-      let endYear = filters.endYear-1890
+      let endYear = filters.endYear-1939
       if row > endYear {
         pickerView.selectRow(endYear, inComponent: 0, animated: true)
         filters.startYear = valueForYear[endYear]
@@ -122,7 +122,7 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
         startYearLabel.text = String(valueForYear[row])
       }
     } else {
-      let startYear = filters.startYear-1890
+      let startYear = filters.startYear-1939
       if row < startYear {
         pickerView.selectRow(startYear, inComponent: 0, animated: true)
         filters.endYear = valueForYear[startYear]
@@ -168,9 +168,9 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
     tableView.reloadRows(at: [indexPathYearRow], with: .none)
     tableView.endUpdates()
     if whoOpenYear == startYearIndex {
-      yearPicker.selectRow(filters.startYear-1890, inComponent: 0, animated: false)
+      yearPicker.selectRow(filters.startYear-1939, inComponent: 0, animated: false)
     } else {
-      yearPicker.selectRow(filters.endYear-1890, inComponent: 0, animated: false)
+      yearPicker.selectRow(filters.endYear-1939, inComponent: 0, animated: false)
     }
   }
   

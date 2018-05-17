@@ -31,6 +31,12 @@ class SelectionResultViewController: UIViewController {
   var libraryItems: [SearchResultFire] = []
   var searchResultFire: [SearchResultFire] = []
   var downloadTask: URLSessionDownloadTask?
+  let libraryReference = Database.database().reference(withPath: "libraries")
+  var currentUserReference = Database.database().reference()
+  var user: User!
+  
+  let testShot = true
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,38 +45,57 @@ class SelectionResultViewController: UIViewController {
     noButton.layer.cornerRadius = 5
     yesButton.layer.cornerRadius = 5
     
-    let libraryReference = Database.database().reference(withPath: "library-")
-    var searchResultReference = Database.database().reference(withPath: "films")
-    
-    searchResultReference = searchResultReference.child("100")
-
-//    libraryReference.observe(.value) { (snapshot) in
-//      var newItems: [SearchResultFire] = []
-//      for item in snapshot.children {
-//        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-//        newItems.append(searchItem)
-//      }
-//      self.libraryItems = newItems
-//    }
-    
-    searchResultReference.observe(.value) { (snapshot) in
+    Auth.auth().addStateDidChangeListener {
+      auth, user in
+      if let user = user {
+        self.user = User(uid: user.uid, email: user.email!)
+        self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
+        self.downloadData()
+      }
+    }
+  }
+  
+  func downloadData() {
+    currentUserReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
-//      for item in snapshot.children {
-//        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-//        newItems.append(searchItem)
-//      }
-      
-      let searchItem = SearchResultFire(snapshot: snapshot )
-      newItems.append(searchItem)
-      
-      self.searchResultFire = newItems
-      self.updateUI()
+      for item in snapshot.children {
+        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+        newItems.append(searchItem)
+      }
+      self.libraryItems = newItems
+    }
+    
+    var searchResultReference = Database.database().reference(withPath: "films")
+    if testShot {
+      searchResultReference = searchResultReference.child("100")
+      searchResultReference.observe(.value) { (snapshot) in
+        var newItems: [SearchResultFire] = []
+        let searchItem = SearchResultFire(snapshot: snapshot)
+        newItems.append(searchItem)
+        self.searchResultFire = newItems
+        self.updateUI()
+      }
+    } else {
+      searchResultReference.observe(.value) { (snapshot) in
+        var newItems: [SearchResultFire] = []
+        for item in snapshot.children {
+          let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+          newItems.append(searchItem)
+        }
+        self.searchResultFire = newItems
+        self.updateUI()
+        //      self.checkNil()
+      }
     }
   }
   
   func updateUI() {
-//    let numberOfFilms = Int(arc4random_uniform(999))
-    let numberOfFilms = 0
+    let numberOfFilms: Int
+    if testShot {
+      numberOfFilms = 0
+    } else {
+      numberOfFilms = Int(arc4random_uniform(999))
+    }
     let searchItem = searchResultFire[numberOfFilms]
     
     nameRu.text = searchItem.nameRu

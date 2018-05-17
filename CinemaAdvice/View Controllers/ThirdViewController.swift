@@ -50,7 +50,7 @@ class ThirdViewController: UIViewController {
       self.temporaryFlag = false
       self.tableView.reloadData()
     }
-    tableView.reloadData()
+//    tableView.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
