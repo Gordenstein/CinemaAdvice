@@ -22,15 +22,43 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-Xj-hXL">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы не отметили достаточное количество  фильмов для работы алгоритма.  Вы отметили: 0 из 20." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2c-Oz-Sn5">
+                                        <rect key="frame" x="18" y="493" width="340" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="NNv-7R-8Ns"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="340" id="zBt-gq-KsG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нажав на кнопку ниже,  Вы запустите алгоритм, который  умело подберет для Вас фильм. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG7-kL-sgX">
+                                        <rect key="frame" x="17" y="70" width="340" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="340" id="BXh-fo-WEE"/>
+                                            <constraint firstAttribute="height" constant="100" id="h2D-pH-4KI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.080000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="P2c-Oz-Sn5" firstAttribute="centerX" secondItem="Zbw-Xj-hXL" secondAttribute="centerX" id="7V3-oN-hcY"/>
+                                    <constraint firstItem="tG7-kL-sgX" firstAttribute="centerX" secondItem="Zbw-Xj-hXL" secondAttribute="centerX" id="m3w-6X-6yh"/>
+                                    <constraint firstItem="tG7-kL-sgX" firstAttribute="top" secondItem="Zbw-Xj-hXL" secondAttribute="top" constant="70" id="mAr-pc-zgl"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnT-KZ-y8m">
                                 <rect key="frame" x="87" y="233" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.851115451388889" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="5GY-D1-xbi"/>
-                                    <constraint firstAttribute="width" constant="200" id="5sz-bB-uce"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="5sz-bB-uce"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="Подбери мне фильм!">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -43,6 +71,7 @@
                         <constraints>
                             <constraint firstItem="Zbw-Xj-hXL" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="3Bd-Kd-Lr1"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="Zbw-Xj-hXL" secondAttribute="trailing" id="KD4-Lp-8mF"/>
+                            <constraint firstItem="P2c-Oz-Sn5" firstAttribute="top" secondItem="nnT-KZ-y8m" secondAttribute="bottom" constant="60" id="ORi-NC-VPL"/>
                             <constraint firstItem="nnT-KZ-y8m" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="c5C-Zp-mTk"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="Zbw-Xj-hXL" secondAttribute="bottom" id="eBT-Fp-XtY"/>
                             <constraint firstItem="nnT-KZ-y8m" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="gUK-00-SVm"/>
@@ -53,6 +82,7 @@
                     <tabBarItem key="tabBarItem" title="Киносовет" image="genius" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="button" destination="nnT-KZ-y8m" id="ECX-AF-hF6"/>
+                        <outlet property="warningLabel" destination="P2c-Oz-Sn5" id="gfW-PP-0oD"/>
                         <segue destination="4L0-QX-wdB" kind="presentation" identifier="ShowResult" id="GP4-eu-FiD"/>
                     </connections>
                 </viewController>
@@ -295,6 +325,7 @@
                             <constraint firstItem="MAu-pz-Ad1" firstAttribute="top" secondItem="XG6-WB-4XK" secondAttribute="top" id="Q8a-8O-HLo"/>
                             <constraint firstItem="Mr1-iw-Qck" firstAttribute="leading" secondItem="XG6-WB-4XK" secondAttribute="trailing" constant="10" id="QTZ-Uh-dzk"/>
                             <constraint firstItem="ZeJ-xE-2bA" firstAttribute="top" secondItem="XG6-WB-4XK" secondAttribute="bottom" constant="12" id="Qyh-Gx-pXw"/>
+                            <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b8Q-0c-KPb" secondAttribute="trailing" constant="10" id="RZj-dn-qnt"/>
                             <constraint firstItem="e3o-rC-P5T" firstAttribute="bottom" secondItem="HJ8-Mx-hce" secondAttribute="bottom" id="Rj2-IT-LHO"/>
                             <constraint firstItem="u4k-lE-gD7" firstAttribute="centerY" secondItem="sPK-5m-tqr" secondAttribute="centerY" id="S64-hp-RrH"/>
                             <constraint firstItem="Ifg-me-1dD" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="18" id="SgN-S5-Vg8"/>
@@ -317,6 +348,7 @@
                             <constraint firstItem="MAu-pz-Ad1" firstAttribute="leading" secondItem="XG6-WB-4XK" secondAttribute="trailing" constant="10" id="mr7-fp-ngA"/>
                             <constraint firstItem="XG6-WB-4XK" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="15" id="nUh-4U-SHW"/>
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MAu-pz-Ad1" secondAttribute="trailing" constant="8" id="nX5-rc-Bmx"/>
+                            <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dGk-5a-RZn" secondAttribute="trailing" constant="10" id="ooF-U9-INz"/>
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rz2-fN-ziO" secondAttribute="trailing" constant="8" id="oox-L8-e4p"/>
                             <constraint firstItem="E7d-tb-yQJ" firstAttribute="bottom" secondItem="ZeJ-xE-2bA" secondAttribute="bottom" id="qWM-vj-m0b"/>
                             <constraint firstItem="bBT-Qo-4Zn" firstAttribute="top" secondItem="FOx-ww-sSk" secondAttribute="top" constant="6" id="rBs-IP-ktt"/>

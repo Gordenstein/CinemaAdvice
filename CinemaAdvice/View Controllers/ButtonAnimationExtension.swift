@@ -12,11 +12,11 @@ extension UIButton {
   
   func pulsate() {
     let pulse = CASpringAnimation(keyPath: "transform.scale")
-    pulse.duration = 60.0
+    pulse.duration = 160.0
     pulse.fromValue = 1.0
     pulse.toValue = 1.01
     pulse.autoreverses = true
-    pulse.repeatCount = 1
+    pulse.repeatCount = 10
     pulse.initialVelocity = 0
     pulse.damping = 0.01
     layer.add(pulse, forKey: "pulse")

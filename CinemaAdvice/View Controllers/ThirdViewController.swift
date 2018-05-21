@@ -17,7 +17,7 @@ class ThirdViewController: UIViewController {
   let libraryReference = Database.database().reference(withPath: "libraries")
   var currentUserReference = Database.database().reference()
   var user: User!
-  var firstTime = true
+//  var firstTime = true
 
   @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
   
@@ -50,10 +50,7 @@ class ThirdViewController: UIViewController {
       }
       self.libraryItems = newItems
       self.hasSearched = true
-      if self.firstTime {
-        self.firstTime = false
-        self.tableView.reloadData()
-      }
+      self.tableView.reloadData()
       self.leftBarButtonItem.title? = String(self.libraryItems.count)
     }
   }
