@@ -444,11 +444,11 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieU-U8-87v">
-                                        <rect key="frame" x="300" y="523" width="60" height="60"/>
+                                        <rect key="frame" x="295" y="523" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="N66-Rk-5JG"/>
-                                            <constraint firstAttribute="width" constant="60" id="lRc-WB-qM5"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="lRc-WB-qM5"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Нет"/>
@@ -457,11 +457,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGa-17-zDc">
-                                        <rect key="frame" x="214" y="523" width="60" height="60"/>
+                                        <rect key="frame" x="215" y="523" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="ZgM-ii-fGf"/>
-                                            <constraint firstAttribute="width" constant="60" id="it4-JD-4J1"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="it4-JD-4J1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Да"/>
@@ -470,11 +470,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tn3-Dl-f75">
-                                        <rect key="frame" x="15" y="523" width="140" height="60"/>
+                                        <rect key="frame" x="20" y="523" width="140" height="60"/>
                                         <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="5iO-X9-61I"/>
-                                            <constraint firstAttribute="width" constant="140" id="Z68-CF-qye"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="Z68-CF-qye"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Не смотрел"/>
@@ -497,8 +497,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ieU-U8-87v" firstAttribute="leading" secondItem="gGa-17-zDc" secondAttribute="trailing" constant="26" id="6cc-PE-0E5"/>
+                                    <constraint firstItem="ieU-U8-87v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gGa-17-zDc" secondAttribute="trailing" constant="8" symbolic="YES" id="6cc-PE-0E5"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cMg-Mk-glo" secondAttribute="trailing" constant="20" id="8I9-rV-30y"/>
+                                    <constraint firstItem="gGa-17-zDc" firstAttribute="leading" secondItem="moL-Fb-ksu" secondAttribute="leading" constant="215" id="8e0-33-brM"/>
                                     <constraint firstItem="hUv-qd-Jsw" firstAttribute="leading" secondItem="IfR-Uw-5C1" secondAttribute="trailing" constant="16" id="Eza-1x-P40"/>
                                     <constraint firstAttribute="bottom" secondItem="gGa-17-zDc" secondAttribute="bottom" constant="64" id="J5O-yE-Teo"/>
                                     <constraint firstAttribute="bottom" secondItem="ieU-U8-87v" secondAttribute="bottom" constant="64" id="Kd4-bZ-LNt"/>
@@ -511,11 +512,12 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hUv-qd-Jsw" secondAttribute="trailing" constant="5" id="cUX-7d-CYf"/>
                                     <constraint firstItem="hUv-qd-Jsw" firstAttribute="top" secondItem="54t-Rx-u5v" secondAttribute="bottom" constant="16" id="dFt-NU-YtE"/>
                                     <constraint firstItem="gGa-17-zDc" firstAttribute="top" secondItem="gOP-LK-dMd" secondAttribute="bottom" constant="32" id="fao-cF-agS"/>
-                                    <constraint firstItem="tn3-Dl-f75" firstAttribute="leading" secondItem="moL-Fb-ksu" secondAttribute="leading" constant="15" id="fdA-0m-Wuf"/>
+                                    <constraint firstItem="tn3-Dl-f75" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="moL-Fb-ksu" secondAttribute="leading" id="fdA-0m-Wuf"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HhL-yh-2iV" secondAttribute="trailing" constant="50" id="fu4-dw-Fpj"/>
                                     <constraint firstAttribute="trailing" secondItem="d5t-c0-dry" secondAttribute="trailing" constant="11" id="g1Y-hX-Az1"/>
                                     <constraint firstItem="54t-Rx-u5v" firstAttribute="leading" secondItem="IfR-Uw-5C1" secondAttribute="trailing" constant="16" id="iD0-Fu-Ix0"/>
-                                    <constraint firstAttribute="trailing" secondItem="ieU-U8-87v" secondAttribute="trailing" constant="15" id="iUL-4F-sv3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ieU-U8-87v" secondAttribute="trailing" constant="20" id="iUL-4F-sv3"/>
+                                    <constraint firstAttribute="trailing" secondItem="tn3-Dl-f75" secondAttribute="trailing" constant="215" id="ifm-WL-7iJ"/>
                                     <constraint firstItem="d5t-c0-dry" firstAttribute="top" secondItem="HhL-yh-2iV" secondAttribute="bottom" constant="18" id="mse-cH-cIb"/>
                                     <constraint firstItem="d5t-c0-dry" firstAttribute="leading" secondItem="moL-Fb-ksu" secondAttribute="leading" constant="11" id="muN-ri-TR5"/>
                                     <constraint firstItem="plj-TW-OGo" firstAttribute="top" secondItem="hUv-qd-Jsw" secondAttribute="bottom" constant="16" id="o9e-WL-NYq"/>
@@ -565,7 +567,7 @@
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="HXG-HC-aWF"/>
-                                    <constraint firstAttribute="width" constant="235" id="WST-tu-yon"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="235" id="WST-tu-yon"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -577,7 +579,7 @@
                                 <rect key="frame" x="70" y="415" width="235" height="38"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="235" id="GwC-xB-0Ak"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="235" id="GwC-xB-0Ak"/>
                                     <constraint firstAttribute="height" constant="38" id="LuE-8q-OVw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -597,7 +599,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQv-xE-Fgg">
                                 <rect key="frame" x="70" y="469" width="235" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="235" id="EgL-zZ-9FF"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="235" id="EgL-zZ-9FF"/>
                                     <constraint firstAttribute="height" constant="38" id="Z3h-O5-kKY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -620,7 +622,7 @@
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="22Q-Yg-kWD"/>
-                                    <constraint firstAttribute="width" constant="235" id="Eq6-w0-mW0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="235" id="Eq6-w0-mW0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
