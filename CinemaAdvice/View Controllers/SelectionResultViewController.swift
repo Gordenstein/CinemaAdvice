@@ -35,6 +35,7 @@ class SelectionResultViewController: UIViewController {
   @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
   @IBOutlet weak var refreshButton: UIButton!
   @IBOutlet weak var noButton: UIButton!
+  @IBOutlet weak var chooseButton: UIButton!
   @IBOutlet weak var yesButton: UIButton!
   
   var libraryItems: [SearchResultFire] = []
@@ -58,6 +59,7 @@ class SelectionResultViewController: UIViewController {
     refreshButton.layer.cornerRadius = 5
     noButton.layer.cornerRadius = 5
     yesButton.layer.cornerRadius = 5
+    chooseButton.layer.cornerRadius = 5
     startLoading()
     
     Auth.auth().addStateDidChangeListener {
@@ -72,50 +74,9 @@ class SelectionResultViewController: UIViewController {
       }
     }
   }
-  
-  func controlSelection() {
-    //    for i in 1...10 {
-    //      printState = 0
-    //      numberOfYear = i
-    //      useSelectionArray()
-    //    }
-    //    print("----------------------------------------")
-    //    for i in 1...10 {
-    //      printState = 1
-    //      numberOfDirectors = i
-    //      useSelectionArray()
-    //    }
-    //    print("----------------------------------------")
-    //
-    //    for i in 1...10 {
-    //      printState = 2
-    //      numberOfActors = i
-    //      useSelectionArray()
-    //    }
-    //    print("----------------------------------------")
-    //
-    //    for i in 1...10 {
-    //      printState = 3
-    //      numberOfGenres = i
-    //      useSelectionArray()
-    //    }
-    //    print("----------------------------------------")
-    //
-    //    for i in 1...10 {
-    //      printState = 4
-    //      numberOfKeywords = i
-    //      useSelectionArray()
-    //    }
-    //    print("----------------------------------------")
-    //
-//    printState = 5
-    useSelectionArray()
-    
-  }
-  
-  
-  
-  
+
+  let printState = 5
+
   func useSelectionArray() {
     
     let sampleSize = 30
@@ -139,7 +100,6 @@ class SelectionResultViewController: UIViewController {
     var keywordsForSelection: [String] = []
     
     let amountOfLibraryItems = libraryItems.count
-    let printState = 5
     
     // Year
     for item in 0..<numberOfYear {
@@ -164,7 +124,7 @@ class SelectionResultViewController: UIViewController {
       }
     }
     yearResults = excludeViewed(in: yearResults)
-    //      print("Y:\(numberOfYear),\(yearResults.count)")
+//    print("Y:\(numberOfYear),\(yearResults.count)")
     
     // Directors
     while (directorsResults.count > sampleSize || directorsResults.count == 0) {
@@ -185,16 +145,13 @@ class SelectionResultViewController: UIViewController {
       }
       directorsResults = excludeViewed(in: directorsResults)
       directorsResults = crossResult(for: directorsResults, and: yearResults)
-      //        print("D:\(numberOfDirectors),\(directorsResults.count)")
-      
+//      print("D:\(numberOfDirectors),\(directorsResults.count)")
       numberOfDirectors -= 1
       if numberOfDirectors == 0 {
         break
       }
     }
     numberOfDirectors += 1
-    
-    
     
     // Actors
     while (actorsResults.count > sampleSize || actorsResults.count == 0) {
@@ -215,8 +172,7 @@ class SelectionResultViewController: UIViewController {
       }
       actorsResults = excludeViewed(in: actorsResults)
       actorsResults = crossResult(for: actorsResults, and: yearResults)
-      //        print("A:\(numberOfActors),\(actorsResults.count)")
-      
+//      print("A:\(numberOfActors),\(actorsResults.count)")
       numberOfActors -= 1
       if numberOfActors == 0 {
         break
@@ -228,12 +184,6 @@ class SelectionResultViewController: UIViewController {
     
     
     // Genres
-    
-    //    while (genresResults.count > sampleSize || genresResults.count == 0) {
-    
-    //    genresResults = []
-    //    genresForSelection = []
-    
     for item in 0..<numberOfGenres {
       genresForSelection.append(selectionArray.genres[item].0)
     }
@@ -261,17 +211,11 @@ class SelectionResultViewController: UIViewController {
     genresResults = crossResult(for: genresResults, and: yearResults)
     
     genresResults.sort { (first, second) -> Bool in
-      Double(first.ratingKinopoisk) > Double(second.ratingKinopoisk)
+      Double(truncating: first.ratingKinopoisk) > Double(truncating: second.ratingKinopoisk)
     }
     genresResults.removeLast(genresResults.count - 30)
-    //        print("G:\(numberOfGenres),\(genresResults.count)")
-    
-    //    numberOfGenres -= 1
-    //    if numberOfGenres == 0 {
-    //      numberOfGenres += 1
-    //    }
-    //    }
-    
+//    print("G:\(numberOfGenres),\(genresResults.count)")
+
     
     
     // Keywords
@@ -302,7 +246,6 @@ class SelectionResultViewController: UIViewController {
       keywordsResults = excludeViewed(in: keywordsResults)
       keywordsResults = crossResult(for: keywordsResults, and: yearResults)
       //        print("K:\(numberOfKeywords),\(keywordsResults.count)")
-      
       numberOfKeywords += 1
     }
     numberOfKeywords -= 1
@@ -310,15 +253,6 @@ class SelectionResultViewController: UIViewController {
     
     
     // Cross result
-    
-    //      var crossAG = crossResult(for: actorsResults, and: genresResults)
-    //      var crossDA = crossResult(for: directorsResults, and: actorsResults)
-    //      var crossDG = crossResult(for: directorsResults, and: genresResults)
-    //
-    //      var crossAGK = crossResult(for: actorsResults, and: genresResults)
-    //      crossAGK = crossResult(for: crossAGK, and: keywordsResults)
-    //      var crossDAGK = crossResult(for: crossAGK, and: directorsResults)
-    
     finishArray = sumResult(for: actorsResults, and: genresResults)
     finishArray = sumResult(for: finishArray, and: keywordsResults)
     finishArray = sumResult(for: finishArray, and: directorsResults)
@@ -345,11 +279,6 @@ class SelectionResultViewController: UIViewController {
       print("A:\(numberOfActors),\(actorsResults.count)")
       print("G:\(numberOfGenres),\(genresResults.count)")
       print("K:\(numberOfKeywords),\(keywordsResults.count)")
-      //        print("crossAG: \(crossAG.count)")
-      //        print("crossDA: \(crossDA.count)")
-      //        print("crossDG: \(crossDG.count)")
-      //        print("crossAGK: \(crossAGK.count)")
-      //        print("crossDAGK: \(crossDAGK.count)")
       print("Finish array: \(finishArray.count)")
       print("---------------------------------------------------")
     default:
@@ -435,11 +364,19 @@ class SelectionResultViewController: UIViewController {
       for numberOfYear in 0..<selectionArray.years.count {
         if item.year == selectionArray.years[numberOfYear].0 {
           containYear = true
-          selectionArray.years[numberOfYear].1 += 1
+          if item.opinion ?? true {
+            selectionArray.years[numberOfYear].1 += 1
+          } else {
+            selectionArray.years[numberOfYear].1 -= 1
+          }
         }
       }
       if !containYear {
-        selectionArray.years.append((item.year, 1))
+        if item.opinion ?? true {
+          selectionArray.years.append((item.year, 1))
+        } else {
+          selectionArray.years.append((item.year, -1))
+        }
       }
       // Directors
       for director in item.directors ?? []{
@@ -447,11 +384,19 @@ class SelectionResultViewController: UIViewController {
         for numberOfDirector in 0..<selectionArray.directors.count {
           if director == selectionArray.directors[numberOfDirector].0 {
             containDirector = true
-            selectionArray.directors[numberOfDirector].1 += 1
+            if item.opinion ?? true {
+              selectionArray.directors[numberOfDirector].1 += 1
+            } else {
+              selectionArray.directors[numberOfDirector].1 -= 1
+            }
           }
         }
         if !containDirector {
-          selectionArray.directors.append((director, 1))
+          if item.opinion ?? true {
+            selectionArray.directors.append((director, 1))
+          } else {
+            selectionArray.directors.append((director, -1))
+          }
         }
       }
       // Countries
@@ -460,11 +405,19 @@ class SelectionResultViewController: UIViewController {
         for numberOfCountry in 0..<selectionArray.countries.count {
           if country == selectionArray.countries[numberOfCountry].0 {
             containCountry = true
-            selectionArray.countries[numberOfCountry].1 += 1
+            if item.opinion ?? true {
+              selectionArray.countries[numberOfCountry].1 += 1
+            } else {
+              selectionArray.countries[numberOfCountry].1 -= 1
+            }
           }
         }
         if !containCountry {
-          selectionArray.countries.append((country, 1))
+          if item.opinion ?? true {
+            selectionArray.countries.append((country, 1))
+          } else {
+            selectionArray.countries.append((country, -1))
+          }
         }
       }
       // Actors
@@ -473,11 +426,19 @@ class SelectionResultViewController: UIViewController {
         for numberOfActor in 0..<selectionArray.actors.count {
           if actor == selectionArray.actors[numberOfActor].0 {
             containActor = true
-            selectionArray.actors[numberOfActor].1 += 1
+            if item.opinion ?? true {
+              selectionArray.actors[numberOfActor].1 += 1
+            } else {
+              selectionArray.actors[numberOfActor].1 -= 1
+            }
           }
         }
         if !containActor {
-          selectionArray.actors.append((actor, 1))
+          if item.opinion ?? true {
+            selectionArray.actors.append((actor, 1))
+          } else {
+            selectionArray.actors.append((actor, -1))
+          }
         }
       }
       // Genres
@@ -486,11 +447,19 @@ class SelectionResultViewController: UIViewController {
         for numberOfGenre in 0..<selectionArray.genres.count {
           if genre == selectionArray.genres[numberOfGenre].0 {
             containGenre = true
-            selectionArray.genres[numberOfGenre].1 += 1
+            if item.opinion ?? true {
+              selectionArray.genres[numberOfGenre].1 += 1
+            } else {
+              selectionArray.genres[numberOfGenre].1 -= 1
+            }
           }
         }
         if !containGenre {
-          selectionArray.genres.append((genre, 1))
+          if item.opinion ?? true {
+            selectionArray.genres.append((genre, 1))
+          } else {
+            selectionArray.genres.append((genre, -1))
+          }
         }
       }
       // Keywords
@@ -499,11 +468,19 @@ class SelectionResultViewController: UIViewController {
         for numberOfKeyword in 0..<selectionArray.keywords.count {
           if keyword == selectionArray.keywords[numberOfKeyword].0 {
             containKeyword = true
-            selectionArray.keywords[numberOfKeyword].1 += 1
+            if item.opinion ?? true {
+              selectionArray.keywords[numberOfKeyword].1 += 1
+            } else {
+              selectionArray.keywords[numberOfKeyword].1 -= 1
+            }
           }
         }
         if !containKeyword {
-          selectionArray.keywords.append((keyword, 1))
+          if item.opinion ?? true {
+            selectionArray.keywords.append((keyword, 1))
+          } else {
+            selectionArray.keywords.append((keyword, -1))
+          }
         }
       }
     }
@@ -526,9 +503,8 @@ class SelectionResultViewController: UIViewController {
     selectionArray.keywords.sort { (first, second) -> Bool in
       first.1 > second.1
     }
-    //    print(selectionArray)
+    print(selectionArray)
     useSelectionArray()
-//    controlSelection()
   }
   
   
@@ -594,8 +570,9 @@ class SelectionResultViewController: UIViewController {
     directorsLabel.isHidden = showLabel
     producersLabel.isHidden = showLabel
     actorsLabel.isHidden = showLabel
-    yesButton.isHidden = showLabel
+    chooseButton.isHidden = showLabel
     noButton.isHidden = showLabel
+    yesButton.isHidden = showLabel
     refreshButton.isHidden = showLabel
     
     titleActors.isHidden = showLabel
@@ -629,8 +606,9 @@ class SelectionResultViewController: UIViewController {
       directorsLabel.isHidden = showLabel
       producersLabel.isHidden = showLabel
       actorsLabel.isHidden = showLabel
-      yesButton.isHidden = showLabel
+      chooseButton.isHidden = showLabel
       noButton.isHidden = showLabel
+      yesButton.isHidden = showLabel
       refreshButton.isHidden = showLabel
       
       titleActors.isHidden = showLabel
@@ -717,12 +695,24 @@ class SelectionResultViewController: UIViewController {
     updateUI()
   }
   
+  @IBAction func yesButton(_ sender: Any) {
+    finishArray[filmNumber].opinion = true
+    if let opinion = finishArray[filmNumber].opinion {
+      recordItem(opinion: opinion)
+    } else {
+      print("Opinion is nil.")
+    }
+    updateUI()
+  }
+  
+  
   @IBAction func refresh(_ sender: Any) {
     updateUI()
   }
-  @IBAction func yesButton(_ sender: Any) {
+  
+  @IBAction func chooseButton(_ sender: Any) {
     let alert = UIAlertController(title: "Отлично!",
-                                  message: "Ваш фильм на сегодня: \(wholeData[0].nameRu) (\(wholeData[0].year)), \(wholeData[0].nameEn ?? "").\nНе забудте оцень фильм после проссмотра. " ,
+                                  message: "Ваш фильм на сегодня: \(finishArray[filmNumber].nameRu) (\(finishArray[filmNumber].year)), \(finishArray[filmNumber].nameEn ?? "").\nНе забудте оцень фильм после проссмотра. " ,
       preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Спасибо", style: .default) { actoin in
       self.dismiss(animated: true, completion: nil)

@@ -26,7 +26,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   
   @IBOutlet weak var collectionView: UICollectionView!
   
-  let testShot = true
+  let testShot = false
 
   var filters = Filters()
   var showResults: [SearchResultFire] = []

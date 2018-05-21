@@ -37,6 +37,9 @@
                         <viewLayoutGuide key="safeArea" id="fiq-Bz-euQ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Проссмотренные фильмы" id="KcI-JP-mp2">
+                        <barButtonItem key="leftBarButtonItem" title="0" id="aw7-0j-tx5">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Выход" image="exit" id="9fC-hp-LrV">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -45,6 +48,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="leftBarButtonItem" destination="aw7-0j-tx5" id="8wm-yT-pBk"/>
                         <outlet property="tableView" destination="urm-yR-lq4" id="bts-XM-BGS"/>
                     </connections>
                 </viewController>

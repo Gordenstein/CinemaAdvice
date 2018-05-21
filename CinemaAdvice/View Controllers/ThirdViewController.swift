@@ -13,11 +13,13 @@ class ThirdViewController: UIViewController {
   
   let libraryCell = "LibraryCell"
   var libraryItems: [SearchResultFire] = []
-  var temporaryFlag = true
+  var hasSearched = false
   let libraryReference = Database.database().reference(withPath: "libraries")
   var currentUserReference = Database.database().reference()
   var user: User!
+  var firstTime = true
 
+  @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -47,10 +49,13 @@ class ThirdViewController: UIViewController {
         newItems.append(searchItem)
       }
       self.libraryItems = newItems
-      self.temporaryFlag = false
-      self.tableView.reloadData()
+      self.hasSearched = true
+      if self.firstTime {
+        self.firstTime = false
+        self.tableView.reloadData()
+      }
+      self.leftBarButtonItem.title? = String(self.libraryItems.count)
     }
-//    tableView.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
@@ -79,7 +84,7 @@ class ThirdViewController: UIViewController {
 // MARK: Table View Delegates
 extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if temporaryFlag {
+    if !hasSearched {
       return 0
     } else {
       return libraryItems.count
@@ -87,7 +92,7 @@ extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if !temporaryFlag {
+    if hasSearched {
       let cell = tableView.dequeueReusableCell(withIdentifier: libraryCell, for: indexPath) as! LibraryCell
       let libraryItem = libraryItems[indexPath.row]
       cell.configure(for: libraryItem)
