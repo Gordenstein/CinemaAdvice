@@ -82,7 +82,6 @@ class DetailViewController: UIViewController {
   
   
   func recordItem( opinion: Bool) {
-//    let libraryReference = Database.database().reference(withPath: "library-")
     let libraryItemReference = currentUserReference.child(searchResult.key)
     let values: [String: Any] = ["nameRu": searchResult.nameRu,
                                  "nameEn": searchResult.nameEn ?? "",

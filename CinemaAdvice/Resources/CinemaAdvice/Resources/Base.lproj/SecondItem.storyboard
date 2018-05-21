@@ -206,6 +206,9 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="update-arrows-2"/>
+                                <connections>
+                                    <action selector="refresh:" destination="4L0-QX-wdB" eventType="touchUpInside" id="AJO-RH-2Wk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9X-cw-yLc">
                                 <rect key="frame" x="9.5" y="591" width="140" height="60"/>
@@ -217,6 +220,9 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Не нравится"/>
+                                <connections>
+                                    <action selector="noButton:" destination="4L0-QX-wdB" eventType="touchUpInside" id="5n7-9h-mdG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRx-Nc-oiJ">
                                 <rect key="frame" x="225.5" y="591" width="140" height="60"/>
@@ -228,7 +234,23 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Нравится"/>
+                                <connections>
+                                    <action selector="yesButton:" destination="4L0-QX-wdB" eventType="touchUpInside" id="e9b-fj-3JU"/>
+                                </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="u4k-lE-gD7">
+                                <rect key="frame" x="153" y="299" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="SOQ-aE-6pr"/>
+                                    <constraint firstAttribute="width" constant="70" id="cC9-gM-S4z"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0I-gi-J8l">
+                                <rect key="frame" x="152" y="384" width="71.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -237,10 +259,12 @@
                             <constraint firstItem="XG6-WB-4XK" firstAttribute="top" secondItem="Ifg-me-1dD" secondAttribute="bottom" constant="12" id="4ba-ro-Iji"/>
                             <constraint firstItem="HJ8-Mx-hce" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="15" id="7K7-OC-bwo"/>
                             <constraint firstItem="oZz-Tk-KNC" firstAttribute="leading" secondItem="xQ6-tL-XUm" secondAttribute="trailing" constant="8" id="7yn-Cw-iQL"/>
+                            <constraint firstItem="u4k-lE-gD7" firstAttribute="centerX" secondItem="sPK-5m-tqr" secondAttribute="centerX" id="8ZQ-J8-azd"/>
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="E7d-tb-yQJ" secondAttribute="trailing" constant="8" id="8ta-FI-NXF"/>
                             <constraint firstItem="rz2-fN-ziO" firstAttribute="top" secondItem="lcJ-Ds-I4L" secondAttribute="bottom" constant="12" id="9Kd-Pw-fpi"/>
                             <constraint firstItem="Gty-IV-gRO" firstAttribute="top" secondItem="FOx-ww-sSk" secondAttribute="bottom" constant="10" id="9LX-1H-JOY"/>
                             <constraint firstItem="e3o-rC-P5T" firstAttribute="leading" secondItem="HJ8-Mx-hce" secondAttribute="trailing" constant="8" id="9vT-1n-DtG"/>
+                            <constraint firstItem="N0I-gi-J8l" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="30" id="Buv-m5-cJS"/>
                             <constraint firstItem="Ifg-me-1dD" firstAttribute="top" secondItem="ChS-ic-KVG" secondAttribute="top" constant="18" id="Cgl-44-c9O"/>
                             <constraint firstItem="dGk-5a-RZn" firstAttribute="top" secondItem="Mr1-iw-Qck" secondAttribute="bottom" constant="16" id="GMt-gb-9pB"/>
                             <constraint firstItem="dGk-5a-RZn" firstAttribute="leading" secondItem="XG6-WB-4XK" secondAttribute="trailing" constant="10" id="Ijc-sx-i7R"/>
@@ -249,11 +273,13 @@
                             <constraint firstItem="lcJ-Ds-I4L" firstAttribute="leading" secondItem="XG6-WB-4XK" secondAttribute="trailing" constant="10" id="LMb-TR-dwo"/>
                             <constraint firstItem="HJ8-Mx-hce" firstAttribute="top" secondItem="xQ6-tL-XUm" secondAttribute="bottom" constant="6" id="MQW-v5-J6V"/>
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="bottom" secondItem="Gty-IV-gRO" secondAttribute="bottom" constant="16" id="OTK-sb-lLX"/>
+                            <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N0I-gi-J8l" secondAttribute="trailing" constant="30" id="PNT-S9-7wT"/>
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" secondItem="bBT-Qo-4Zn" secondAttribute="trailing" constant="11" id="POd-Pg-N73"/>
                             <constraint firstItem="MAu-pz-Ad1" firstAttribute="top" secondItem="XG6-WB-4XK" secondAttribute="top" id="Q8a-8O-HLo"/>
                             <constraint firstItem="Mr1-iw-Qck" firstAttribute="leading" secondItem="XG6-WB-4XK" secondAttribute="trailing" constant="10" id="QTZ-Uh-dzk"/>
                             <constraint firstItem="ZeJ-xE-2bA" firstAttribute="top" secondItem="XG6-WB-4XK" secondAttribute="bottom" constant="12" id="Qyh-Gx-pXw"/>
                             <constraint firstItem="e3o-rC-P5T" firstAttribute="bottom" secondItem="HJ8-Mx-hce" secondAttribute="bottom" id="Rj2-IT-LHO"/>
+                            <constraint firstItem="u4k-lE-gD7" firstAttribute="centerY" secondItem="sPK-5m-tqr" secondAttribute="centerY" id="S64-hp-RrH"/>
                             <constraint firstItem="Ifg-me-1dD" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="18" id="SgN-S5-Vg8"/>
                             <constraint firstItem="dGk-5a-RZn" firstAttribute="bottom" secondItem="XG6-WB-4XK" secondAttribute="bottom" id="SpS-Ba-cwQ"/>
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="bottom" secondItem="bRx-Nc-oiJ" secondAttribute="bottom" constant="16" id="Yht-QF-pKF"/>
@@ -265,6 +291,7 @@
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" secondItem="FOx-ww-sSk" secondAttribute="trailing" id="h9F-HY-49I"/>
                             <constraint firstItem="xQ6-tL-XUm" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="15" id="hsY-57-Aoe"/>
                             <constraint firstItem="rz2-fN-ziO" firstAttribute="leading" secondItem="XG6-WB-4XK" secondAttribute="trailing" constant="10" id="iHd-GQ-fAz"/>
+                            <constraint firstItem="N0I-gi-J8l" firstAttribute="top" secondItem="u4k-lE-gD7" secondAttribute="bottom" constant="15" id="iLJ-W1-lWL"/>
                             <constraint firstItem="FOx-ww-sSk" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" id="iZH-qY-WwH"/>
                             <constraint firstItem="Gty-IV-gRO" firstAttribute="leading" secondItem="r9X-cw-yLc" secondAttribute="trailing" constant="8" id="k0s-yx-nAd"/>
                             <constraint firstItem="b8Q-0c-KPb" firstAttribute="leading" secondItem="Mr1-iw-Qck" secondAttribute="trailing" constant="16" id="lZG-4h-x21"/>
@@ -277,6 +304,7 @@
                             <constraint firstItem="bBT-Qo-4Zn" firstAttribute="top" secondItem="FOx-ww-sSk" secondAttribute="top" constant="6" id="rBs-IP-ktt"/>
                             <constraint firstItem="b8Q-0c-KPb" firstAttribute="bottom" secondItem="Mr1-iw-Qck" secondAttribute="bottom" id="upj-jp-rX8"/>
                             <constraint firstItem="bBT-Qo-4Zn" firstAttribute="leading" secondItem="ChS-ic-KVG" secondAttribute="leading" constant="11" id="uyh-r4-gW0"/>
+                            <constraint firstItem="N0I-gi-J8l" firstAttribute="centerX" secondItem="sPK-5m-tqr" secondAttribute="centerX" id="vFZ-jB-auM"/>
                             <constraint firstItem="Gty-IV-gRO" firstAttribute="centerX" secondItem="sPK-5m-tqr" secondAttribute="centerX" id="vk5-t6-1lJ"/>
                             <constraint firstItem="FOx-ww-sSk" firstAttribute="top" secondItem="HJ8-Mx-hce" secondAttribute="bottom" constant="10" id="zQr-Qd-Bgg"/>
                         </constraints>
@@ -290,14 +318,21 @@
                         <outlet property="directorsLabel" destination="E7d-tb-yQJ" id="TRF-4b-Wjw"/>
                         <outlet property="filmDescription" destination="bBT-Qo-4Zn" id="9GS-hj-KhN"/>
                         <outlet property="genres" destination="twG-Kn-Ss1" id="E8d-N0-Dcz"/>
+                        <outlet property="grayView" destination="FOx-ww-sSk" id="lbh-QX-dBp"/>
+                        <outlet property="loadingSpinner" destination="u4k-lE-gD7" id="5PJ-za-TEw"/>
                         <outlet property="nameEnAndYear" destination="YdA-eF-b0C" id="QP0-Di-JeT"/>
                         <outlet property="nameRu" destination="2Ao-Qn-8q8" id="exg-af-61k"/>
                         <outlet property="noButton" destination="r9X-cw-yLc" id="k3D-GI-svs"/>
+                        <outlet property="pleaseWaitLabel" destination="N0I-gi-J8l" id="dwT-j1-Hoj"/>
                         <outlet property="producersLabel" destination="oZz-Tk-KNC" id="wsm-E7-KEk"/>
                         <outlet property="ratingKinopoisk" destination="b8Q-0c-KPb" id="Qwg-E3-jp0"/>
                         <outlet property="refreshButton" destination="Gty-IV-gRO" id="toO-vF-cXD"/>
                         <outlet property="tagline" destination="rz2-fN-ziO" id="W2N-8a-Tlu"/>
-                        <outlet property="yesButton" destination="bRx-Nc-oiJ" id="cCR-fh-Glc"/>
+                        <outlet property="titleActors" destination="HJ8-Mx-hce" id="OMo-6a-8aU"/>
+                        <outlet property="titleDirectors" destination="ZeJ-xE-2bA" id="GCh-eN-Wib"/>
+                        <outlet property="titleProducers" destination="xQ6-tL-XUm" id="CIP-yp-4iz"/>
+                        <outlet property="titleRatingKP" destination="Mr1-iw-Qck" id="71j-iY-ESG"/>
+                        <outlet property="yesButton" destination="bRx-Nc-oiJ" id="OEk-4m-lgb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecB-VB-IlD" userLabel="First Responder" sceneMemberID="firstResponder"/>

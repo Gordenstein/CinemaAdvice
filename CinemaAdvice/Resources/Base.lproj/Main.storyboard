@@ -561,7 +561,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BlU-Ua-cM5">
-                                <rect key="frame" x="70" y="410" width="235" height="30"/>
+                                <rect key="frame" x="70" y="365" width="235" height="30"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="HXG-HC-aWF"/>
@@ -574,7 +574,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBZ-ZX-yDF">
-                                <rect key="frame" x="70" y="460" width="235" height="38"/>
+                                <rect key="frame" x="70" y="415" width="235" height="38"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="235" id="GwC-xB-0Ak"/>
@@ -595,7 +595,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQv-xE-Fgg">
-                                <rect key="frame" x="70" y="514" width="235" height="38"/>
+                                <rect key="frame" x="70" y="469" width="235" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="235" id="EgL-zZ-9FF"/>
                                     <constraint firstAttribute="height" constant="38" id="Z3h-O5-kKY"/>
@@ -616,7 +616,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-5l-mws">
-                                <rect key="frame" x="70" y="372" width="235" height="30"/>
+                                <rect key="frame" x="70" y="327" width="235" height="30"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="22Q-Yg-kWD"/>
@@ -642,7 +642,7 @@
                             <constraint firstItem="JuP-cZ-n9S" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="S7J-0h-vpc"/>
                             <constraint firstItem="GuA-5l-mws" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="bED-kP-gIE"/>
                             <constraint firstItem="BlU-Ua-cM5" firstAttribute="top" secondItem="GuA-5l-mws" secondAttribute="bottom" constant="8" id="fL8-KU-MHw"/>
-                            <constraint firstItem="ldK-k8-jw4" firstAttribute="bottom" secondItem="jQv-xE-Fgg" secondAttribute="bottom" constant="115" id="hPa-oL-Lu3"/>
+                            <constraint firstItem="ldK-k8-jw4" firstAttribute="bottom" secondItem="jQv-xE-Fgg" secondAttribute="bottom" constant="160" id="hPa-oL-Lu3"/>
                             <constraint firstItem="oBZ-ZX-yDF" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="lEM-vU-Dga"/>
                             <constraint firstItem="oBZ-ZX-yDF" firstAttribute="top" secondItem="BlU-Ua-cM5" secondAttribute="bottom" constant="20" id="oo5-MF-zUs"/>
                             <constraint firstItem="jQv-xE-Fgg" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="u4V-WI-NgS"/>
