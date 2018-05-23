@@ -252,6 +252,11 @@ extension FirstViewController: UISearchBarDelegate {
           showResults.append(film)
         }
       }
+      if showResults.count > 0 {
+        haveResults = true
+      } else {
+        haveResults = false
+      }
     }
     collectionView.reloadData()
   }

@@ -21,6 +21,7 @@ class SecondViewController: UIViewController {
   }
   
   let libraryReference = Database.database().reference(withPath: "libraries")
+  let rootReference = Database.database().reference()
   var currentUserReference = Database.database().reference()
   var user: User!
   
@@ -45,13 +46,12 @@ class SecondViewController: UIViewController {
   
   func downloadData() {
     currentUserReference.observe(.value) { (snapshot) in
-      var newItems: [SearchResultFire] = []
-      for item in snapshot.children {
-        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-        newItems.append(searchItem)
+      var countFilms = 0
+      for _ in snapshot.children {
+        countFilms += 1
       }
-      if newItems.count < 20 {
-        self.warningLabel.text = "Вы не отметили достаточное количество фильмов для работы алгоритма. \nВы отметили: \(newItems.count) из 20."
+      if countFilms < 20 {
+        self.warningLabel.text = "Вы не отметили достаточное количество фильмов для работы алгоритма. \nВы отметили: \(countFilms) из 20."
         self.buttonOff()
       } else {
         self.warningLabel.text = ""
@@ -75,9 +75,11 @@ class SecondViewController: UIViewController {
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    downloadData()
+    if rootReference != currentUserReference {
+      downloadData()
+    }
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return UIStatusBarStyle.lightContent
   }

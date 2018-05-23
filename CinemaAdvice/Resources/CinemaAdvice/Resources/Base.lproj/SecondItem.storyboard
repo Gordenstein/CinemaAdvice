@@ -27,7 +27,7 @@
                                         <rect key="frame" x="18" y="493" width="340" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="NNv-7R-8Ns"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="340" id="zBt-gq-KsG"/>
+                                            <constraint firstAttribute="width" constant="340" id="XoJ-4a-Zj1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -231,7 +231,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gty-IV-gRO">
                                 <rect key="frame" x="145.5" y="591" width="60" height="60"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="cjV-Uy-KN1"/>
                                     <constraint firstAttribute="width" constant="60" id="qHg-vO-vQp"/>
@@ -244,7 +244,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9X-cw-yLc">
                                 <rect key="frame" x="9.5" y="591" width="60" height="60"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Gv5-3Q-9j6"/>
                                     <constraint firstAttribute="width" constant="60" id="x9e-Rd-RpF"/>
@@ -257,14 +257,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRx-Nc-oiJ">
                                 <rect key="frame" x="213.5" y="591" width="152" height="60"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.15686274510000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Xxy-dN-TzT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Хочу посмотреть!">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="chooseButton:" destination="4L0-QX-wdB" eventType="touchUpInside" id="e9b-fj-3JU"/>
@@ -285,7 +285,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBo-LU-gTW">
                                 <rect key="frame" x="77.5" y="591" width="60" height="60"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="IlJ-tf-bhk"/>
                                     <constraint firstAttribute="height" constant="60" id="jhy-Tb-aQU"/>
@@ -324,7 +324,6 @@
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" secondItem="bBT-Qo-4Zn" secondAttribute="trailing" constant="11" id="POd-Pg-N73"/>
                             <constraint firstItem="MAu-pz-Ad1" firstAttribute="top" secondItem="XG6-WB-4XK" secondAttribute="top" id="Q8a-8O-HLo"/>
                             <constraint firstItem="Mr1-iw-Qck" firstAttribute="leading" secondItem="XG6-WB-4XK" secondAttribute="trailing" constant="10" id="QTZ-Uh-dzk"/>
-                            <constraint firstItem="ZeJ-xE-2bA" firstAttribute="top" secondItem="XG6-WB-4XK" secondAttribute="bottom" constant="12" id="Qyh-Gx-pXw"/>
                             <constraint firstItem="ChS-ic-KVG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b8Q-0c-KPb" secondAttribute="trailing" constant="10" id="RZj-dn-qnt"/>
                             <constraint firstItem="e3o-rC-P5T" firstAttribute="bottom" secondItem="HJ8-Mx-hce" secondAttribute="bottom" id="Rj2-IT-LHO"/>
                             <constraint firstItem="u4k-lE-gD7" firstAttribute="centerY" secondItem="sPK-5m-tqr" secondAttribute="centerY" id="S64-hp-RrH"/>
