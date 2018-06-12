@@ -712,7 +712,7 @@ class SelectionResultViewController: UIViewController {
   
   @IBAction func chooseButton(_ sender: Any) {
     let alert = UIAlertController(title: "Отлично!",
-                                  message: "Ваш фильм на сегодня: \(finishArray[filmNumber].nameRu) (\(finishArray[filmNumber].year)), \(finishArray[filmNumber].nameEn ?? "").\nНе забудте оцень фильм после проссмотра. " ,
+                                  message: "Ваш фильм на сегодня: \(finishArray[filmNumber].nameRu) (\(finishArray[filmNumber].year)), \(finishArray[filmNumber].nameEn ?? "").\nНе забудьте оценить фильм после просмотра." ,
       preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Спасибо", style: .default) { actoin in
       self.dismiss(animated: true, completion: nil)

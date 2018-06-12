@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nOb-K2-hIl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nOb-K2-hIl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Проссмотренные фильмы-->
+        <!--Просмотренные фильмы-->
         <scene sceneID="ljI-Xi-891">
             <objects>
                 <viewController id="ip4-Sd-oTf" customClass="ThirdViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fiq-Bz-euQ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Проссмотренные фильмы" id="KcI-JP-mp2">
+                    <navigationItem key="navigationItem" title="Просмотренные фильмы" id="KcI-JP-mp2">
                         <barButtonItem key="leftBarButtonItem" title="0" id="aw7-0j-tx5">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>

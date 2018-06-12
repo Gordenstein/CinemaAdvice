@@ -29,9 +29,8 @@ class SecondViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     button.layer.cornerRadius = 100
-    warningLabel.text = ""
-    button.isEnabled = false
-    button.alpha = 0.4
+    warningLabel.text = "Идет подсчет фильмов в библиотеке..."
+    buttonOff()
     
     Auth.auth().addStateDidChangeListener {
       auth, user in
@@ -53,7 +52,7 @@ class SecondViewController: UIViewController {
       if countFilms < 20 {
         self.warningLabel.text = "Вы не отметили достаточное количество фильмов для работы алгоритма. \nВы отметили: \(countFilms) из 20."
         self.buttonOff()
-      } else {
+      } else  {
         self.warningLabel.text = ""
         self.buttonOn()
       }
@@ -75,8 +74,8 @@ class SecondViewController: UIViewController {
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    if rootReference != currentUserReference {
-      downloadData()
+    if button.isEnabled {
+      button.pulsate()
     }
   }
 
