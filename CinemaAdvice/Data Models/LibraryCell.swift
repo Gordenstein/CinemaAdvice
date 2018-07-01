@@ -35,24 +35,19 @@ class LibraryCell: UITableViewCell {
   }
   
   //MARK: Public Methods
-  func configure(for result: SearchResult) {
+  func configure(for result: SearchResultFire) {
     nameLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
-    nameLabel.text = result.name
+    nameLabel.text = result.nameRu
     
     if result.opinion! {
-      opinionImageView.image = #imageLiteral(resourceName: "thumbUp")
+      opinionImageView.image = #imageLiteral(resourceName: "goodStar")
     } else {
-      opinionImageView.image = #imageLiteral(resourceName: "thumbDown")
+      opinionImageView.image = #imageLiteral(resourceName: "badStar")
     }
-    
-    if result.artistName.isEmpty {
-      genreLabel.text = "Unknown"
-    } else {
-      genreLabel.text = String(format: "%@ (%@)", result.artistName, result.genre)
-    }
+    genreLabel.text = String(format: "%@ (%@)", result.genres[0], String(result.year))
     artworkImageView.image = UIImage(named: "Placeholder")
-    if let largeURL = URL(string: result.imageLarge) {
+    if let largeURL = URL(string: result.imageUrl) {
       downloadTask = artworkImageView.loadImage(url: largeURL)
     }
   }

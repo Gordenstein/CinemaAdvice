@@ -19,39 +19,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="123" height="204"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mox-Wj-BL2">
-                        <rect key="frame" x="6" y="67" width="110" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🤷🏻‍♂️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14n-pt-lmE">
-                        <rect key="frame" x="48.5" y="92" width="26" height="26.5"/>
+                        <rect key="frame" x="48.5" y="89" width="26" height="26.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try to search somthing else" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b21-wW-HuS">
-                        <rect key="frame" x="4" y="140" width="115" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="Cf0-Mg-5ay"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Попробуйте найти что-то другое" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b21-wW-HuS">
+                        <rect key="frame" x="7" y="140" width="109.5" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="0.50331763698630139" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ничего  не найдено" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mox-Wj-BL2">
+                        <rect key="frame" x="18" y="42.5" width="87" height="38.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="b21-wW-HuS" firstAttribute="leading" secondItem="Ibg-xi-ixb" secondAttribute="leading" constant="4" id="0L5-pR-eA1"/>
-                <constraint firstAttribute="trailing" secondItem="b21-wW-HuS" secondAttribute="trailing" constant="4" id="O1a-eX-l3p"/>
-                <constraint firstItem="b21-wW-HuS" firstAttribute="centerX" secondItem="Ibg-xi-ixb" secondAttribute="centerX" id="OFC-9p-Y9U"/>
+                <constraint firstItem="b21-wW-HuS" firstAttribute="top" secondItem="14n-pt-lmE" secondAttribute="bottom" constant="25" id="BD9-tu-c8y"/>
+                <constraint firstItem="14n-pt-lmE" firstAttribute="centerY" secondItem="Ibg-xi-ixb" secondAttribute="centerY" id="Fp9-na-Frh"/>
+                <constraint firstItem="ZVx-e3-Edp" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mox-Wj-BL2" secondAttribute="trailing" constant="2" id="H9I-dS-idl"/>
                 <constraint firstItem="Mox-Wj-BL2" firstAttribute="centerX" secondItem="Ibg-xi-ixb" secondAttribute="centerX" id="Sp8-U6-VM4"/>
-                <constraint firstAttribute="bottom" secondItem="b21-wW-HuS" secondAttribute="bottom" constant="20" id="XJ9-QV-INZ"/>
-                <constraint firstItem="14n-pt-lmE" firstAttribute="top" secondItem="Mox-Wj-BL2" secondAttribute="bottom" constant="4" id="fxP-09-Map"/>
+                <constraint firstItem="Mox-Wj-BL2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZVx-e3-Edp" secondAttribute="leading" constant="2" id="WMp-L5-mRq"/>
                 <constraint firstItem="14n-pt-lmE" firstAttribute="centerX" secondItem="Ibg-xi-ixb" secondAttribute="centerX" id="hZH-SW-Wjs"/>
-                <constraint firstItem="b21-wW-HuS" firstAttribute="top" secondItem="14n-pt-lmE" secondAttribute="bottom" constant="21.5" id="kA2-45-iae"/>
-                <constraint firstItem="Mox-Wj-BL2" firstAttribute="top" secondItem="Ibg-xi-ixb" secondAttribute="top" constant="67" id="kze-bW-sfB"/>
+                <constraint firstItem="b21-wW-HuS" firstAttribute="centerX" secondItem="Ibg-xi-ixb" secondAttribute="centerX" id="hpu-Pj-Y3x"/>
+                <constraint firstItem="b21-wW-HuS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZVx-e3-Edp" secondAttribute="leading" constant="5" id="hrb-0V-Sfo"/>
+                <constraint firstItem="14n-pt-lmE" firstAttribute="top" secondItem="Mox-Wj-BL2" secondAttribute="bottom" constant="8" id="iud-bq-ciu"/>
+                <constraint firstItem="ZVx-e3-Edp" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b21-wW-HuS" secondAttribute="trailing" constant="5" id="t1M-48-6Lr"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZVx-e3-Edp"/>
             <point key="canvasLocation" x="58.5" y="-5"/>

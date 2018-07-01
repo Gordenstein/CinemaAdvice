@@ -7,91 +7,258 @@
 //
 
 import UIKit
+import Firebase
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, FiltersViewControllerDelegate {
+  //MARK: Filters View Controller Delegate
+  func finishEditingFilters(_ controller: FiltersViewController, newFilters: Filters) {
+    navigationController?.popViewController(animated: true)
+    filters = newFilters
+    applyingFilters()
+  }
+  
+  // MARK: Start
   struct CollectionViewCellIdentifiers {
     static let nothingFoundCell = "NothingFoundCell"
     static let loadingCell = "LoadingCell"
+    static let collectionViewCell = "CollectionViewCell"
   }
-
+  
   @IBOutlet weak var collectionView: UICollectionView!
   
-  private let search = Search()
-  var libraryItems = [SearchResult]()
-  var downloadTask: URLSessionDownloadTask?
-  
+  let testShot = false
 
+  var filters = Filters()
+  var showResults: [SearchResultFire] = []
+  var wholeData: [SearchResultFire] = []
+  var haveResults = false
+  var hasSearched = false
+  var user: User!
+  let usersReference = Database.database().reference(withPath: "online")
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     var cellNib = UINib(nibName: CollectionViewCellIdentifiers.loadingCell, bundle: nil)
     collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.loadingCell)
     cellNib = UINib(nibName: CollectionViewCellIdentifiers.nothingFoundCell, bundle: nil)
     collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell)
-    
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    welcomingSearch()
-    if let results = loadResults() {
-      libraryItems = results
+    Auth.auth().addStateDidChangeListener {
+      auth, user in
+      if let user = user {
+        self.user = User(uid: user.uid, email: user.email!)
+        let currentUserReference = self.usersReference.child(self.user.uid)
+        currentUserReference.setValue(self.user.email)
+        currentUserReference.onDisconnectRemoveValue()
+      }
     }
-//    searchBar.becomeFirstResponder()
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    firstDownloadData()
   }
   
-  override func prepare(for segue: UIStoryboardSegue,
-                        sender: Any?) {
-    if segue.identifier == "ShowDetailView"{
-      if case .results(let list) = search.state {
-        let detailViewController = segue.destination as! DetailViewController
-        let indexPath = sender as! IndexPath
-        let searchResult = list[indexPath.row]
-        detailViewController.searchResult = searchResult
+  
+  func firstDownloadData() {
+    var searchResultReference = Database.database().reference(withPath: "films")
+    if testShot {
+      searchResultReference = searchResultReference.child("100")
+      searchResultReference.observe(.value) { (snapshot) in
+        var newItems: [SearchResultFire] = []
+        let searchItem = SearchResultFire(snapshot: snapshot)
+        newItems.append(searchItem)
+        self.wholeData = newItems
+        self.setSearchResult()
+      }
+    } else {
+      searchResultReference.observe(.value) { (snapshot) in
+        var newItems: [SearchResultFire] = []
+              for item in snapshot.children {
+                let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+                newItems.append(searchItem)
+              }
+        self.wholeData = newItems
+        self.setSearchResult()
       }
     }
   }
   
-  // MARK: Private Methods
-  func showNetworkError() {
-    let alert = UIAlertController(title: "Whoops...", message: "There was an error accessing the iTunes Store." + "Please try again.", preferredStyle: .alert)
-    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-    alert.addAction(action)
-    present(alert, animated: true, completion: nil)
-  }
-  
-  private func welcomingSearch () {
-    let searchText = "Marvel"
-    search.performSearch(for: searchText,
-                         completion: {success in
-                          if !success {
-                            self.showNetworkError()
-                          }
-                          self.collectionView.reloadData()
-    })
+  func setSearchResult() {
+    showResults = wholeData
+    hasSearched = true
+    if showResults.count > 0 {
+      haveResults = true
+    } else {
+      haveResults = false
+    }
     collectionView.reloadData()
   }
+  
+  func applyingFilters() {
+    let temporaryFilters = filters
+    switch filters.endAge {
+    case 0: filters.endAge = 0
+    case 1: filters.endAge = 6
+    case 2: filters.endAge = 12
+    case 3: filters.endAge = 16
+    case 4: filters.endAge = 18
+    default: filters.endAge = 0
+    }
+    switch filters.startAge {
+    case 0: filters.startAge = 0
+    case 1: filters.startAge = 6
+    case 2: filters.startAge = 12
+    case 3: filters.startAge = 16
+    case 4: filters.startAge = 18
+    default: filters.startAge = 0
+    }
+    var usingGenres = false
+    for genre in filters.genres {
+      if genre.1 {
+        usingGenres = true
+      }
+    }
+    if !usingGenres {
+      for genre in 0..<filters.genres.count {
+        filters.genres[genre].1 = true
+      }
+    }
+
+    showResults = []
+    for film in wholeData {
+      var conformityGenres = false
+      for genre in film.genres {
+        for filtersGenre in filters.genres {
+          if filtersGenre.1 {
+            if genre == filtersGenre.0 {
+              conformityGenres = true
+            }
+          }
+        }
+      }
+      if conformityGenres {
+        if film.year >= filters.startYear, film.year <= filters.endYear,
+          film.ageLimit ?? 0 >= filters.startAge, film.ageLimit ?? 0 <= filters.endAge {
+          showResults.append(film)
+        }
+      }
+    }
+    filters = temporaryFilters
+    if showResults.count > 0 {
+      haveResults = true
+    } else {
+      haveResults = false
+    }
+    collectionView.reloadData()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
+    if segue.identifier == "ShowDetailView" {
+      if hasSearched {
+        let detailViewController = segue.destination as! DetailViewController
+        let indexPath = sender as! IndexPath
+        let searchResult = showResults[indexPath.row]
+        detailViewController.searchResult = searchResult
+      }
+    }
+    if segue.identifier == "ShowFilters" {
+      let filtersViewController = segue.destination as! FiltersViewController
+      filtersViewController.filters = filters
+      filtersViewController.delegate = self
+    }
+  }
+  
+  // MARK: Private Methods
+  private  func checkNil(in films: [SearchResultFire]) {
+    print("budget \n_________________________________________")
+    for item in films {
+      if item.budget == nil {
+        print(item.key, item.nameRu)
+      }
+    }
+    print("nameEn имя \n_________________________________________")
+    for item in films {
+      if item.nameEn == nil {
+        print(item.key, item.nameRu)
+      }
+    }
+    print("directors \n_________________________________________")
+    for item in films {
+      if item.directors == nil {
+        print(item.key, item.nameRu)
+      }
+    }
+    print("producers \n_________________________________________")
+    for item in films {
+      if item.producers == nil {
+        print(item.key, item.nameRu)
+      }
+    }
+    print("ratingMpaa \n_________________________________________")
+    for item in films {
+      if item.ratingMpaa == nil {
+        print(item.key, item.nameRu)
+      }
+    }
+    print("ageLimit \n_________________________________________")
+    for item in films {
+      if item.ageLimit == nil {
+        print(item.key, item.nameRu)
+      }
+    }
+    print("keywords \n_________________________________________")
+    for item in films {
+      if item.keywords == nil {
+        print(item.key, item.nameRu)
+      }
+    }
+  }
+  
+  private func checkDeletedFilms() {
+    for film in wholeData {
+      var presence = false
+      for item in showResults {
+        if film.key == item.key {
+          presence = true
+        }
+      }
+      if !presence {
+        print(film.key, film.nameRu)
+      }
+    }
+  }
 }
+
 
 
 // MARK:- Search Bar
 extension FirstViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+    applyingSearchBar(textForSearch: searchBar.text!)
     print("The search text is: '\(searchBar.text!)'")
-    performSearch(searchBar: searchBar)
   }
   
-  func performSearch(searchBar: UISearchBar) {
-    search.performSearch(for: searchBar.text!,
-                         completion: {success in
-                          if !success {
-                            self.showNetworkError()
-                          }
-                          self.collectionView.reloadData()
-    })
+  func applyingSearchBar(textForSearch: String) {
+    if textForSearch == "" {
+      applyingFilters()
+    } else {
+      applyingFilters()
+      let oldResults = showResults
+      showResults = []
+      for film in oldResults {
+        if film.nameRu.contains(textForSearch) || film.nameEn?.contains(textForSearch) ?? false {
+          showResults.append(film)
+        }
+      }
+      if showResults.count > 0 {
+        haveResults = true
+      } else {
+        haveResults = false
+      }
+    }
     collectionView.reloadData()
-    searchBar.resignFirstResponder()
   }
   
   func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -100,44 +267,44 @@ extension FirstViewController: UISearchBarDelegate {
 }
 
 
-// MARK:- Collection View Delegate
+// MARK:- Collection View Delegates
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    switch search.state {
-    case .notSearchedYet:
-      return 0
-    case .loading:
+    if !hasSearched {
       return 9
-    case .noResults:
+    } else if haveResults {
+      if showResults.count <= 250 {
+        return showResults.count
+      } else {
+        return 250
+      }
+    } else {
       return 1
-    case .results(let list):
-      return list.count
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    switch search.state {
-    case .notSearchedYet:
-      fatalError("Should never get here")
-    case .loading:
+    if !hasSearched {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
       let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
       spinner.startAnimating()
       return cell
-    case .noResults:
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell, for: indexPath)
-      return cell
-    case .results(let list):
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! SearchResultCell
-      let searchResult = list[indexPath.row]
+    } else if haveResults {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.collectionViewCell, for: indexPath) as! SearchResultCell
+      let searchResult = showResults[indexPath.row]
       cell.configure(for: searchResult)
+      return cell
+    } else {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell, for: indexPath)
       return cell
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    collectionView.deselectItem(at: indexPath, animated: true)
-    performSegue(withIdentifier: "ShowDetailView", sender: indexPath)
+    if hasSearched && haveResults {
+      collectionView.deselectItem(at: indexPath, animated: true)
+      performSegue(withIdentifier: "ShowDetailView", sender: indexPath)
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
