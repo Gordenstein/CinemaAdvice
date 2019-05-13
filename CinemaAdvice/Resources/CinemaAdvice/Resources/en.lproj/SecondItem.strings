@@ -1,0 +1,63 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "2Ao-Qn-8q8"; */
+"2Ao-Qn-8q8.text" = "Title";
+
+/* Class = "UILabel"; text = "directors"; ObjectID = "E7d-tb-yQJ"; */
+"E7d-tb-yQJ.text" = "directors";
+
+/* Class = "UILabel"; text = "Actors list"; ObjectID = "HJ8-Mx-hce"; */
+"HJ8-Mx-hce.text" = "Actors list";
+
+/* Class = "UILabel"; text = "Kinopoisk's rating"; ObjectID = "Mr1-iw-Qck"; */
+"Mr1-iw-Qck.text" = "Kinopoisk's rating";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "N0I-gi-J8l"; */
+"N0I-gi-J8l.text" = "Loading...";
+
+/* Class = "UILabel"; text = "You did not mark enough movies to run the algorithm. You marked: 0 from 20."; ObjectID = "P2c-Oz-Sn5"; */
+"P2c-Oz-Sn5.text" = "You did not mark enough movies to run the algorithm. You marked: 0 from 20.";
+
+/* Class = "UILabel"; text = "Countries, duration"; ObjectID = "YNH-WF-qJM"; */
+"YNH-WF-qJM.text" = "Countries, duration";
+
+/* Class = "UILabel"; text = "TitleEn (Year)"; ObjectID = "YdA-eF-b0C"; */
+"YdA-eF-b0C.text" = "TitleEn (Year)";
+
+/* Class = "UILabel"; text = "Directors list"; ObjectID = "ZeJ-xE-2bA"; */
+"ZeJ-xE-2bA.text" = "Directors list";
+
+/* Class = "UILabel"; text = "RK"; ObjectID = "b8Q-0c-KPb"; */
+"b8Q-0c-KPb.text" = "RK";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "bBT-Qo-4Zn"; */
+"bBT-Qo-4Zn.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UIButton"; normalTitle = "Want to watch!"; ObjectID = "bRx-Nc-oiJ"; */
+"bRx-Nc-oiJ.normalTitle" = "Want to watch!";
+
+/* Class = "UITabBarItem"; title = "CinemaAdvice"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "CinemaAdvice";
+
+/* Class = "UILabel"; text = "Age, MPAA"; ObjectID = "dGk-5a-RZn"; */
+"dGk-5a-RZn.text" = "Age, MPAA";
+
+/* Class = "UILabel"; text = "actors"; ObjectID = "e3o-rC-P5T"; */
+"e3o-rC-P5T.text" = "actors";
+
+/* Class = "UIButton"; normalTitle = "Select movie"; ObjectID = "nnT-KZ-y8m"; */
+"nnT-KZ-y8m.normalTitle" = "Select movie";
+
+/* Class = "UILabel"; text = "producers"; ObjectID = "oZz-Tk-KNC"; */
+"oZz-Tk-KNC.text" = "producers";
+
+/* Class = "UILabel"; text = "Tagline"; ObjectID = "rz2-fN-ziO"; */
+"rz2-fN-ziO.text" = "Tagline";
+
+/* Class = "UILabel"; text = "Press the button bellow  and we will select perfect  movie for you!"; ObjectID = "tG7-kL-sgX"; */
+"tG7-kL-sgX.text" = "Press the button bellow  and we will select perfect  movie for you!";
+
+/* Class = "UILabel"; text = "Genres"; ObjectID = "twG-Kn-Ss1"; */
+"twG-Kn-Ss1.text" = "Genres";
+
+/* Class = "UILabel"; text = "Producers list"; ObjectID = "xQ6-tL-XUm"; */
+"xQ6-tL-XUm.text" = "Producers list";

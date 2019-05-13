@@ -108,7 +108,7 @@ extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
     return indexPath
   }
   
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     let item = libraryItems[indexPath.row]
     item.ref?.removeValue()
     if editingStyle == .delete {

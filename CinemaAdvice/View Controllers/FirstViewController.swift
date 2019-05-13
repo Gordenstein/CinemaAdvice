@@ -308,8 +308,8 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
   }
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    if (kind == UICollectionElementKindSectionHeader) {
-      let headerView:UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeader", for: indexPath)
+    if (kind == UICollectionView.elementKindSectionHeader) {
+      let headerView:UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeader", for: indexPath)
       return headerView
     }
     return UICollectionReusableView()

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     customizeAppearance()
     FirebaseApp.configure()
     return true
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK:- Helper Methods
   func customizeAppearance() {
     UINavigationBar.appearance().barTintColor = UIColor.black
-    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white ]
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white ]
     UITabBar.appearance().barTintColor = UIColor.black
   }
 }

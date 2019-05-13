@@ -29,7 +29,7 @@ class SecondViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     button.layer.cornerRadius = 100
-    warningLabel.text = "Идет подсчет фильмов в библиотеке..."
+    warningLabel.text = NSLocalizedString("Counting films in the library...", comment: "Localized kind: Идет подсчет фильмов в библиотеке...")
     buttonOff()
     
     Auth.auth().addStateDidChangeListener {
@@ -50,7 +50,7 @@ class SecondViewController: UIViewController {
         countFilms += 1
       }
       if countFilms < 20 {
-        self.warningLabel.text = "Вы не отметили достаточное количество фильмов для работы алгоритма. \nВы отметили: \(countFilms) из 20."
+        self.warningLabel.text = NSLocalizedString("You didn't add enough movies to run the algorithm. \nYou added: ", comment: "Localized kind: Вы не отметили достаточное количество фильмов для работы алгоритма. \nВы отметили: ") + String(countFilms) + NSLocalizedString(" out of 20.", comment: "Localized kind: из 20.")
         self.buttonOff()
       } else  {
         self.warningLabel.text = ""

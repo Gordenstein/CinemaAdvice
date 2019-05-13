@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OVp-j8-sbM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OVp-j8-sbM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,13 +45,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="12m-xG-WCt">
                                                     <rect key="frame" x="12.5" y="155" width="98" height="32"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnU-pO-sFz">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnU-pO-sFz">
                                                             <rect key="frame" x="0.0" y="0.0" width="98" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wy3-Au-WA2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wy3-Au-WA2">
                                                             <rect key="frame" x="0.0" y="18.5" width="98" height="13.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,7 +82,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Кино, сериалы..." translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
+                                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Movies, series..." translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-jj-hD1">
                                             <rect key="frame" x="0.0" y="15" width="375" height="35"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,9 +126,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Поиск фильмов" id="XFR-r6-6OA">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="HaK-ID-Pb7"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="funnel" id="xyh-s1-H6i">
+                    <navigationItem key="navigationItem" title="Movie Search" id="XFR-r6-6OA">
+                        <barButtonItem key="rightBarButtonItem" title="Filtres" image="funnel" id="xyh-s1-H6i">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
                             <connections>
                                 <segue destination="jh7-BH-9vh" kind="show" identifier="ShowFilters" id="F4I-Je-3ct"/>
@@ -148,13 +146,13 @@
         <!--Filters-->
         <scene sceneID="uVL-bI-iLA">
             <objects>
-                <tableViewController title="Фильтры" id="jh7-BH-9vh" userLabel="Filters" customClass="FiltersViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Filtres" id="jh7-BH-9vh" userLabel="Filters" customClass="FiltersViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vjJ-Le-Tv7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Жанры" id="wda-He-scg">
+                            <tableViewSection headerTitle="Genres" id="wda-He-scg" userLabel="Genres">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ZKx-i2-ekx" style="IBUITableViewCellStyleDefault" id="mI1-ZS-9bL">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
@@ -163,7 +161,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Выберите жанры" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZKx-i2-ekx">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Choose genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZKx-i2-ekx">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -178,7 +176,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Год" id="dXw-4s-E5C">
+                            <tableViewSection headerTitle="Year" id="dXw-4s-E5C" userLabel="Year">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="30s-eD-ZF8" detailTextLabel="0LV-Pl-SRQ" style="IBUITableViewCellStyleValue1" id="iKd-Ii-Cjz">
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
@@ -187,8 +185,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="От" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="30s-eD-ZF8">
-                                                    <rect key="frame" x="16" y="12" width="21.5" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="30s-eD-ZF8">
+                                                    <rect key="frame" x="16" y="12" width="39.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -211,8 +209,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="До (включительно)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m2c-Iz-bmn">
-                                                    <rect key="frame" x="16" y="12" width="152.5" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Until (inclusive)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m2c-Iz-bmn">
+                                                    <rect key="frame" x="16" y="12" width="118" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -230,7 +228,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Возрастное ограничение" id="Guw-e5-W1Y">
+                            <tableViewSection headerTitle="Age limit" id="Guw-e5-W1Y" userLabel="Age limit">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="jtQ-9m-R2c" detailTextLabel="Zyt-cN-h0Q" style="IBUITableViewCellStyleValue1" id="BMu-wz-amw">
                                         <rect key="frame" x="0.0" y="299.5" width="375" height="44"/>
@@ -239,8 +237,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="От" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jtQ-9m-R2c">
-                                                    <rect key="frame" x="16" y="12" width="21.5" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jtQ-9m-R2c">
+                                                    <rect key="frame" x="16" y="12" width="39.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -263,8 +261,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="До (включительно)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lx0-wj-mXc">
-                                                    <rect key="frame" x="16" y="12" width="152.5" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Until (inclusive)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lx0-wj-mXc">
+                                                    <rect key="frame" x="16" y="12" width="118" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -288,8 +286,8 @@
                             <outlet property="delegate" destination="jh7-BH-9vh" id="Rb4-Ob-EPo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Фильтры" id="dq4-lW-2Pz">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Готово" id="HOr-He-Lkp">
+                    <navigationItem key="navigationItem" title="Filtres" id="dq4-lW-2Pz">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="HOr-He-Lkp">
                             <connections>
                                 <action selector="doneBarButton:" destination="jh7-BH-9vh" id="bwr-fW-iAU"/>
                             </connections>
@@ -391,7 +389,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="54t-Rx-u5v">
                                         <rect key="frame" x="121" y="58" width="41" height="35.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzj-PN-eZ0">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzj-PN-eZ0" userLabel="Title Label ">
                                                 <rect key="frame" x="0.0" y="0.0" width="33.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
@@ -451,7 +449,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="lRc-WB-qM5"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <state key="normal" title="Нет"/>
+                                        <state key="normal" title="Nah"/>
                                         <connections>
                                             <action selector="noButton:" destination="f2X-FG-5Ep" eventType="touchUpInside" id="7X3-lD-9qu"/>
                                         </connections>
@@ -464,7 +462,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="it4-JD-4J1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <state key="normal" title="Да"/>
+                                        <state key="normal" title="Yeah"/>
                                         <connections>
                                             <action selector="yesButton:" destination="f2X-FG-5Ep" eventType="touchUpInside" id="kuc-Bj-TNJ"/>
                                         </connections>
@@ -477,7 +475,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="Z68-CF-qye"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <state key="normal" title="Не смотрел"/>
+                                        <state key="normal" title="Didn't watch"/>
                                         <connections>
                                             <action selector="doNotWatchButton:" destination="f2X-FG-5Ep" eventType="touchUpInside" id="0KA-1C-3PR"/>
                                         </connections>
@@ -488,8 +486,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Понравился ли Вам этот фильм? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOP-LK-dMd">
-                                        <rect key="frame" x="31.5" y="465.5" width="312" height="25.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you like this movie?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOP-LK-dMd">
+                                        <rect key="frame" x="87" y="465.5" width="201.5" height="25.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -575,7 +573,7 @@
                                     <action selector="loginDidTouch:" destination="OVp-j8-sbM" eventType="editingDidEndOnExit" id="SOZ-Cb-guF"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBZ-ZX-yDF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBZ-ZX-yDF" userLabel="Sign In Button">
                                 <rect key="frame" x="70" y="415" width="235" height="38"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -583,7 +581,7 @@
                                     <constraint firstAttribute="height" constant="38" id="LuE-8q-OVw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="Войти">
+                                <state key="normal" title="Sign In">
                                     <color key="titleColor" white="0.080000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -604,7 +602,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Зарегистрироваться">
+                                <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -630,8 +628,8 @@
                                     <action selector="choosePasswordTextField:" destination="OVp-j8-sbM" eventType="editingDidEndOnExit" id="t38-FB-dvQ"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожаловать  в CinemaAdvice!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuP-cZ-n9S">
-                                <rect key="frame" x="58" y="123" width="259" height="72"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to CinemaAdvice!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuP-cZ-n9S">
+                                <rect key="frame" x="91.5" y="123" width="192" height="72"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -639,10 +637,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.080000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ldK-k8-jw4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JuP-cZ-n9S" secondAttribute="trailing" constant="15" id="2IH-CH-0DL"/>
                             <constraint firstItem="jQv-xE-Fgg" firstAttribute="top" secondItem="oBZ-ZX-yDF" secondAttribute="bottom" constant="16" id="7ai-o2-F3Y"/>
                             <constraint firstItem="BlU-Ua-cM5" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="Cpt-o8-Jfc"/>
                             <constraint firstItem="JuP-cZ-n9S" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="S7J-0h-vpc"/>
                             <constraint firstItem="GuA-5l-mws" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="bED-kP-gIE"/>
+                            <constraint firstItem="JuP-cZ-n9S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ldK-k8-jw4" secondAttribute="leading" constant="15" id="e6d-SE-q9r"/>
                             <constraint firstItem="BlU-Ua-cM5" firstAttribute="top" secondItem="GuA-5l-mws" secondAttribute="bottom" constant="8" id="fL8-KU-MHw"/>
                             <constraint firstItem="ldK-k8-jw4" firstAttribute="bottom" secondItem="jQv-xE-Fgg" secondAttribute="bottom" constant="160" id="hPa-oL-Lu3"/>
                             <constraint firstItem="oBZ-ZX-yDF" firstAttribute="centerX" secondItem="ujz-T7-hvE" secondAttribute="centerX" id="lEM-vU-Dga"/>
@@ -687,7 +687,7 @@
         <scene sceneID="YX3-nn-gfU">
             <objects>
                 <viewControllerPlaceholder storyboardName="SecondItem" id="NSH-Z1-aQc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="70G-rd-yIW"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="70G-rd-yIW" userLabel="SecondItemButton"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfn-P1-tyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -697,7 +697,7 @@
         <scene sceneID="yOw-Ll-1CK">
             <objects>
                 <viewControllerPlaceholder storyboardName="ThirdItem" id="f5G-az-p2c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="bca-QJ-G8S"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="bca-QJ-G8S" userLabel="ThirdItemButton"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQC-Kt-acD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -707,7 +707,7 @@
         <scene sceneID="uth-pw-PKq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H1R-c0-xNb" userLabel="Navigation Bar Controller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Поиск" image="search" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Xp3-md-V69">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
