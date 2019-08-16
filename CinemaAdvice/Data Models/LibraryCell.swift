@@ -38,6 +38,12 @@ class LibraryCell: UITableViewCell {
   func configure(for result: SearchResultFire) {
     nameLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
+    if #available(iOS 13.0, *) {
+        nameLabel.textColor = UIColor.label
+        genreLabel.textColor = UIColor.secondaryLabel
+    } else {
+        // Fallback on earlier versions
+    }
     nameLabel.text = result.nameRu
     
     if result.opinion! {
