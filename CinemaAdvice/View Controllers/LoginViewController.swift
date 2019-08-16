@@ -39,21 +39,6 @@ class LoginViewController: UIViewController {
         self.performSegue(withIdentifier: self.loginToList, sender: nil)
         self.textFieldLoginEmail.text = nil
         self.textFieldLoginPassword.text = nil
-        
-//        if (user?.isEmailVerified ?? false) {
-//          self.performSegue(withIdentifier: self.loginToList, sender: nil)
-//          self.textFieldLoginEmail.text = nil
-//          self.textFieldLoginPassword.text = nil
-//        } else {
-//          if !self.fitstTime {
-//            let alert = UIAlertController(title: NSLocalizedString("Login is not available", comment: "Localized kind: На данный момент вход невозможен"),
-//                                          message: NSLocalizedString("A verification link has been send to your email account. Please click on the link that has been sent to your email.", comment: "Localized kind: Ваш email был зарегистрирован, но для входа необходимо его подтвердить. Пожалуйста, перейдите по ссылке в письме."),
-//                                          preferredStyle: .alert)
-//
-//            alert.addAction(UIAlertAction(title: NSLocalizedString("Got it!", comment: "Localized kind: Хорошо!"), style: .default))
-//            self.present(alert, animated: true, completion: nil)
-//          }
-//        }
       }
     }
   }
@@ -125,10 +110,6 @@ class LoginViewController: UIViewController {
                                         user?.sendEmailVerification(completion: { (error) in
                                           print(error?.localizedDescription ?? "No verification")
                                         })
-//                                        if (user?.isEmailVerified ?? false) {
-//                                          Auth.auth().signIn(withEmail: self.textFieldLoginEmail.text!,
-//                                                             password: self.textFieldLoginPassword.text!)
-//                                        }
                                       }
                                     })
     }

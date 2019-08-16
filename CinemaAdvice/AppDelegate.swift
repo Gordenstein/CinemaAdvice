@@ -46,9 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK:- Helper Methods
   func customizeAppearance() {
-    UINavigationBar.appearance().barTintColor = UIColor.black
-    UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white ]
-    UITabBar.appearance().barTintColor = UIColor.black
+//    UINavigationBar.appearance().barTintColor = UIColor.black
+//    UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white ]
+//    UITabBar.appearance().barTintColor = UIColor.black
   }
 }
 
