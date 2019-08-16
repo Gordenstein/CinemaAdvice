@@ -25,7 +25,13 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     signUpButton.layer.borderWidth = 1
-    signUpButton.layer.borderColor = UIColor.white.cgColor
+    if #available(iOS 13.0, *) {
+        signUpButton.layer.borderColor = UIColor.label.cgColor
+    } else {
+        // Fallback on earlier versions
+    }
+    self.textFieldLoginEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named:"palceholder_color") ?? .yellow])
+    self.textFieldLoginPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named:"palceholder_color") ?? .yellow])
     
     Auth.auth().addStateDidChangeListener() { auth, user in
       if user != nil {
@@ -76,7 +82,7 @@ class LoginViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
       }
       if user != nil {
-        if (user?.isEmailVerified ?? false) {
+        if (user?.isEmailVerified ?? false) || true {
           self.performSegue(withIdentifier: self.loginToList, sender: nil)
           self.textFieldLoginEmail.text = nil
           self.textFieldLoginPassword.text = nil

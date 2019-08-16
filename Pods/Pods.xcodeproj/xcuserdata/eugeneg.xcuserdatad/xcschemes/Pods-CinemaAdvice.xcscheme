@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C479AEE4207E6F1D00B8A1C9"
-               BuildableName = "CinemaAdvice.app"
-               BlueprintName = "CinemaAdvice"
-               ReferencedContainer = "container:CinemaAdvice.xcodeproj">
+               BlueprintIdentifier = "7981CEF65BBF312231FD94BC80AB23D8"
+               BuildableName = "libPods-CinemaAdvice.a"
+               BlueprintName = "Pods-CinemaAdvice"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C479AEE4207E6F1D00B8A1C9"
-            BuildableName = "CinemaAdvice.app"
-            BlueprintName = "CinemaAdvice"
-            ReferencedContainer = "container:CinemaAdvice.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -49,16 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C479AEE4207E6F1D00B8A1C9"
-            BuildableName = "CinemaAdvice.app"
-            BlueprintName = "CinemaAdvice"
-            ReferencedContainer = "container:CinemaAdvice.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -66,16 +47,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C479AEE4207E6F1D00B8A1C9"
-            BuildableName = "CinemaAdvice.app"
-            BlueprintName = "CinemaAdvice"
-            ReferencedContainer = "container:CinemaAdvice.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
