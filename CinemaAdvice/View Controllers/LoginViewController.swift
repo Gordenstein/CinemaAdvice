@@ -25,7 +25,13 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     signUpButton.layer.borderWidth = 1
-    signUpButton.layer.borderColor = UIColor.white.cgColor
+    if #available(iOS 13.0, *) {
+        signUpButton.layer.borderColor = UIColor.label.cgColor
+    } else {
+        // Fallback on earlier versions
+    }
+    self.textFieldLoginEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named:"palceholder_color") ?? .yellow])
+    self.textFieldLoginPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named:"palceholder_color") ?? .yellow])
     
     Auth.auth().addStateDidChangeListener() { auth, user in
       if user != nil {
@@ -33,21 +39,6 @@ class LoginViewController: UIViewController {
         self.performSegue(withIdentifier: self.loginToList, sender: nil)
         self.textFieldLoginEmail.text = nil
         self.textFieldLoginPassword.text = nil
-        
-//        if (user?.isEmailVerified ?? false) {
-//          self.performSegue(withIdentifier: self.loginToList, sender: nil)
-//          self.textFieldLoginEmail.text = nil
-//          self.textFieldLoginPassword.text = nil
-//        } else {
-//          if !self.fitstTime {
-//            let alert = UIAlertController(title: NSLocalizedString("Login is not available", comment: "Localized kind: На данный момент вход невозможен"),
-//                                          message: NSLocalizedString("A verification link has been send to your email account. Please click on the link that has been sent to your email.", comment: "Localized kind: Ваш email был зарегистрирован, но для входа необходимо его подтвердить. Пожалуйста, перейдите по ссылке в письме."),
-//                                          preferredStyle: .alert)
-//
-//            alert.addAction(UIAlertAction(title: NSLocalizedString("Got it!", comment: "Localized kind: Хорошо!"), style: .default))
-//            self.present(alert, animated: true, completion: nil)
-//          }
-//        }
       }
     }
   }
@@ -76,7 +67,7 @@ class LoginViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
       }
       if user != nil {
-        if (user?.isEmailVerified ?? false) {
+        if (user?.isEmailVerified ?? false) || true {
           self.performSegue(withIdentifier: self.loginToList, sender: nil)
           self.textFieldLoginEmail.text = nil
           self.textFieldLoginPassword.text = nil
@@ -119,10 +110,6 @@ class LoginViewController: UIViewController {
                                         user?.sendEmailVerification(completion: { (error) in
                                           print(error?.localizedDescription ?? "No verification")
                                         })
-//                                        if (user?.isEmailVerified ?? false) {
-//                                          Auth.auth().signIn(withEmail: self.textFieldLoginEmail.text!,
-//                                                             password: self.textFieldLoginPassword.text!)
-//                                        }
                                       }
                                     })
     }
