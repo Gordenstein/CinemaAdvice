@@ -19,15 +19,15 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   
   // MARK: Start
   struct CollectionViewCellIdentifiers {
-    static let nothingFoundCell = "NothingFoundCell"
-    static let loadingCell = "LoadingCell"
-    static let collectionViewCell = "CollectionViewCell"
+    static let nothingFoundCellIdentifier = "NothingFoundCell"
+    static let loadingCellIdentifier = "LoadingCell"
+    static let collectionViewCellIdentifier = "CollectionViewCell"
   }
   
   @IBOutlet weak var collectionView: UICollectionView!
   
   let testShot = false
-
+  
   var filters = Filters()
   var showResults: [SearchResultFire] = []
   var wholeData: [SearchResultFire] = []
@@ -38,13 +38,21 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    var cellNib = UINib(nibName: CollectionViewCellIdentifiers.loadingCell, bundle: nil)
-    collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.loadingCell)
-    cellNib = UINib(nibName: CollectionViewCellIdentifiers.nothingFoundCell, bundle: nil)
-    collectionView.register(cellNib, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell)
+    cellRegistration()
+    addStateDidChangeListener()
+    firstDownloadData()
+  }
+  
+  func cellRegistration() {
+    let loadingCell = UINib(nibName: CollectionViewCellIdentifiers.loadingCellIdentifier, bundle: nil)
+    collectionView.register(loadingCell, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.loadingCellIdentifier)
+    let nothingFoundCell = UINib(nibName: CollectionViewCellIdentifiers.nothingFoundCellIdentifier, bundle: nil)
+    collectionView.register(nothingFoundCell, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCellIdentifier)
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    Auth.auth().addStateDidChangeListener {
-      auth, user in
+  }
+  
+  func addStateDidChangeListener() {
+    Auth.auth().addStateDidChangeListener { auth, user in
       if let user = user {
         self.user = User(uid: user.uid, email: user.email!)
         let currentUserReference = self.usersReference.child(self.user.uid)
@@ -52,9 +60,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
         currentUserReference.onDisconnectRemoveValue()
       }
     }
-    firstDownloadData()
   }
-  
   
   func firstDownloadData() {
     var searchResultReference = Database.database().reference(withPath: "films")
@@ -70,10 +76,10 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
     } else {
       searchResultReference.observe(.value) { (snapshot) in
         var newItems: [SearchResultFire] = []
-              for item in snapshot.children {
-                let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-                newItems.append(searchItem)
-              }
+        for item in snapshot.children {
+          let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
+          newItems.append(searchItem)
+        }
         self.wholeData = newItems
         self.setSearchResult()
       }
@@ -94,20 +100,20 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   func applyingFilters() {
     let temporaryFilters = filters
     switch filters.endAge {
-    case 0: filters.endAge = 0
-    case 1: filters.endAge = 6
-    case 2: filters.endAge = 12
-    case 3: filters.endAge = 16
-    case 4: filters.endAge = 18
-    default: filters.endAge = 0
+      case 0: filters.endAge = 0
+      case 1: filters.endAge = 6
+      case 2: filters.endAge = 12
+      case 3: filters.endAge = 16
+      case 4: filters.endAge = 18
+      default: filters.endAge = 0
     }
     switch filters.startAge {
-    case 0: filters.startAge = 0
-    case 1: filters.startAge = 6
-    case 2: filters.startAge = 12
-    case 3: filters.startAge = 16
-    case 4: filters.startAge = 18
-    default: filters.startAge = 0
+      case 0: filters.startAge = 0
+      case 1: filters.startAge = 6
+      case 2: filters.startAge = 12
+      case 3: filters.startAge = 16
+      case 4: filters.startAge = 18
+      default: filters.startAge = 0
     }
     var usingGenres = false
     for genre in filters.genres {
@@ -120,7 +126,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
         filters.genres[genre].1 = true
       }
     }
-
+    
     showResults = []
     for film in wholeData {
       var conformityGenres = false
@@ -135,7 +141,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
       }
       if conformityGenres {
         if film.year >= filters.startYear, film.year <= filters.endYear,
-          film.ageLimit ?? 0 >= filters.startAge, film.ageLimit ?? 0 <= filters.endAge {
+           film.ageLimit ?? 0 >= filters.startAge, film.ageLimit ?? 0 <= filters.endAge {
           showResults.append(film)
         }
       }
@@ -170,7 +176,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   }
   
   // MARK: Private Methods
-  private  func checkNil(in films: [SearchResultFire]) {
+  private func checkNil(in films: [SearchResultFire]) {
     print("budget \n_________________________________________")
     for item in films {
       if item.budget == nil {
@@ -230,8 +236,6 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   }
 }
 
-
-
 // MARK:- Search Bar
 extension FirstViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -271,7 +275,7 @@ extension FirstViewController: UISearchBarDelegate {
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if !hasSearched {
-      return 9
+      return 27
     } else if haveResults {
       if showResults.count <= 250 {
         return showResults.count
@@ -285,17 +289,17 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if !hasSearched {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCell, for: indexPath)
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCellIdentifier, for: indexPath)
       let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
       spinner.startAnimating()
       return cell
     } else if haveResults {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.collectionViewCell, for: indexPath) as! SearchResultCell
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.collectionViewCellIdentifier, for: indexPath) as! SearchResultCell
       let searchResult = showResults[indexPath.row]
       cell.configure(for: searchResult)
       return cell
     } else {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCell, for: indexPath)
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCellIdentifier, for: indexPath)
       return cell
     }
   }
@@ -315,7 +319,3 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
     return UICollectionReusableView()
   }
 }
-
-
-
-
