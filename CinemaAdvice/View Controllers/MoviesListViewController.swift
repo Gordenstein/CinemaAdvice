@@ -10,24 +10,24 @@ import UIKit
 import Firebase
 
 class MoviesListViewController: UIViewController, MovieFiltersViewControllerDelegate {
-  //MARK: Filters View Controller Delegate
+  // MARK: Filters View Controller Delegate
   func finishEditingFilters(_ controller: MovieFiltersViewController, newFilters: Filters) {
     navigationController?.popViewController(animated: true)
     filters = newFilters
     applyingFilters()
   }
-  
+
   // MARK: Start
   struct CollectionViewCellIdentifiers {
     static let nothingFoundCellIdentifier = "NothingFoundCell"
     static let loadingCellIdentifier = "LoadingCell"
     static let collectionViewCellIdentifier = "CollectionViewCell"
   }
-  
+
   @IBOutlet weak var collectionView: UICollectionView!
-  
+
   let testShot = false
-  
+
   var filters = Filters()
   var showResults: [SearchResultFire] = []
   var wholeData: [SearchResultFire] = []
@@ -35,14 +35,14 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
   var hasSearched = false
   var user: User!
   let usersReference = Database.database().reference(withPath: "online")
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     cellRegistration()
     addStateDidChangeListener()
     firstDownloadData()
   }
-  
+
   func cellRegistration() {
     let loadingCell = UINib(nibName: CollectionViewCellIdentifiers.loadingCellIdentifier, bundle: nil)
     collectionView.register(loadingCell, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.loadingCellIdentifier)
@@ -50,9 +50,9 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
     collectionView.register(nothingFoundCell, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCellIdentifier)
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
-  
+
   func addStateDidChangeListener() {
-    Auth.auth().addStateDidChangeListener { auth, user in
+    Auth.auth().addStateDidChangeListener { _, user in
       if let user = user {
         self.user = User(uid: user.uid, email: user.email!)
         let currentUserReference = self.usersReference.child(self.user.uid)
@@ -61,7 +61,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
       }
     }
   }
-  
+
   func firstDownloadData() {
     var searchResultReference = Database.database().reference(withPath: "films")
     if testShot {
@@ -85,7 +85,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
       }
     }
   }
-  
+
   func setSearchResult() {
     showResults = wholeData
     hasSearched = true
@@ -96,7 +96,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
     }
     collectionView.reloadData()
   }
-  
+
   func applyingFilters() {
     let temporaryFilters = filters
     switch filters.endAge {
@@ -126,7 +126,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
         filters.genres[genre].1 = true
       }
     }
-    
+
     showResults = []
     for film in wholeData {
       var conformityGenres = false
@@ -154,12 +154,12 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
     }
     collectionView.reloadData()
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-  override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowDetailView" {
       if hasSearched {
         let movieInfoViewController = segue.destination as! MovieInfoViewController
@@ -174,7 +174,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
       movieFiltersViewController.delegate = self
     }
   }
-  
+
   // MARK: Private Methods
   private func checkNil(in films: [SearchResultFire]) {
     print("budget \n_________________________________________")
@@ -220,7 +220,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
       }
     }
   }
-  
+
   private func checkDeletedFilms() {
     for film in wholeData {
       var presence = false
@@ -236,14 +236,14 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
   }
 }
 
-// MARK:- Search Bar
+// MARK: - Search Bar
 extension MoviesListViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
     applyingSearchBar(textForSearch: searchBar.text!)
     print("The search text is: '\(searchBar.text!)'")
   }
-  
+
   func applyingSearchBar(textForSearch: String) {
     if textForSearch == "" {
       applyingFilters()
@@ -264,14 +264,13 @@ extension MoviesListViewController: UISearchBarDelegate {
     }
     collectionView.reloadData()
   }
-  
+
   func position(for bar: UIBarPositioning) -> UIBarPosition {
     return .topAttached
   }
 }
 
-
-// MARK:- Collection View Delegates
+// MARK: - Collection View Delegates
 extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if !hasSearched {
@@ -286,7 +285,7 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
       return 1
     }
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if !hasSearched {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCellIdentifier, for: indexPath)
@@ -303,17 +302,17 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
       return cell
     }
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if hasSearched && haveResults {
       collectionView.deselectItem(at: indexPath, animated: true)
       performSegue(withIdentifier: "ShowDetailView", sender: indexPath)
     }
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    if (kind == UICollectionView.elementKindSectionHeader) {
-      let headerView:UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeader", for: indexPath)
+    if kind == UICollectionView.elementKindSectionHeader {
+      let headerView: UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeader", for: indexPath)
       return headerView
     }
     return UICollectionReusableView()

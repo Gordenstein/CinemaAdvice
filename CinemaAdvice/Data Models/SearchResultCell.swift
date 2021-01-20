@@ -12,23 +12,23 @@ class SearchResultCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var genreLabel: UILabel!
-  
+
   var downloadTask: URLSessionDownloadTask?
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
     let selectedView = UIView(frame: CGRect.zero)
     selectedView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
     selectedBackgroundView = selectedView
   }
-  
+
   override func prepareForReuse() {
     super.prepareForReuse()
     downloadTask?.cancel()
     downloadTask = nil
   }
-  
-  //MARK: Public Methods
+
+  // MARK: Public Methods
   func configure(for result: SearchResultFire) {
     titleLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
@@ -39,5 +39,5 @@ class SearchResultCell: UICollectionViewCell {
       downloadTask = imageView.loadImage(url: largeURL)
     }
   }
-  
+
 }

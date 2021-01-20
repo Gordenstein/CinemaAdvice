@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 struct SearchResultFire {
-  
+
   let nameRu: String
   var nameEn: String?
   let imageUrl: String
@@ -28,12 +28,11 @@ struct SearchResultFire {
   var actors: [String]? = []
   let description: String
   let keywords: [String]?
-  
+
   let key: String
   var ref: DatabaseReference?
-  
-  var opinion:Bool?
 
+  var opinion: Bool?
 
   init(snapshot: DataSnapshot) {
     key = snapshot.key
@@ -58,7 +57,7 @@ struct SearchResultFire {
     keywords = snapshotValue["keywords"] as! [String]?
     ref = snapshot.ref
   }
-  
+
   func getDuration() -> String {
     let minutes: Int
     let hours: Int
@@ -68,9 +67,8 @@ struct SearchResultFire {
   }
 }
 
-
 struct Filters {
-  
+
   var startYear: Int
   var endYear: Int
   var startAge: Int
@@ -99,15 +97,14 @@ struct Filters {
                                   ("ужасы", false),
                                   ("фантастика", false),
                                   ("фэнтези", false)] // 24
-  
+
   init () {
     startYear = 1939
     endYear = 2018
     startAge = 0
     endAge = 4
   }
-  
-  
+
   func changeFilters(first filter1: Filters, second filter2: Filters) -> Bool {
     var change = false
     for item in 0...filter1.genres.count - 1 {
@@ -124,14 +121,14 @@ struct Filters {
 }
 
 struct Selection {
-  
+
   var years: [(Int, Int)]
   var directors: [(String, Int)]
   var countries: [(String, Int)]
   var actors: [(String, Int)]
   var genres: [(String, Int)]
   var keywords: [(String, Int)]
-  
+
   init() {
     years = []
     directors = []
@@ -140,7 +137,5 @@ struct Selection {
     genres = []
     keywords = []
   }
-  
 
 }
-

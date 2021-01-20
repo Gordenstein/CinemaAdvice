@@ -21,7 +21,7 @@ extension UIButton {
     pulse.damping = 0.01
     layer.add(pulse, forKey: "pulse")
   }
-  
+
   func fadeOut() {
     let fade = CABasicAnimation(keyPath: "transform.scale")
     fade.fromValue = 1.0

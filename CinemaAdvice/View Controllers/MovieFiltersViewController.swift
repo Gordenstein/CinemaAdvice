@@ -12,12 +12,12 @@ protocol MovieFiltersViewControllerDelegate: class {
   func finishEditingFilters(_ controller: MovieFiltersViewController, newFilters: Filters)
 }
 
-class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, UIPickerViewDelegate, MovieGenresViewControllerDelegate {
-  //MARK: Genres View Controller Delegate
+class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, MovieGenresViewControllerDelegate {
+  // MARK: Genres View Controller Delegate
   func finishEditing(_ controller: MovieGenresViewController, newFilters: Filters) {
     filters = newFilters
   }
-  
+
   // MARK: Start
   var filters = Filters()
   var startFilters = Filters()
@@ -31,7 +31,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
   weak var delegate: MovieFiltersViewControllerDelegate?
   var valueForYear: [Int] = []
   let valueForAge = ["0+", "6+", "12+", "16+", "18+"]
-  
+
   @IBOutlet weak var yearPickerCell: UITableViewCell!
   @IBOutlet weak var yearPicker: UIPickerView!
   @IBOutlet weak var agePickerCell: UITableViewCell!
@@ -41,7 +41,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
   @IBOutlet weak var startAgeLabel: UILabel!
   @IBOutlet weak var endAgeLabel: UILabel!
   @IBOutlet weak var doneBarButton: UIBarButtonItem!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     for i in 1939...2018 {
@@ -57,11 +57,11 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
     agePicker.delegate = self
     agePicker.dataSource = self
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     changeFilters = filters.changeFilters(first: startFilters, second: filters)
     if changeFilters {
@@ -70,16 +70,16 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       doneBarButton.isEnabled = false
     }
   }
-  
+
   @IBAction func doneBarButton(_ sender: Any) {
     delegate?.finishEditingFilters(self, newFilters: filters)
   }
-  
-  //MARK:- Picker view methoods and data source
+
+  // MARK: - Picker view methoods and data source
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
-  
+
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     if pickerView == yearPicker {
       return valueForYear.count
@@ -87,7 +87,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       return valueForAge.count
     }
   }
-  
+
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     if pickerView == yearPicker {
       return String(valueForYear[row])
@@ -95,7 +95,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       return String(valueForAge[row])
     }
   }
-  
+
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == yearPicker {
       setYear(pickerView, didSelectRow: row)
@@ -109,7 +109,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       doneBarButton.isEnabled = false
     }
   }
-  
+
   func setYear (_ pickerView: UIPickerView, didSelectRow row: Int) {
     if whoOpenYear == startYearIndex {
       let endYear = filters.endYear-1939
@@ -133,7 +133,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       }
     }
   }
-  
+
   func setAge (_ pickerView: UIPickerView, didSelectRow row: Int) {
     if whoOpenAge == startAgeIndex {
       let endAge = filters.endAge
@@ -157,7 +157,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       }
     }
   }
- 
+
   func showYearPicker(opener: IndexPath) {
     yearPickerVisible = true
     whoOpenYear = opener
@@ -173,7 +173,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       yearPicker.selectRow(filters.endYear-1939, inComponent: 0, animated: false)
     }
   }
-  
+
   func hideYearPicker() {
     if yearPickerVisible {
       yearPickerVisible = false
@@ -186,7 +186,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       tableView.endUpdates()
     }
   }
-  
+
   func showAgePicker(opener: IndexPath) {
     agePickerVisible = true
     whoOpenAge = opener
@@ -202,7 +202,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       agePicker.selectRow(filters.endAge, inComponent: 0, animated: false)
     }
   }
-  
+
   func hideAgePicker() {
     if agePickerVisible {
       agePickerVisible = false
@@ -215,12 +215,12 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       tableView.endUpdates()
     }
   }
-  
+
   // MARK: - Table view data source
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 3
   }
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 1 && yearPickerVisible {
       return 3
@@ -230,10 +230,10 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       return super.tableView(tableView, numberOfRowsInSection: section)
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    
+
     switch indexPath.section {
     case 1:
       if agePickerVisible {
@@ -262,9 +262,9 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
     default:
       print("")
     }
-    
+
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 1 && indexPath.row == 2 {
       return yearPickerCell
@@ -274,7 +274,7 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       return super.tableView(tableView, cellForRowAt: indexPath)
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if (indexPath.section == 1 && indexPath.row == 2) || (indexPath.section == 2 && indexPath.row == 2) {
       return 163
@@ -282,15 +282,15 @@ class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, 
       return super.tableView(tableView, heightForRowAt: indexPath)
     }
   }
-  
-  override func tableView(_ tableView: UITableView,indentationLevelForRowAt indexPath: IndexPath) -> Int {
+
+  override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
     var newIndexPath = indexPath
     if (indexPath.section == 1 && indexPath.row == 2) || (indexPath.section == 2 && indexPath.row == 2) {
       newIndexPath = IndexPath(row: 0, section: indexPath.section)
     }
     return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowGenres" {
       let genresViewController = segue.destination as! MovieGenresViewController

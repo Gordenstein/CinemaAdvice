@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AlgorithmResultViewController: UIViewController {
-  
+
   @IBOutlet weak var artwork: UIImageView!
   @IBOutlet weak var nameRu: UILabel!
   @IBOutlet weak var nameEnAndYear: UILabel!
@@ -23,21 +23,20 @@ class AlgorithmResultViewController: UIViewController {
   @IBOutlet weak var directorsLabel: UILabel!
   @IBOutlet weak var producersLabel: UILabel!
   @IBOutlet weak var actorsLabel: UILabel!
-  
+
   @IBOutlet weak var titleRatingKP: UILabel!
   @IBOutlet weak var titleDirectors: UILabel!
   @IBOutlet weak var titleProducers: UILabel!
   @IBOutlet weak var titleActors: UILabel!
   @IBOutlet weak var grayView: UIView!
-  
-  
+
   @IBOutlet weak var pleaseWaitLabel: UILabel!
   @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
   @IBOutlet weak var refreshButton: UIButton!
   @IBOutlet weak var noButton: UIButton!
   @IBOutlet weak var chooseButton: UIButton!
   @IBOutlet weak var yesButton: UIButton!
-  
+
   var libraryItems: [SearchResultFire] = []
   var wholeData: [SearchResultFire] = []
   var finishArray: [SearchResultFire] = []
@@ -49,21 +48,20 @@ class AlgorithmResultViewController: UIViewController {
   var selectionArray = Selection()
   var mustLoad = true
   var firstTime = true
-  
+
   let testShot = false
-  
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     refreshButton.layer.cornerRadius = 5
     noButton.layer.cornerRadius = 5
     yesButton.layer.cornerRadius = 5
     chooseButton.layer.cornerRadius = 5
     startLoading()
-    
+
     Auth.auth().addStateDidChangeListener {
-      auth, user in
+      _, user in
       if let user = user {
         self.user = User(uid: user.uid, email: user.email!)
         self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
@@ -78,29 +76,29 @@ class AlgorithmResultViewController: UIViewController {
   let printState = 5
 
   func useSelectionArray() {
-    
+
     let sampleSize = 30
-    
+
     let numberOfYear = 2
     var numberOfDirectors = selectionArray.directors.count
     var numberOfActors = 20
     let numberOfGenres = 7
     var numberOfKeywords = 1
-    
+
     var yearResults: [SearchResultFire] = []
     var directorsResults: [SearchResultFire] = []
     var actorsResults: [SearchResultFire] = []
     var genresResults: [SearchResultFire] = []
     var keywordsResults: [SearchResultFire] = []
-    
+
     var yearsForSelection: [Int] = []
     var directorsForSelection: [String] = []
     var actorsForSelection: [String] = []
     var genresForSelection: [String] = []
     var keywordsForSelection: [String] = []
-    
+
     let amountOfLibraryItems = libraryItems.count
-    
+
     // Year
     for item in 0..<numberOfYear {
       for year in selectionArray.years[item].0 - 5...selectionArray.years[item].0 + 5 {
@@ -115,7 +113,7 @@ class AlgorithmResultViewController: UIViewController {
         }
       }
     }
-    
+
     for film in wholeData {
       for year in yearsForSelection {
         if film.year == year {
@@ -125,15 +123,15 @@ class AlgorithmResultViewController: UIViewController {
     }
     yearResults = excludeViewed(in: yearResults)
 //    print("Y:\(numberOfYear),\(yearResults.count)")
-    
+
     // Directors
-    while (directorsResults.count > sampleSize || directorsResults.count == 0) {
+    while directorsResults.count > sampleSize || directorsResults.count == 0 {
       directorsResults = []
       directorsForSelection = []
       for item in 0..<numberOfDirectors {
         directorsForSelection.append(selectionArray.directors[item].0)
       }
-      
+
       for film in wholeData {
         for director in directorsForSelection {
           for filmDirector in film.directors ?? [] {
@@ -152,15 +150,15 @@ class AlgorithmResultViewController: UIViewController {
       }
     }
     numberOfDirectors += 1
-    
+
     // Actors
-    while (actorsResults.count > sampleSize || actorsResults.count == 0) {
+    while actorsResults.count > sampleSize || actorsResults.count == 0 {
       actorsResults = []
       actorsForSelection = []
       for item in 0..<numberOfActors {
         actorsForSelection.append(selectionArray.actors[item].0)
       }
-      
+
       for film in wholeData {
         for actor in actorsForSelection {
           for filmActor in film.actors ?? [] {
@@ -179,18 +177,15 @@ class AlgorithmResultViewController: UIViewController {
       }
     }
     numberOfActors += 1
-    
-    
-    
-    
+
     // Genres
     for item in 0..<numberOfGenres {
       genresForSelection.append(selectionArray.genres[item].0)
     }
-    
+
     for film in wholeData {
       var contain = true
-      for filmGenre in film.genres{
+      for filmGenre in film.genres {
         var localContain = false
         for genre in genresForSelection {
           if filmGenre == genre {
@@ -201,31 +196,29 @@ class AlgorithmResultViewController: UIViewController {
           contain = false
         }
       }
-      
+
       if contain {
         genresResults.append(film)
       }
     }
-    
+
     genresResults = excludeViewed(in: genresResults)
     genresResults = crossResult(for: genresResults, and: yearResults)
-    
+
     genresResults.sort { (first, second) -> Bool in
       Double(truncating: first.ratingKinopoisk) > Double(truncating: second.ratingKinopoisk)
     }
     genresResults.removeLast(genresResults.count - 30)
 //    print("G:\(numberOfGenres),\(genresResults.count)")
 
-    
-    
     // Keywords
-    while (keywordsResults.count > sampleSize || keywordsResults.count == 0) {
+    while keywordsResults.count > sampleSize || keywordsResults.count == 0 {
       keywordsResults = []
       keywordsForSelection = []
       for item in 0..<numberOfKeywords {
         keywordsForSelection.append(selectionArray.keywords[item].0)
       }
-      
+
       for film in wholeData {
         var contain = true
         for keyword in keywordsForSelection {
@@ -250,14 +243,11 @@ class AlgorithmResultViewController: UIViewController {
     }
     numberOfKeywords -= 1
 
-    
-    
     // Cross result
     finishArray = sumResult(for: actorsResults, and: genresResults)
     finishArray = sumResult(for: finishArray, and: keywordsResults)
     finishArray = sumResult(for: finishArray, and: directorsResults)
-    
-    
+
     // Print result
     switch printState {
     case 0:
@@ -286,7 +276,7 @@ class AlgorithmResultViewController: UIViewController {
     }
     updateUI()
   }
-  
+
   func sumResult(for filmArray1: [SearchResultFire], and filmArray2: [SearchResultFire]) -> [SearchResultFire] {
     var sumResultArray: [SearchResultFire] = []
     for film1 in filmArray1 {
@@ -298,7 +288,7 @@ class AlgorithmResultViewController: UIViewController {
     sumResultArray = excludeRepeat(in: sumResultArray)
     return sumResultArray
   }
-  
+
   func crossResult(for filmArray1: [SearchResultFire], and filmArray2: [SearchResultFire]) -> [SearchResultFire] {
     var newArray: [SearchResultFire] = []
     for film1 in filmArray1 {
@@ -310,7 +300,7 @@ class AlgorithmResultViewController: UIViewController {
     }
     return newArray
   }
-  
+
   func excludeViewed(in filmsArray: [SearchResultFire]) -> [SearchResultFire] {
     var itemsResult = filmsArray
     var numberOfFilmsForDelete: [Int] = []
@@ -322,15 +312,15 @@ class AlgorithmResultViewController: UIViewController {
       }
     }
     var i = numberOfFilmsForDelete.count - 1
-    while(i != -1) {
+    while i != -1 {
       itemsResult.remove(at: numberOfFilmsForDelete[i])
       i -= 1
     }
-    
+
     itemsResult = excludeRepeat(in: itemsResult)
     return itemsResult
   }
-  
+
   func excludeRepeat(in filmArray: [SearchResultFire]) -> [SearchResultFire] {
     var itemsResult = filmArray
     var keyArray: [Int] = []
@@ -347,16 +337,15 @@ class AlgorithmResultViewController: UIViewController {
         keyArray.append(Int(itemsResult[film].key)!)
       }
     }
-    
+
     var i = keyForDelete.count - 1
-    while(i != -1) {
+    while i != -1 {
       itemsResult.remove(at: keyForDelete[i])
       i -= 1
     }
     return itemsResult
   }
-  
-  
+
   func makeSelectionArray() {
     for item in libraryItems {
       // Year
@@ -379,7 +368,7 @@ class AlgorithmResultViewController: UIViewController {
         }
       }
       // Directors
-      for director in item.directors ?? []{
+      for director in item.directors ?? [] {
         var containDirector = false
         for numberOfDirector in 0..<selectionArray.directors.count {
           if director == selectionArray.directors[numberOfDirector].0 {
@@ -463,7 +452,7 @@ class AlgorithmResultViewController: UIViewController {
         }
       }
       // Keywords
-      for keyword in item.keywords ?? []{
+      for keyword in item.keywords ?? [] {
         var containKeyword = false
         for numberOfKeyword in 0..<selectionArray.keywords.count {
           if keyword == selectionArray.keywords[numberOfKeyword].0 {
@@ -484,7 +473,7 @@ class AlgorithmResultViewController: UIViewController {
         }
       }
     }
-    
+
     selectionArray.years.sort { (first, second) -> Bool in
       first.1 > second.1
     }
@@ -506,8 +495,7 @@ class AlgorithmResultViewController: UIViewController {
     print(selectionArray)
     useSelectionArray()
   }
-  
-  
+
   func downloadLibrary() {
     currentUserReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
@@ -522,7 +510,7 @@ class AlgorithmResultViewController: UIViewController {
       }
     }
   }
-  
+
   func downloadFilms() {
     var searchResultReference = Database.database().reference(withPath: "films")
     if testShot {
@@ -545,19 +533,18 @@ class AlgorithmResultViewController: UIViewController {
         self.downloadLibrary()
       }
     }
-    
+
   }
-  
-  
+
   func startLoading() {
     pleaseWaitLabel.text = "Мы подбираем для Вас фильм. Это может занять некоторое время. Пожалуйста подождите."
     loadingSpinner.startAnimating()
-    
+
     let showLabel = true
-    
+
     pleaseWaitLabel.isHidden = !showLabel
     loadingSpinner.isHidden = !showLabel
-    
+
     artwork.isHidden = showLabel
     nameRu.isHidden = showLabel
     nameEnAndYear.isHidden = showLabel
@@ -574,26 +561,26 @@ class AlgorithmResultViewController: UIViewController {
     noButton.isHidden = showLabel
     yesButton.isHidden = showLabel
     refreshButton.isHidden = showLabel
-    
+
     titleActors.isHidden = showLabel
     titleRatingKP.isHidden = showLabel
     titleDirectors.isHidden = showLabel
     titleProducers.isHidden = showLabel
     grayView.isHidden = showLabel
-        
+
     if !firstTime {
       makeSelectionArray()
     }
-    
+
   }
-  
+
   func updateUI() {
     if artwork.isHidden {
       let showLabel = false
-      
+
       pleaseWaitLabel.isHidden = !showLabel
       loadingSpinner.isHidden = !showLabel
-      
+
       artwork.isHidden = showLabel
       nameRu.isHidden = showLabel
       nameEnAndYear.isHidden = showLabel
@@ -610,23 +597,23 @@ class AlgorithmResultViewController: UIViewController {
       noButton.isHidden = showLabel
       yesButton.isHidden = showLabel
       refreshButton.isHidden = showLabel
-      
+
       titleActors.isHidden = showLabel
       titleRatingKP.isHidden = showLabel
       titleDirectors.isHidden = showLabel
       titleProducers.isHidden = showLabel
       grayView.isHidden = showLabel
     }
-    
+
     filmNumber += 1
-    if filmNumber == finishArray.count{
+    if filmNumber == finishArray.count {
       filmNumber = -1
       startLoading()
     } else {
       let searchItem = finishArray[filmNumber]
-      
+
       nameRu.text = searchItem.nameRu
-      if let nameEn = searchItem.nameEn  {
+      if let nameEn = searchItem.nameEn {
         nameEnAndYear.text = nameEn + "(" + String(searchItem.year) + ")"
       } else {
         nameEnAndYear.text = "(" + String(searchItem.year) + ")"
@@ -662,7 +649,7 @@ class AlgorithmResultViewController: UIViewController {
       }
     }
   }
-  
+
   func fillString(_ items: [String]) -> String {
     var temporaryString = ""
     var countOfItems = items.count
@@ -676,15 +663,15 @@ class AlgorithmResultViewController: UIViewController {
     }
     return temporaryString
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
+
   @IBAction func close(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @IBAction func noButton(_ sender: Any) {
     finishArray[filmNumber].opinion = false
     if let opinion = finishArray[filmNumber].opinion {
@@ -694,7 +681,7 @@ class AlgorithmResultViewController: UIViewController {
     }
     updateUI()
   }
-  
+
   @IBAction func yesButton(_ sender: Any) {
     finishArray[filmNumber].opinion = true
     if let opinion = finishArray[filmNumber].opinion {
@@ -704,26 +691,25 @@ class AlgorithmResultViewController: UIViewController {
     }
     updateUI()
   }
-  
-  
+
   @IBAction func refresh(_ sender: Any) {
     updateUI()
   }
-  
+
   @IBAction func chooseButton(_ sender: Any) {
     let alert = UIAlertController(title: "Отлично!",
                                   message: "Ваш фильм на сегодня: \(finishArray[filmNumber].nameRu) (\(finishArray[filmNumber].year)), \(finishArray[filmNumber].nameEn ?? "").\nНе забудьте оценить фильм после просмотра." ,
       preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Спасибо", style: .default) { actoin in
+    alert.addAction(UIAlertAction(title: "Спасибо", style: .default) { _ in
       self.dismiss(animated: true, completion: nil)
     })
     present(alert, animated: true, completion: nil)
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return UIStatusBarStyle.default
   }
-  
+
   func recordItem(opinion: Bool) {
     let itemForRecord = finishArray[filmNumber]
     let libraryItemReference = currentUserReference.child(itemForRecord.key)
@@ -747,5 +733,5 @@ class AlgorithmResultViewController: UIViewController {
                                  "opinion": itemForRecord.opinion ?? true]
     libraryItemReference.setValue(values)
   }
-  
+
 }

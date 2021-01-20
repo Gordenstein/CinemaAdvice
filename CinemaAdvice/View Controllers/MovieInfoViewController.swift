@@ -19,12 +19,11 @@ class MovieInfoViewController: UIViewController {
   @IBOutlet weak var ageAndMpaa: UILabel!
   @IBOutlet weak var longDescription: UITextView!
   @IBOutlet weak var tagline: UILabel!
-  
+
   @IBOutlet weak var noButton: UIButton!
   @IBOutlet weak var yesButton: UIButton!
   @IBOutlet weak var doNotWatchButton: UIButton!
-  
-  
+
   // MARK: Actions
   @IBAction func noButton(_ sender: Any) {
     searchResult.opinion = false
@@ -44,16 +43,16 @@ class MovieInfoViewController: UIViewController {
     }
     navigationController?.popViewController(animated: true)
   }
-  
+
   @IBAction func doNotWatchButton(_ sender: Any) {
     navigationController?.popViewController(animated: true)
   }
-  
+
   // MARK: Start
   var downloadTask: URLSessionDownloadTask?
   var searchResult: SearchResultFire!
   var libraryItems: [SearchResultFire] = []
-  
+
   let libraryReference = Database.database().reference(withPath: "libraries")
   var currentUserReference = Database.database().reference()
   var user: User!
@@ -66,21 +65,20 @@ class MovieInfoViewController: UIViewController {
     if searchResult != nil {
       updateUI()
     }
-    
+
     Auth.auth().addStateDidChangeListener {
-      auth, user in
+      _, user in
       if let user = user {
         self.user = User(uid: user.uid, email: user.email!)
         self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
       }
     }
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-  
+
   func recordItem( opinion: Bool) {
     let libraryItemReference = currentUserReference.child(searchResult.key)
     let values: [String: Any] = ["nameRu": searchResult.nameRu,
@@ -102,12 +100,12 @@ class MovieInfoViewController: UIViewController {
                                  "keywords": searchResult.keywords ?? [],
                                  "opinion": searchResult.opinion ?? true]
     libraryItemReference.setValue(values)
-    
+
   }
-  
+
   func updateUI() {
     titleLabelRu.text = searchResult.nameRu
-    if let nameEn = searchResult.nameEn  {
+    if let nameEn = searchResult.nameEn {
       titleLabelEn.text = nameEn + "(" + String(searchResult.year) + ")"
     } else {
       titleLabelEn.text = "(" + String(searchResult.year) + ")"
@@ -128,7 +126,7 @@ class MovieInfoViewController: UIViewController {
     countriesLabel.text = temporaryString + searchResult.getDuration()
     tagline.text = searchResult.tagline
     temporaryString = ""
-    temporaryString += String(searchResult.ratingMpaa ?? "") + "  " + String(searchResult.ageLimit ?? 0) + "+" 
+    temporaryString += String(searchResult.ratingMpaa ?? "") + "  " + String(searchResult.ageLimit ?? 0) + "+"
     ageAndMpaa.text = temporaryString
     longDescription.text = searchResult.description
     if let largeURL = URL(string: searchResult.imageUrl) {

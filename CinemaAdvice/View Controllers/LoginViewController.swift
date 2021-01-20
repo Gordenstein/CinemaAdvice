@@ -10,24 +10,24 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-  
+
   let loginToList = "LoginToList"
   var checkEmailVerification = false
-  
+
   // MARK: Outlets
   @IBOutlet weak var textFieldLoginEmail: UITextField!
   @IBOutlet weak var textFieldLoginPassword: UITextField!
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     signUpButton.layer.borderWidth = 1
     signUpButton.layer.borderColor = UIColor.label.cgColor
-    self.textFieldLoginEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named:"palceholder_color") ?? .yellow])
-    self.textFieldLoginPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named:"palceholder_color") ?? .yellow])
-    
-    Auth.auth().addStateDidChangeListener() { auth, user in
+    self.textFieldLoginEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "palceholder_color") ?? .yellow])
+    self.textFieldLoginPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "palceholder_color") ?? .yellow])
+
+    Auth.auth().addStateDidChangeListener { _, user in
       if user != nil {
         self.performSegue(withIdentifier: self.loginToList, sender: nil)
         self.textFieldLoginEmail.text = nil
@@ -35,11 +35,11 @@ class LoginViewController: UIViewController {
       }
     }
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
+
   @IBAction func loginDidTouch(_ sender: Any) {
     guard let email = textFieldLoginEmail.text,
           let password = textFieldLoginPassword.text,
@@ -73,14 +73,14 @@ class LoginViewController: UIViewController {
       }
     }
   }
-  
+
   @IBAction func signUpDidTouch(_ sender: Any) {
     let alert = UIAlertController(title: NSLocalizedString("Sign Up", comment: "Localized kind: Регистрация"),
                                   message: NSLocalizedString("Please enter your email and password (more than 6 simbols).", comment: "Localized kind: Пожалуйста, введите Ваш настоящий email и пароль (более 6 символов)."),
                                   preferredStyle: .alert)
-    
+
     let saveAction = UIAlertAction(title: NSLocalizedString("Save", comment: "Localized kind: Сохранить"),
-                                   style: .default) { action in
+                                   style: .default) { _ in
       guard let textFields = alert.textFields,
             textFields.count > 1,
             let email = textFields[0].text,
@@ -106,7 +106,7 @@ class LoginViewController: UIViewController {
         }
       }
     }
-    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Localized kind: Отмена"),style: .default)
+    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Localized kind: Отмена"), style: .default)
     alert.addTextField { textEmail in
       textEmail.placeholder = NSLocalizedString("Enter your email", comment: "Localized kind: Введите Ваш email")
     }
@@ -118,11 +118,11 @@ class LoginViewController: UIViewController {
     alert.addAction(cancelAction)
     present(alert, animated: true, completion: nil)
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return UIStatusBarStyle.lightContent
   }
-  
+
   @IBAction func choosePasswordTextField(_ sender: Any) {
     textFieldLoginPassword.becomeFirstResponder()
   }
