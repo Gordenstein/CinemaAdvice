@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 extension UIButton {
-  
   func pulsate() {
     let pulse = CASpringAnimation(keyPath: "transform.scale")
     pulse.duration = 160.0
