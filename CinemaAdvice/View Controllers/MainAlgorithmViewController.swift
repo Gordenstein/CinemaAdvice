@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  MainAlgorithmViewController.swift
 //  CinemaAdvice
 //
 //  Created by Hero on 11.04.2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SecondViewController: UIViewController {
+class MainAlgorithmViewController: UIViewController {
   
   @IBOutlet weak var button: UIButton!
   @IBOutlet weak var warningLabel: UILabel!

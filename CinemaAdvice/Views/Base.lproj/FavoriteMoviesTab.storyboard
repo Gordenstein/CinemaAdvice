@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nOb-K2-hIl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nOb-K2-hIl">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Watched movies Watched movies Watched movies-->
+        <!--Favorite Movies-->
         <scene sceneID="ljI-Xi-891">
             <objects>
-                <viewController id="ip4-Sd-oTf" customClass="ThirdViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ip4-Sd-oTf" userLabel="Favorite Movies" customClass="FavoriteMoviesViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8q7-eI-Z9X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="urm-yR-lq4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="ip4-Sd-oTf" id="oOL-lc-65M"/>
                                     <outlet property="delegate" destination="ip4-Sd-oTf" id="xOW-gw-n07"/>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="fiq-Bz-euQ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="urm-yR-lq4" firstAttribute="leading" secondItem="fiq-Bz-euQ" secondAttribute="leading" id="8bz-B0-bVY"/>
@@ -32,22 +33,18 @@
                             <constraint firstItem="urm-yR-lq4" firstAttribute="top" secondItem="fiq-Bz-euQ" secondAttribute="top" id="i3M-mo-BN9"/>
                             <constraint firstItem="fiq-Bz-euQ" firstAttribute="bottom" secondItem="urm-yR-lq4" secondAttribute="bottom" id="sR8-jX-Upm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fiq-Bz-euQ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Watched movies" id="KcI-JP-mp2" userLabel="Watched movies">
                         <barButtonItem key="leftBarButtonItem" title="0" id="aw7-0j-tx5">
-                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Exit" image="exit" id="9fC-hp-LrV" userLabel="Exit">
-                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="signoutButtonPressed:" destination="ip4-Sd-oTf" id="h4b-wa-S9a"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <string key="userLabel">Watched movies
-Watched movies
-Watched movies</string>
                     <connections>
                         <outlet property="leftBarButtonItem" destination="aw7-0j-tx5" id="8wm-yT-pBk"/>
                         <outlet property="tableView" destination="urm-yR-lq4" id="bts-XM-BGS"/>
@@ -67,7 +64,7 @@ Watched movies</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" systemColor="labelColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -83,5 +80,11 @@ Watched movies</string>
     <resources>
         <image name="Movie" width="30" height="30"/>
         <image name="exit" width="30" height="30"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

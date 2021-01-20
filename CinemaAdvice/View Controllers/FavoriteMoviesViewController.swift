@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ThirdViewController: UIViewController {
+class FavoriteMoviesViewController: UIViewController {
   
   let libraryCell = "LibraryCell"
   var libraryItems: [SearchResultFire] = []
@@ -79,7 +79,7 @@ class ThirdViewController: UIViewController {
 }
 
 // MARK: Table View Delegates
-extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
+extension FavoriteMoviesViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if !hasSearched {
       return 0

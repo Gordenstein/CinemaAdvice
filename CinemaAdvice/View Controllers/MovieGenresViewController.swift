@@ -1,5 +1,5 @@
 //
-//  GenresViewController.swift
+//  MovieGenresViewController.swift
 //  CinemaAdvice
 //
 //  Created by Hero on 15.05.2018.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol GenresViewControllerDelegate: class {
-  func finishEditing(_ controller: GenresViewController, newFilters: Filters)
+protocol MovieGenresViewControllerDelegate: class {
+  func finishEditing(_ controller: MovieGenresViewController, newFilters: Filters)
 }
 
-class GenresViewController: UITableViewController {
+class MovieGenresViewController: UITableViewController {
   
   var filters = Filters()
-  weak var delegate: GenresViewControllerDelegate?
+  weak var delegate: MovieGenresViewControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -2,17 +2,16 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OVp-j8-sbM">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search-->
+        <!--Movies List-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" userLabel="Search" customClass="FirstViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" userLabel="Movies List" customClass="MoviesListViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,10 +140,10 @@
             </objects>
             <point key="canvasLocation" x="1951.2" y="-0.44977511244377816"/>
         </scene>
-        <!--Filters-->
+        <!--Movie Filters-->
         <scene sceneID="uVL-bI-iLA">
             <objects>
-                <tableViewController title="Filtres" id="jh7-BH-9vh" userLabel="Filters" customClass="FiltersViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Filtres" id="jh7-BH-9vh" userLabel="Movie Filters" customClass="MovieFiltersViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vjJ-Le-Tv7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,10 +334,10 @@
             </objects>
             <point key="canvasLocation" x="2959" y="586"/>
         </scene>
-        <!--Genres-->
+        <!--Movie Genres-->
         <scene sceneID="FwO-RG-XFN">
             <objects>
-                <tableViewController id="yRp-NY-oCX" userLabel="Genres" customClass="GenresViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yRp-NY-oCX" userLabel="Movie Genres" customClass="MovieGenresViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NfZ-ix-WOB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -373,10 +372,10 @@
             </objects>
             <point key="canvasLocation" x="3826" y="585"/>
         </scene>
-        <!--Detail-->
+        <!--Movie Info-->
         <scene sceneID="Mkq-zj-1el">
             <objects>
-                <viewController id="f2X-FG-5Ep" userLabel="Detail" customClass="DetailViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="f2X-FG-5Ep" userLabel="Movie Info" customClass="MovieInfoViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FNq-Ky-LEe" userLabel="Pop-up View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -683,20 +682,20 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--SecondItem-->
+        <!--Main Algorithm-->
         <scene sceneID="YX3-nn-gfU">
             <objects>
-                <viewControllerPlaceholder storyboardName="SecondItem" id="NSH-Z1-aQc" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MainAlgorithmTab" id="NSH-Z1-aQc" userLabel="Main Algorithm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="70G-rd-yIW" userLabel="SecondItemButton"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfn-P1-tyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="215" y="545"/>
         </scene>
-        <!--ThirdItem-->
+        <!--Favorite Movies-->
         <scene sceneID="yOw-Ll-1CK">
             <objects>
-                <viewControllerPlaceholder storyboardName="ThirdItem" id="f5G-az-p2c" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="FavoriteMoviesTab" id="f5G-az-p2c" userLabel="Favorite Movies" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="bca-QJ-G8S" userLabel="ThirdItemButton"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQC-Kt-acD" userLabel="First Responder" sceneMemberID="firstResponder"/>

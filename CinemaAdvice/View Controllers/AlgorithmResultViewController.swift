@@ -1,5 +1,5 @@
 //
-//  SelectionResultViewController.swift
+//  AlgorithmResultViewController.swift
 //  CinemaAdvice
 //
 //  Created by Hero on 21.04.2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SelectionResultViewController: UIViewController {
+class AlgorithmResultViewController: UIViewController {
   
   @IBOutlet weak var artwork: UIImageView!
   @IBOutlet weak var nameRu: UILabel!

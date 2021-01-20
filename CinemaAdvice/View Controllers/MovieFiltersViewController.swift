@@ -1,5 +1,5 @@
 //
-//  FiltersViewController.swift
+//  MovieFiltersViewController.swift
 //  CinemaAdvice
 //
 //  Created by Hero on 13.05.2018.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol FiltersViewControllerDelegate: class {
-  func finishEditingFilters(_ controller: FiltersViewController, newFilters: Filters)
+protocol MovieFiltersViewControllerDelegate: class {
+  func finishEditingFilters(_ controller: MovieFiltersViewController, newFilters: Filters)
 }
 
-class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPickerViewDelegate, GenresViewControllerDelegate {
+class MovieFiltersViewController: UITableViewController,UIPickerViewDataSource, UIPickerViewDelegate, MovieGenresViewControllerDelegate {
   //MARK: Genres View Controller Delegate
-  func finishEditing(_ controller: GenresViewController, newFilters: Filters) {
+  func finishEditing(_ controller: MovieGenresViewController, newFilters: Filters) {
     filters = newFilters
   }
   
@@ -28,7 +28,7 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   var agePickerVisible = false
   var whoOpenAge: IndexPath?
   let startAgeIndex = IndexPath(row: 0, section: 2)
-  weak var delegate: FiltersViewControllerDelegate?
+  weak var delegate: MovieFiltersViewControllerDelegate?
   var valueForYear: [Int] = []
   let valueForAge = ["0+", "6+", "12+", "16+", "18+"]
   
@@ -293,7 +293,7 @@ class FiltersViewController: UITableViewController,UIPickerViewDataSource, UIPic
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ShowGenres" {
-      let genresViewController = segue.destination as! GenresViewController
+      let genresViewController = segue.destination as! MovieGenresViewController
       genresViewController.filters = filters
       genresViewController.delegate = self
     }

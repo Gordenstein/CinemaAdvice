@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  MoviesListViewController.swift
 //  CinemaAdvice
 //
 //  Created by Hero on 11.04.2018.
@@ -9,9 +9,9 @@
 import UIKit
 import Firebase
 
-class FirstViewController: UIViewController, FiltersViewControllerDelegate {
+class MoviesListViewController: UIViewController, MovieFiltersViewControllerDelegate {
   //MARK: Filters View Controller Delegate
-  func finishEditingFilters(_ controller: FiltersViewController, newFilters: Filters) {
+  func finishEditingFilters(_ controller: MovieFiltersViewController, newFilters: Filters) {
     navigationController?.popViewController(animated: true)
     filters = newFilters
     applyingFilters()
@@ -162,16 +162,16 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
   override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
     if segue.identifier == "ShowDetailView" {
       if hasSearched {
-        let detailViewController = segue.destination as! DetailViewController
+        let movieInfoViewController = segue.destination as! MovieInfoViewController
         let indexPath = sender as! IndexPath
         let searchResult = showResults[indexPath.row]
-        detailViewController.searchResult = searchResult
+        movieInfoViewController.searchResult = searchResult
       }
     }
     if segue.identifier == "ShowFilters" {
-      let filtersViewController = segue.destination as! FiltersViewController
-      filtersViewController.filters = filters
-      filtersViewController.delegate = self
+      let movieFiltersViewController = segue.destination as! MovieFiltersViewController
+      movieFiltersViewController.filters = filters
+      movieFiltersViewController.delegate = self
     }
   }
   
@@ -237,7 +237,7 @@ class FirstViewController: UIViewController, FiltersViewControllerDelegate {
 }
 
 // MARK:- Search Bar
-extension FirstViewController: UISearchBarDelegate {
+extension MoviesListViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
     applyingSearchBar(textForSearch: searchBar.text!)
@@ -272,7 +272,7 @@ extension FirstViewController: UISearchBarDelegate {
 
 
 // MARK:- Collection View Delegates
-extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if !hasSearched {
       return 27

@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  MovieInfoViewController.swift
 //  CinemaAdvice
 //
 //  Created by Hero on 20.04.2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class DetailViewController: UIViewController {
+class MovieInfoViewController: UIViewController {
   // MARK: Outlets
   @IBOutlet weak var artworkImage: UIImageView!
   @IBOutlet weak var titleLabelRu: UILabel!
