@@ -53,9 +53,8 @@ class MovieInfoViewController: UIViewController {
   var searchResult: SearchResultFire!
   var libraryItems: [SearchResultFire] = []
 
-  let libraryReference = Database.database().reference(withPath: "libraries")
+  let libraryReference = Database.database().reference(withPath: Constants.usersFavoriteFilmsPath)
   var currentUserReference = Database.database().reference()
-  var user: User!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -65,13 +64,11 @@ class MovieInfoViewController: UIViewController {
     if searchResult != nil {
       updateUI()
     }
-
-    Auth.auth().addStateDidChangeListener {
-      _, user in
-      if let user = user {
-        self.user = User(uid: user.uid, email: user.email!)
-        self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
-      }
+    let userDefaults = UserDefaults.standard
+    if let userFavoriteFilmsPath = userDefaults.object(forKey: Constants.userFavoriteFilmsPathKey) as? String {
+      self.currentUserReference = self.libraryReference.child(userFavoriteFilmsPath)
+    } else {
+      // Error - Log out
     }
   }
 

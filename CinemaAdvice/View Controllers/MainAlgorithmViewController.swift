@@ -22,26 +22,23 @@ class MainAlgorithmViewController: UIViewController {
   let libraryReference = Database.database().reference(withPath: "libraries")
   let rootReference = Database.database().reference()
   var currentUserReference = Database.database().reference()
-  var user: User!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     button.layer.cornerRadius = 100
     warningLabel.text = NSLocalizedString("Counting films in the library...", comment: "Localized kind: Идет подсчет фильмов в библиотеке...")
     buttonOff()
-
-    Auth.auth().addStateDidChangeListener {
-      _, user in
-      if let user = user {
-        self.user = User(uid: user.uid, email: user.email!)
-        self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
-        self.downloadData()
-      }
+    
+    let userDefaults = UserDefaults.standard
+    if let userFavoriteFilmsPath = userDefaults.object(forKey: Constants.userFavoriteFilmsPathKey) as? String {
+      self.currentUserReference = self.libraryReference.child(userFavoriteFilmsPath)
+      self.downloadData()
+    } else {
+      // Error - Log out
     }
-
   }
 
-  func downloadData() {
+  private func downloadData() {
     currentUserReference.observe(.value) { (snapshot) in
       var countFilms = 0
       for _ in snapshot.children {
@@ -57,13 +54,13 @@ class MainAlgorithmViewController: UIViewController {
     }
   }
 
-  func buttonOn() {
+  private func buttonOn() {
     button.isEnabled = true
     button.alpha = 1.0
     button.pulsate()
   }
 
-  func buttonOff() {
+  private func buttonOff() {
     button.isEnabled = false
     button.alpha = 0.4
   }

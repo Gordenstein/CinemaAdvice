@@ -48,7 +48,7 @@ struct Constants {
   static let directors = "directors"
   static let producers = "producers"
   static let genres = "genres"
-  static let  budget = "budget"
+  static let budget = "budget"
   static let ageLimit = "ageLimit"
   static let ratingKinopoisk = "ratingKinopoisk"
   static let ratingMpaa = "ratingMpaa"
@@ -57,4 +57,15 @@ struct Constants {
   static let description = "description"
   static let opinion = "opinion"
   static let keywords = "keywords"
+  
+  // UserDefaults
+  static let userIDKey = "userUID"
+  static let userEmailKey = "userEmail"
+  static let userFavoriteFilmsPathKey = "userFavoriteFilmsPath"
+  
+  // Firebase paths
+  static let usersPath = "online"
+  static let moviesListPath = "films"
+  static let usersFavoriteFilmsPath = "libraries"
+  static let userFavoriteFilmsPathPrefix = "library-"
 }

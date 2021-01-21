@@ -13,9 +13,8 @@ class FavoriteMoviesViewController: UIViewController {
 
   var libraryItems: [SearchResultFire] = []
   var hasSearched = false
-  let libraryReference = Database.database().reference(withPath: "libraries")
+  let libraryReference = Database.database().reference(withPath: Constants.usersFavoriteFilmsPath)
   var currentUserReference = Database.database().reference()
-  var user: User!
 
   @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
 
@@ -27,18 +26,17 @@ class FavoriteMoviesViewController: UIViewController {
     // Register nib files
     let cellNib = UINib(nibName: Constants.libraryCellID, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: Constants.libraryCellID)
-
-    Auth.auth().addStateDidChangeListener {
-      _, user in
-      if let user = user {
-        self.user = User(uid: user.uid, email: user.email!)
-        self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
-        self.downloadData()
-      }
+    
+    let userDefaults = UserDefaults.standard
+    if let userFavoriteFilmsPath = userDefaults.object(forKey: Constants.userFavoriteFilmsPathKey) as? String {
+      self.currentUserReference = self.libraryReference.child(userFavoriteFilmsPath)
+      self.downloadData()
+    } else {
+      // Error - Log out
     }
   }
 
-  func downloadData() {
+  private func downloadData() {
     currentUserReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
       for item in snapshot.children {

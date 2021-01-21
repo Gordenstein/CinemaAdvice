@@ -24,13 +24,12 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
   var wholeData: [SearchResultFire] = []
   var haveResults = false
   var hasSearched = false
-  var user: User!
-  let usersReference = Database.database().reference(withPath: "online")
+  let usersReference = Database.database().reference(withPath: Constants.usersPath)
 
   override func viewDidLoad() {
     super.viewDidLoad()
     cellRegistration()
-    addStateDidChangeListener()
+    setOnlineStatusToDB()
     firstDownloadData()
   }
 
@@ -42,19 +41,20 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
 
-  func addStateDidChangeListener() {
-    Auth.auth().addStateDidChangeListener { _, user in
-      if let user = user {
-        self.user = User(uid: user.uid, email: user.email!)
-        let currentUserReference = self.usersReference.child(self.user.uid)
-        currentUserReference.setValue(self.user.email)
-        currentUserReference.onDisconnectRemoveValue()
-      }
+  func setOnlineStatusToDB() {
+    let userDefaults = UserDefaults.standard
+    guard let userID = userDefaults.object(forKey: Constants.userIDKey) as? String,
+          let userEmail = userDefaults.object(forKey: Constants.userIDKey) as? String else {
+      // No ID or Email
+      return
     }
+    let currentUserReference = self.usersReference.child(userID)
+    currentUserReference.setValue(userEmail)
+    currentUserReference.onDisconnectRemoveValue()
   }
 
   func firstDownloadData() {
-    var searchResultReference = Database.database().reference(withPath: "films")
+    var searchResultReference = Database.database().reference(withPath: Constants.moviesListPath)
     if Constants.loadOneFilmFromDB {
       searchResultReference = searchResultReference.child("100")
       searchResultReference.observe(.value) { (snapshot) in

@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var textFieldLoginPassword: UITextField!
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
+  
+  private let userDefaults = UserDefaults.standard
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,10 +27,11 @@ class LoginViewController: UIViewController {
     self.textFieldLoginPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "palceholder_color") ?? .yellow])
 
     Auth.auth().addStateDidChangeListener { _, user in
-      if user != nil {
+      if let user = user {
+        self.userDefaults.set(user.uid, forKey: Constants.userIDKey)
+        self.userDefaults.set(user.email, forKey: Constants.userEmailKey)
+        self.userDefaults.set(Constants.userFavoriteFilmsPathPrefix + user.uid, forKey: Constants.userFavoriteFilmsPathKey)
         self.performSegue(withIdentifier: Constants.loginToListSegueID, sender: nil)
-        self.textFieldLoginEmail.text = nil
-        self.textFieldLoginPassword.text = nil
       }
     }
   }
@@ -48,8 +51,9 @@ class LoginViewController: UIViewController {
       if let authResult = authResult {
         if !Constants.checkEmailVerification || authResult.user.isEmailVerified {
           self.performSegue(withIdentifier: Constants.loginToListSegueID, sender: nil)
-          self.textFieldLoginEmail.text = nil
-          self.textFieldLoginPassword.text = nil
+          self.userDefaults.set(authResult.user.uid, forKey: Constants.userIDKey)
+          self.userDefaults.set(authResult.user.email, forKey: Constants.userEmailKey)
+          self.userDefaults.set(Constants.userFavoriteFilmsPathPrefix + authResult.user.uid, forKey: Constants.userFavoriteFilmsPathKey)
         } else {
           let alert = UIAlertController(title: NSLocalizedString("Login is not available", comment: "Localized kind: На данный момент вход невозможен"),
                                         message: NSLocalizedString("A verification link has been send to your email account. Please click on the link that has been sent to your email.", comment: "Localized kind: Ваш email был зарегистрирован, но для входа необходимо его подтвердить. Пожалуйста, перейдите по ссылке в письме."),

@@ -42,14 +42,11 @@ class AlgorithmResultViewController: UIViewController {
   var finishArray: [SearchResultFire] = []
   var filmNumber = -1
   var downloadTask: URLSessionDownloadTask?
-  let libraryReference = Database.database().reference(withPath: "libraries")
+  let libraryReference = Database.database().reference(withPath: Constants.usersFavoriteFilmsPath)
   var currentUserReference = Database.database().reference()
-  var user: User!
   var selectionArray = Selection()
   var mustLoad = true
   var firstTime = true
-
-  let testShot = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,17 +56,16 @@ class AlgorithmResultViewController: UIViewController {
     yesButton.layer.cornerRadius = 5
     chooseButton.layer.cornerRadius = 5
     startLoading()
-
-    Auth.auth().addStateDidChangeListener {
-      _, user in
-      if let user = user {
-        self.user = User(uid: user.uid, email: user.email!)
-        self.currentUserReference = self.libraryReference.child("library-" + self.user.uid)
-        if self.firstTime {
-          self.firstTime = false
-          self.downloadFilms()
-        }
+    
+    let userDefaults = UserDefaults.standard
+    if let userFavoriteFilmsPath = userDefaults.object(forKey: Constants.userFavoriteFilmsPathKey) as? String {
+      self.currentUserReference = self.libraryReference.child(userFavoriteFilmsPath)
+      if self.firstTime {
+        self.firstTime = false
+        self.downloadFilms()
       }
+    } else {
+      // Error - Log out
     }
   }
 
@@ -513,7 +509,7 @@ class AlgorithmResultViewController: UIViewController {
 
   func downloadFilms() {
     var searchResultReference = Database.database().reference(withPath: "films")
-    if testShot {
+    if Constants.loadOneFilmFromDB {
       searchResultReference = searchResultReference.child("100")
       searchResultReference.observe(.value) { (snapshot) in
         var newItems: [SearchResultFire] = []
