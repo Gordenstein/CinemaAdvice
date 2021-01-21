@@ -39,5 +39,4 @@ class SearchResultCell: UICollectionViewCell {
       downloadTask = imageView.loadImage(url: largeURL)
     }
   }
-
 }

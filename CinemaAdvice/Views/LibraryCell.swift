@@ -47,10 +47,11 @@ class LibraryCell: UITableViewCell {
     nameLabel.text = result.nameRu
 
     if result.opinion! {
-      opinionImageView.image = #imageLiteral(resourceName: "goodStar")
+      opinionImageView.image = UIImage(systemName: "star.fill")
     } else {
-      opinionImageView.image = #imageLiteral(resourceName: "badStar")
+      opinionImageView.image = UIImage(systemName: "star")
     }
+    opinionImageView.tintColor = UIColor.systemOrange
     genreLabel.text = String(format: "%@ (%@)", result.genres[0], String(result.year))
     artworkImageView.image = UIImage(named: "Placeholder")
     if let largeURL = URL(string: result.imageUrl) {

@@ -224,7 +224,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="arrow.2.circlepath" catalog="system" symbolScale="default"/>
+                                    <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="default"/>
                                 </state>
                                 <connections>
                                     <action selector="refresh:" destination="4L0-QX-wdB" eventType="touchUpInside" id="AJO-RH-2Wk"/>
@@ -380,7 +380,7 @@
     </scenes>
     <resources>
         <image name="CloseButton" width="32" height="32"/>
-        <image name="arrow.2.circlepath" catalog="system" width="128" height="101"/>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="atom" catalog="system" width="119" height="128"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
