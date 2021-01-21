@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MovieGenresViewControllerDelegate: class {
-  func finishEditing(_ controller: MovieGenresViewController, newFilters: Filters)
+  func finishEditingGenres(_ controller: MovieGenresViewController, newFilters: Filters)
 }
 
 class MovieGenresViewController: UITableViewController {
@@ -26,7 +26,7 @@ class MovieGenresViewController: UITableViewController {
   }
 
   override func viewWillDisappear(_ animated: Bool) {
-    delegate?.finishEditing(self, newFilters: filters)
+    delegate?.finishEditingGenres(self, newFilters: filters)
   }
 
   // MARK: Table View Delegates
@@ -36,9 +36,12 @@ class MovieGenresViewController: UITableViewController {
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.genreItemCellID, for: indexPath)
-    let cellTitle = cell.viewWithTag(1002) as! UILabel
-    cellTitle.text = filters.genres[indexPath.row].0
-    if filters.genres[indexPath.row].1 {
+    guard let cellLabel = cell.viewWithTag(1002) as? UILabel else {
+      return cell
+    }
+    let genreKey = Filters.genresOrder[indexPath.row]
+    cellLabel.text = genreKey
+    if filters.genres[genreKey] ?? false {
       cell.accessoryType = .checkmark
     } else {
       cell.accessoryType = .none
@@ -48,16 +51,13 @@ class MovieGenresViewController: UITableViewController {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let cell = tableView.cellForRow(at: indexPath) {
-      if filters.genres[indexPath.row].1 {
-        filters.genres[indexPath.row].1 = false
-      } else {
-        filters.genres[indexPath.row].1 = true
-      }
-
-      if filters.genres[indexPath.row].1 {
-        cell.accessoryType = .checkmark
-      } else {
+      let genreKey = Filters.genresOrder[indexPath.row]
+      if filters.genres[genreKey] ?? false {
+        filters.genres[genreKey] = false
         cell.accessoryType = .none
+      } else {
+        filters.genres[genreKey] = true
+        cell.accessoryType = .checkmark
       }
     }
     tableView.deselectRow(at: indexPath, animated: true)

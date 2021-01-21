@@ -29,8 +29,8 @@
 /* Class = "UITableViewSection"; headerTitle = "Age limit"; ObjectID = "Guw-e5-W1Y"; */
 "Guw-e5-W1Y.headerTitle" = "Возрастное ограничение";
 
-/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "HOr-He-Lkp"; */
-"HOr-He-Lkp.title" = "Готово";
+/* Class = "UIBarButtonItem"; title = "Reset"; ObjectID = "HOr-He-Lkp"; */
+"HOr-He-Lkp.title" = "Сбросить";
 
 /* Class = "UILabel"; text = "AdvisoryRating"; ObjectID = "HhL-yh-2iV"; */
 "HhL-yh-2iV.text" = "Возрастное ограничение";

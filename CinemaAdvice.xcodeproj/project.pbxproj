@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4401152A25B8818000CE6522 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4401152925B8818000CE6522 /* Constants.swift */; };
+		443A29DE25B9AFC500309065 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A29DD25B9AFC500309065 /* Filters.swift */; };
+		443A29E125B9B08400309065 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A29E025B9B08400309065 /* Selection.swift */; };
 		64E20B299D23C1BD81A39BA8 /* libPods-CinemaAdvice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */; };
 		C42B28FF20ACB12E00D65452 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42B28FE20ACB12E00D65452 /* LoginViewController.swift */; };
 		C43E132820AB8F9B0008A275 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43E132720AB8F9A0008A275 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		4401152925B8818000CE6522 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		443A29DD25B9AFC500309065 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		443A29E025B9B08400309065 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CinemaAdvice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42B28FE20ACB12E00D65452 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C43C81FF22897505007A9973 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */,
+				443A29DD25B9AFC500309065 /* Filters.swift */,
+				443A29E025B9B08400309065 /* Selection.swift */,
 				C479AF0E207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift */,
 			);
 			path = "Data Models";
@@ -324,10 +330,12 @@
 				C4E6C3AC20AADACB0038F5F7 /* MovieGenresViewController.swift in Sources */,
 				C42B28FF20ACB12E00D65452 /* LoginViewController.swift in Sources */,
 				C4CB6B36208B4E2200596266 /* AlgorithmResultViewController.swift in Sources */,
+				443A29E125B9B08400309065 /* Selection.swift in Sources */,
 				C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */,
 				C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */,
 				C479AEED207E6F1D00B8A1C9 /* MainAlgorithmViewController.swift in Sources */,
 				C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */,
+				443A29DE25B9AFC500309065 /* Filters.swift in Sources */,
 				C479AF05207E73FA00B8A1C9 /* FavoriteMoviesViewController.swift in Sources */,
 				C44E04F0208DD5770017D408 /* ButtonAnimationExtension.swift in Sources */,
 				C479AEEB207E6F1D00B8A1C9 /* MoviesListViewController.swift in Sources */,

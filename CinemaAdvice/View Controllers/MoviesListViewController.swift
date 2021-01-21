@@ -89,55 +89,55 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
   }
 
   func applyingFilters() {
-    let temporaryFilters = filters
-    switch filters.endAge {
-      case 0: filters.endAge = 0
-      case 1: filters.endAge = 6
-      case 2: filters.endAge = 12
-      case 3: filters.endAge = 16
-      case 4: filters.endAge = 18
-      default: filters.endAge = 0
-    }
+    var startAge = 0
+    var endAge = 0
     switch filters.startAge {
-      case 0: filters.startAge = 0
-      case 1: filters.startAge = 6
-      case 2: filters.startAge = 12
-      case 3: filters.startAge = 16
-      case 4: filters.startAge = 18
-      default: filters.startAge = 0
+      case 0: startAge = 0
+      case 1: startAge = 6
+      case 2: startAge = 12
+      case 3: startAge = 16
+      case 4: startAge = 18
+      default: startAge = 0
     }
-    var usingGenres = false
-    for genre in filters.genres {
-      if genre.1 {
-        usingGenres = true
+    switch filters.endAge {
+      case 0: endAge = 0
+      case 1: endAge = 6
+      case 2: endAge = 12
+      case 3: endAge = 16
+      case 4: endAge = 18
+      default: endAge = 0
+    }
+    var allowedGenres = Set<String>()
+    let filterGenres = filters.genres
+    for genreKey in filters.genres.keys {
+      if filterGenres[genreKey] ?? false {
+        allowedGenres.insert(genreKey)
       }
     }
-    if !usingGenres {
-      for genre in 0..<filters.genres.count {
-        filters.genres[genre].1 = true
-      }
-    }
-
+    
     showResults = []
     for film in wholeData {
-      var conformityGenres = false
-      for genre in film.genres {
-        for filtersGenre in filters.genres {
-          if filtersGenre.1 {
-            if genre == filtersGenre.0 {
-              conformityGenres = true
-            }
+      if !allowedGenres.isEmpty {
+        var fitIn = false
+        genreLoop: for filmGenre in film.genres {
+          if allowedGenres.contains(filmGenre) {
+            fitIn = true
+            break genreLoop
           }
         }
-      }
-      if conformityGenres {
-        if film.year >= filters.startYear, film.year <= filters.endYear,
-           film.ageLimit ?? 0 >= filters.startAge, film.ageLimit ?? 0 <= filters.endAge {
-          showResults.append(film)
+        if !fitIn {
+          continue
         }
       }
+      
+      if film.year >= filters.startYear,
+         film.year <= filters.endYear,
+         film.ageLimit ?? 0 >= startAge,
+         film.ageLimit ?? 0 <= endAge {
+        showResults.append(film)
+      }
     }
-    filters = temporaryFilters
+    
     if showResults.count > 0 {
       haveResults = true
     } else {

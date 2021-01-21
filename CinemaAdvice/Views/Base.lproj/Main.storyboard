@@ -284,18 +284,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Filtres" id="dq4-lW-2Pz">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="HOr-He-Lkp">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Reset" id="HOr-He-Lkp">
                             <connections>
-                                <action selector="doneBarButton:" destination="jh7-BH-9vh" id="bwr-fW-iAU"/>
+                                <action selector="resetBarButtonPressed:" destination="jh7-BH-9vh" id="bwr-fW-iAU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="agePicker" destination="EFl-63-vps" id="7su-n8-mHf"/>
                         <outlet property="agePickerCell" destination="LKH-Re-aB1" id="NyK-X5-isH"/>
-                        <outlet property="doneBarButton" destination="HOr-He-Lkp" id="7iZ-1V-zQk"/>
                         <outlet property="endAgeLabel" destination="Fc4-li-Jio" id="Vao-vN-qnF"/>
                         <outlet property="endYearLabel" destination="NPd-YN-EnX" id="FXO-u9-W3U"/>
+                        <outlet property="resetBarButton" destination="HOr-He-Lkp" id="7iZ-1V-zQk"/>
                         <outlet property="startAgeLabel" destination="Zyt-cN-h0Q" id="yg1-Fl-Bzb"/>
                         <outlet property="startYearLabel" destination="0LV-Pl-SRQ" id="5bZ-1W-8Cc"/>
                         <outlet property="yearPicker" destination="WF8-vp-Dh7" id="aMn-4Z-ZxP"/>

@@ -14,13 +14,12 @@ protocol MovieFiltersViewControllerDelegate: class {
 
 class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, MovieGenresViewControllerDelegate {
   // MARK: Genres View Controller Delegate
-  func finishEditing(_ controller: MovieGenresViewController, newFilters: Filters) {
+  func finishEditingGenres(_ controller: MovieGenresViewController, newFilters: Filters) {
     filters = newFilters
   }
 
   // MARK: Start
   var filters = Filters()
-  var startFilters = Filters()
   var changeFilters = false
   var yearPickerVisible = false
   var whoOpenYear: IndexPath?
@@ -29,8 +28,10 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
   var whoOpenAge: IndexPath?
   let startAgeIndex = IndexPath(row: 0, section: 2)
   weak var delegate: MovieFiltersViewControllerDelegate?
-  var valueForYear: [Int] = []
-  let valueForAge = ["0+", "6+", "12+", "16+", "18+"]
+  var valuesForYearPicker: [Int] = []
+  let valuesForAgePicker = ["0+", "6+", "12+", "16+", "18+"]
+  
+  var openingGenres = false
 
   @IBOutlet weak var yearPickerCell: UITableViewCell!
   @IBOutlet weak var yearPicker: UIPickerView!
@@ -40,22 +41,13 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
   @IBOutlet weak var endYearLabel: UILabel!
   @IBOutlet weak var startAgeLabel: UILabel!
   @IBOutlet weak var endAgeLabel: UILabel!
-  @IBOutlet weak var doneBarButton: UIBarButtonItem!
+  @IBOutlet weak var resetBarButton: UIBarButtonItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    for i in 1939...2018 {
-      valueForYear.append(i)
-    }
-    startFilters = filters
-    startYearLabel.text = String(filters.startYear)
-    endYearLabel.text = String(filters.endYear)
-    startAgeLabel.text = valueForAge[filters.startAge]
-    endAgeLabel.text = valueForAge[filters.endAge]
-    yearPicker.delegate = self
-    yearPicker.dataSource = self
-    agePicker.delegate = self
-    agePicker.dataSource = self
+    buildValuesForYearPicker()
+    setDelegates()
+    updateLabelsAccordingToFilters()
   }
 
   override func didReceiveMemoryWarning() {
@@ -63,36 +55,73 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
   }
 
   override func viewWillAppear(_ animated: Bool) {
-    changeFilters = filters.changeFilters(first: startFilters, second: filters)
-    if changeFilters {
-      doneBarButton.isEnabled = true
+    updateResetButtonVisibility()
+    super.viewWillAppear(animated)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    // Workaround for system Back button 
+    if !openingGenres {
+      delegate?.finishEditingFilters(self, newFilters: filters)
+    }
+    openingGenres.toggle()
+    super.viewWillDisappear(animated)
+  }
+
+  @IBAction func resetBarButtonPressed(_ sender: Any) {
+    hideYearPicker()
+    hideAgePicker()
+    self.filters = Filters()
+    updateLabelsAccordingToFilters()
+    resetBarButton.isEnabled = false
+  }
+  
+  func setDelegates() {
+    yearPicker.delegate = self
+    yearPicker.dataSource = self
+    agePicker.delegate = self
+    agePicker.dataSource = self
+  }
+  
+  func updateLabelsAccordingToFilters() {
+    startYearLabel.text = String(filters.startYear)
+    endYearLabel.text = String(filters.endYear)
+    startAgeLabel.text = valuesForAgePicker[filters.startAge]
+    endAgeLabel.text = valuesForAgePicker[filters.endAge]
+  }
+  
+  func buildValuesForYearPicker() {
+    for i in 1939...2018 {
+      valuesForYearPicker.append(i)
+    }
+  }
+  
+  func updateResetButtonVisibility() {
+    if !filters.isDefault() {
+      resetBarButton.isEnabled = true
     } else {
-      doneBarButton.isEnabled = false
+      resetBarButton.isEnabled = false
     }
   }
 
-  @IBAction func doneBarButton(_ sender: Any) {
-    delegate?.finishEditingFilters(self, newFilters: filters)
-  }
-
-  // MARK: - Picker view methoods and data source
+  // MARK: - Picker views methoods and data source
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
 
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     if pickerView == yearPicker {
-      return valueForYear.count
+      return valuesForYearPicker.count
     } else {
-      return valueForAge.count
+      return valuesForAgePicker.count
     }
   }
 
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     if pickerView == yearPicker {
-      return String(valueForYear[row])
+      return String(valuesForYearPicker[row])
     } else {
-      return String(valueForAge[row])
+      return String(valuesForAgePicker[row])
     }
   }
 
@@ -102,58 +131,53 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
     } else {
       setAge(pickerView, didSelectRow: row)
     }
-    changeFilters = filters.changeFilters(first: startFilters, second: filters)
-    if changeFilters {
-      doneBarButton.isEnabled = true
-    } else {
-      doneBarButton.isEnabled = false
-    }
+    updateResetButtonVisibility()
   }
 
-  func setYear (_ pickerView: UIPickerView, didSelectRow row: Int) {
+  func setYear(_ pickerView: UIPickerView, didSelectRow row: Int) {
     if whoOpenYear == startYearIndex {
       let endYear = filters.endYear-1939
       if row > endYear {
         pickerView.selectRow(endYear, inComponent: 0, animated: true)
-        filters.startYear = valueForYear[endYear]
-        startYearLabel.text = String(valueForYear[endYear])
+        filters.startYear = valuesForYearPicker[endYear]
+        startYearLabel.text = String(valuesForYearPicker[endYear])
       } else {
-        filters.startYear = valueForYear[row]
-        startYearLabel.text = String(valueForYear[row])
+        filters.startYear = valuesForYearPicker[row]
+        startYearLabel.text = String(valuesForYearPicker[row])
       }
     } else {
       let startYear = filters.startYear-1939
       if row < startYear {
         pickerView.selectRow(startYear, inComponent: 0, animated: true)
-        filters.endYear = valueForYear[startYear]
-        endYearLabel.text = String(valueForYear[startYear])
+        filters.endYear = valuesForYearPicker[startYear]
+        endYearLabel.text = String(valuesForYearPicker[startYear])
       } else {
-        filters.endYear = valueForYear[row]
-        endYearLabel.text = String(valueForYear[row])
+        filters.endYear = valuesForYearPicker[row]
+        endYearLabel.text = String(valuesForYearPicker[row])
       }
     }
   }
 
-  func setAge (_ pickerView: UIPickerView, didSelectRow row: Int) {
+  func setAge(_ pickerView: UIPickerView, didSelectRow row: Int) {
     if whoOpenAge == startAgeIndex {
       let endAge = filters.endAge
       if row > endAge {
         pickerView.selectRow(endAge, inComponent: 0, animated: true)
         filters.startAge = endAge
-        startAgeLabel.text = valueForAge[endAge]
+        startAgeLabel.text = valuesForAgePicker[endAge]
       } else {
         filters.startAge = row
-        startAgeLabel.text = valueForAge[row]
+        startAgeLabel.text = valuesForAgePicker[row]
       }
     } else {
       let startAge = filters.startAge
       if row < startAge {
         pickerView.selectRow(startAge, inComponent: 0, animated: true)
         filters.endAge = startAge
-        endAgeLabel.text = valueForAge[startAge]
+        endAgeLabel.text = valuesForAgePicker[startAge]
       } else {
         filters.endAge = row
-        endAgeLabel.text = valueForAge[row]
+        endAgeLabel.text = valuesForAgePicker[row]
       }
     }
   }
@@ -293,6 +317,7 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == Constants.showGenresSegueID {
+      openingGenres = true
       let genresViewController = segue.destination as! MovieGenresViewController
       genresViewController.filters = filters
       genresViewController.delegate = self
