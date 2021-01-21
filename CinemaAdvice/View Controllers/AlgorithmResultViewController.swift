@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+// swiftlint:disable:next type_body_length
 class AlgorithmResultViewController: UIViewController {
 
   @IBOutlet weak var artwork: UIImageView!
@@ -56,7 +57,7 @@ class AlgorithmResultViewController: UIViewController {
     yesButton.layer.cornerRadius = 5
     chooseButton.layer.cornerRadius = 5
     startLoading()
-    
+
     let userDefaults = UserDefaults.standard
     if let userFavoriteFilmsPath = userDefaults.object(forKey: Constants.userFavoriteFilmsPathKey) as? String {
       self.currentUserReference = self.libraryReference.child(userFavoriteFilmsPath)
@@ -76,33 +77,68 @@ class AlgorithmResultViewController: UIViewController {
     let sampleSize = 30
 
     let numberOfYear = 2
-    var numberOfDirectors = selectionArray.directors.count
-    var numberOfActors = 20
+    let numberOfDirectors = selectionArray.directors.count
+    let numberOfActors = 20
     let numberOfGenres = 7
-    var numberOfKeywords = 1
+    let numberOfKeywords = 1
 
-    var yearResults: [SearchResultFire] = []
-    var directorsResults: [SearchResultFire] = []
-    var actorsResults: [SearchResultFire] = []
-    var genresResults: [SearchResultFire] = []
-    var keywordsResults: [SearchResultFire] = []
+    let yearResults = getResultAccordingToYear(numberOfYear: numberOfYear)
+    let directorsResults = getResultAccordingToDirectors(amountOfDirectors: numberOfDirectors,
+                                                         sampleSize: sampleSize,
+                                                         yearResults: yearResults)
+    let actorsResults = getResultAccordingToActors(amountOfActors: numberOfActors,
+                                                   sampleSize: sampleSize,
+                                                   yearResults: yearResults)
+    let genresResults = getResultAccordingToGenres(numberOfGenres: numberOfGenres,
+                                                   yearResults: yearResults)
+    let keywordsResults = getResultAccordingToKeywords(amountOfKeywords: numberOfKeywords,
+                                                       sampleSize: sampleSize,
+                                                       yearResults: yearResults)
 
+    // Cross result
+    finishArray = sumResult(for: actorsResults, and: genresResults)
+    finishArray = sumResult(for: finishArray, and: keywordsResults)
+    finishArray = sumResult(for: finishArray, and: directorsResults)
+
+    // Print result
+    //    let amountOfLibraryItems = libraryItems.count
+    //    switch printState {
+    //    case 0:
+    //      print("Y:\(numberOfYear),\(yearResults.count)")
+    //    case 1:
+    //      print("D:\(numberOfDirectors),\(directorsResults.count)")
+    //    case 2:
+    //      print("A:\(numberOfActors),\(actorsResults.count)")
+    //    case 3:
+    //      print("G:\(numberOfGenres),\(genresResults.count)")
+    //    case 4:
+    //      print("K:\(numberOfKeywords),\(keywordsResults.count)")
+    //    case 5:
+    //      print("---------------------------------------------------")
+    //      print("Library items: \(amountOfLibraryItems)")
+    //      print("Sample size: \(sampleSize)")
+    //      print("Y:\(numberOfYear),\(yearResults.count)")
+    //      print("D:\(numberOfDirectors),\(directorsResults.count)")
+    //      print("A:\(numberOfActors),\(actorsResults.count)")
+    //      print("G:\(numberOfGenres),\(genresResults.count)")
+    //      print("K:\(numberOfKeywords),\(keywordsResults.count)")
+    //      print("Finish array: \(finishArray.count)")
+    //      print("---------------------------------------------------")
+    //    default:
+    //      print("Invalid printState")
+    //    }
+    updateUI()
+  }
+
+  func getResultAccordingToYear(numberOfYear: Int) -> [SearchResultFire] {
     var yearsForSelection: [Int] = []
-    var directorsForSelection: [String] = []
-    var actorsForSelection: [String] = []
-    var genresForSelection: [String] = []
-    var keywordsForSelection: [String] = []
-
-    let amountOfLibraryItems = libraryItems.count
-
+    var yearResults: [SearchResultFire] = []
     // Year
     for item in 0..<numberOfYear {
       for year in selectionArray.years[item].0 - 5...selectionArray.years[item].0 + 5 {
         var contain = false
-        for yearInArray in yearsForSelection {
-          if yearInArray == year {
-            contain = true
-          }
+        for yearInArray in yearsForSelection where yearInArray == year {
+          contain = true
         }
         if !contain {
           yearsForSelection.append(year)
@@ -111,15 +147,20 @@ class AlgorithmResultViewController: UIViewController {
     }
 
     for film in wholeData {
-      for year in yearsForSelection {
-        if film.year == year {
-          yearResults.append(film)
-        }
+      for year in yearsForSelection where film.year == year {
+        yearResults.append(film)
       }
     }
-    yearResults = excludeViewed(in: yearResults)
-//    print("Y:\(numberOfYear),\(yearResults.count)")
+    //    print("Y:\(numberOfYear),\(yearResults.count)")
+    return excludeViewed(in: yearResults)
+  }
 
+  func getResultAccordingToDirectors(amountOfDirectors: Int,
+                                     sampleSize: Int,
+                                     yearResults: [SearchResultFire]) -> [SearchResultFire] {
+    var numberOfDirectors = amountOfDirectors
+    var directorsResults: [SearchResultFire] = []
+    var directorsForSelection: [String] = []
     // Directors
     while directorsResults.count > sampleSize || directorsResults.count == 0 {
       directorsResults = []
@@ -130,23 +171,29 @@ class AlgorithmResultViewController: UIViewController {
 
       for film in wholeData {
         for director in directorsForSelection {
-          for filmDirector in film.directors ?? [] {
-            if filmDirector == director {
-              directorsResults.append(film)
-            }
+          for filmDirector in film.directors ?? [] where filmDirector == director {
+            directorsResults.append(film)
           }
         }
       }
       directorsResults = excludeViewed(in: directorsResults)
       directorsResults = crossResult(for: directorsResults, and: yearResults)
-//      print("D:\(numberOfDirectors),\(directorsResults.count)")
+      //      print("D:\(numberOfDirectors),\(directorsResults.count)")
       numberOfDirectors -= 1
       if numberOfDirectors == 0 {
         break
       }
     }
     numberOfDirectors += 1
+    return directorsResults
+  }
 
+  func getResultAccordingToActors(amountOfActors: Int,
+                                  sampleSize: Int,
+                                  yearResults: [SearchResultFire]) -> [SearchResultFire] {
+    var numberOfActors = amountOfActors
+    var actorsResults: [SearchResultFire] = []
+    var actorsForSelection: [String] = []
     // Actors
     while actorsResults.count > sampleSize || actorsResults.count == 0 {
       actorsResults = []
@@ -157,23 +204,27 @@ class AlgorithmResultViewController: UIViewController {
 
       for film in wholeData {
         for actor in actorsForSelection {
-          for filmActor in film.actors ?? [] {
-            if filmActor == actor {
-              actorsResults.append(film)
-            }
+          for filmActor in film.actors ?? [] where filmActor == actor {
+            actorsResults.append(film)
           }
         }
       }
       actorsResults = excludeViewed(in: actorsResults)
       actorsResults = crossResult(for: actorsResults, and: yearResults)
-//      print("A:\(numberOfActors),\(actorsResults.count)")
+      //      print("A:\(numberOfActors),\(actorsResults.count)")
       numberOfActors -= 1
       if numberOfActors == 0 {
         break
       }
     }
     numberOfActors += 1
+    return actorsResults
+  }
 
+  func getResultAccordingToGenres(numberOfGenres: Int,
+                                  yearResults: [SearchResultFire]) -> [SearchResultFire] {
+    var genresResults: [SearchResultFire] = []
+    var genresForSelection: [String] = []
     // Genres
     for item in 0..<numberOfGenres {
       genresForSelection.append(selectionArray.genres[item].0)
@@ -183,10 +234,8 @@ class AlgorithmResultViewController: UIViewController {
       var contain = true
       for filmGenre in film.genres {
         var localContain = false
-        for genre in genresForSelection {
-          if filmGenre == genre {
-            localContain = true
-          }
+        for genre in genresForSelection where filmGenre == genre {
+          localContain = true
         }
         if !localContain {
           contain = false
@@ -205,8 +254,16 @@ class AlgorithmResultViewController: UIViewController {
       Double(truncating: first.ratingKinopoisk) > Double(truncating: second.ratingKinopoisk)
     }
     genresResults.removeLast(genresResults.count - 30)
-//    print("G:\(numberOfGenres),\(genresResults.count)")
+    //    print("G:\(numberOfGenres),\(genresResults.count)")
+    return genresResults
+  }
 
+  func getResultAccordingToKeywords(amountOfKeywords: Int,
+                                    sampleSize: Int,
+                                    yearResults: [SearchResultFire]) -> [SearchResultFire] {
+    var numberOfKeywords = amountOfKeywords
+    var keywordsResults: [SearchResultFire] = []
+    var keywordsForSelection: [String] = []
     // Keywords
     while keywordsResults.count > sampleSize || keywordsResults.count == 0 {
       keywordsResults = []
@@ -219,10 +276,8 @@ class AlgorithmResultViewController: UIViewController {
         var contain = true
         for keyword in keywordsForSelection {
           var localContain = false
-          for filmKeyword in film.keywords ?? [] {
-            if filmKeyword == keyword {
-              localContain = true
-            }
+          for filmKeyword in film.keywords ?? [] where filmKeyword == keyword {
+            localContain = true
           }
           if !localContain {
             contain = false
@@ -238,39 +293,7 @@ class AlgorithmResultViewController: UIViewController {
       numberOfKeywords += 1
     }
     numberOfKeywords -= 1
-
-    // Cross result
-    finishArray = sumResult(for: actorsResults, and: genresResults)
-    finishArray = sumResult(for: finishArray, and: keywordsResults)
-    finishArray = sumResult(for: finishArray, and: directorsResults)
-
-    // Print result
-    switch printState {
-    case 0:
-      print("Y:\(numberOfYear),\(yearResults.count)")
-    case 1:
-      print("D:\(numberOfDirectors),\(directorsResults.count)")
-    case 2:
-      print("A:\(numberOfActors),\(actorsResults.count)")
-    case 3:
-      print("G:\(numberOfGenres),\(genresResults.count)")
-    case 4:
-      print("K:\(numberOfKeywords),\(keywordsResults.count)")
-    case 5:
-      print("---------------------------------------------------")
-      print("Library items: \(amountOfLibraryItems)")
-      print("Sample size: \(sampleSize)")
-      print("Y:\(numberOfYear),\(yearResults.count)")
-      print("D:\(numberOfDirectors),\(directorsResults.count)")
-      print("A:\(numberOfActors),\(actorsResults.count)")
-      print("G:\(numberOfGenres),\(genresResults.count)")
-      print("K:\(numberOfKeywords),\(keywordsResults.count)")
-      print("Finish array: \(finishArray.count)")
-      print("---------------------------------------------------")
-    default:
-      print("Invalid printState")
-    }
-    updateUI()
+    return keywordsResults
   }
 
   func sumResult(for filmArray1: [SearchResultFire], and filmArray2: [SearchResultFire]) -> [SearchResultFire] {
@@ -288,10 +311,8 @@ class AlgorithmResultViewController: UIViewController {
   func crossResult(for filmArray1: [SearchResultFire], and filmArray2: [SearchResultFire]) -> [SearchResultFire] {
     var newArray: [SearchResultFire] = []
     for film1 in filmArray1 {
-      for film2 in filmArray2 {
-        if film1.key == film2.key {
-          newArray.append(film1)
-        }
+      for film2 in filmArray2 where film1.key == film2.key {
+        newArray.append(film1)
       }
     }
     return newArray
@@ -301,16 +322,14 @@ class AlgorithmResultViewController: UIViewController {
     var itemsResult = filmsArray
     var numberOfFilmsForDelete: [Int] = []
     for numberOfFilm in 0..<itemsResult.count {
-      for libraryItem in libraryItems {
-        if itemsResult[numberOfFilm].key == libraryItem.key {
-          numberOfFilmsForDelete.append(numberOfFilm)
-        }
+      for libraryItem in libraryItems where itemsResult[numberOfFilm].key == libraryItem.key {
+        numberOfFilmsForDelete.append(numberOfFilm)
       }
     }
-    var i = numberOfFilmsForDelete.count - 1
-    while i != -1 {
-      itemsResult.remove(at: numberOfFilmsForDelete[i])
-      i -= 1
+    var index = numberOfFilmsForDelete.count - 1
+    while index != -1 {
+      itemsResult.remove(at: numberOfFilmsForDelete[index])
+      index -= 1
     }
 
     itemsResult = excludeRepeat(in: itemsResult)
@@ -334,26 +353,25 @@ class AlgorithmResultViewController: UIViewController {
       }
     }
 
-    var i = keyForDelete.count - 1
-    while i != -1 {
-      itemsResult.remove(at: keyForDelete[i])
-      i -= 1
+    var index = keyForDelete.count - 1
+    while index != -1 {
+      itemsResult.remove(at: keyForDelete[index])
+      index -= 1
     }
     return itemsResult
   }
 
+  // swiftlint:disable:next cyclomatic_complexity function_body_length
   func makeSelectionArray() {
     for item in libraryItems {
       // Year
       var containYear = false
-      for numberOfYear in 0..<selectionArray.years.count {
-        if item.year == selectionArray.years[numberOfYear].0 {
-          containYear = true
-          if item.opinion ?? true {
-            selectionArray.years[numberOfYear].1 += 1
-          } else {
-            selectionArray.years[numberOfYear].1 -= 1
-          }
+      for numberOfYear in 0..<selectionArray.years.count where item.year == selectionArray.years[numberOfYear].0 {
+        containYear = true
+        if item.opinion ?? true {
+          selectionArray.years[numberOfYear].1 += 1
+        } else {
+          selectionArray.years[numberOfYear].1 -= 1
         }
       }
       if !containYear {
@@ -366,14 +384,13 @@ class AlgorithmResultViewController: UIViewController {
       // Directors
       for director in item.directors ?? [] {
         var containDirector = false
-        for numberOfDirector in 0..<selectionArray.directors.count {
-          if director == selectionArray.directors[numberOfDirector].0 {
-            containDirector = true
-            if item.opinion ?? true {
-              selectionArray.directors[numberOfDirector].1 += 1
-            } else {
-              selectionArray.directors[numberOfDirector].1 -= 1
-            }
+        for numberOfDirector in 0..<selectionArray.directors.count where
+          director == selectionArray.directors[numberOfDirector].0 {
+          containDirector = true
+          if item.opinion ?? true {
+            selectionArray.directors[numberOfDirector].1 += 1
+          } else {
+            selectionArray.directors[numberOfDirector].1 -= 1
           }
         }
         if !containDirector {
@@ -387,14 +404,13 @@ class AlgorithmResultViewController: UIViewController {
       // Countries
       for country in item.countries {
         var containCountry = false
-        for numberOfCountry in 0..<selectionArray.countries.count {
-          if country == selectionArray.countries[numberOfCountry].0 {
-            containCountry = true
-            if item.opinion ?? true {
-              selectionArray.countries[numberOfCountry].1 += 1
-            } else {
-              selectionArray.countries[numberOfCountry].1 -= 1
-            }
+        for numberOfCountry in 0..<selectionArray.countries.count where
+          country == selectionArray.countries[numberOfCountry].0 {
+          containCountry = true
+          if item.opinion ?? true {
+            selectionArray.countries[numberOfCountry].1 += 1
+          } else {
+            selectionArray.countries[numberOfCountry].1 -= 1
           }
         }
         if !containCountry {
@@ -408,14 +424,12 @@ class AlgorithmResultViewController: UIViewController {
       // Actors
       for actor in item.actors ?? [] {
         var containActor = false
-        for numberOfActor in 0..<selectionArray.actors.count {
-          if actor == selectionArray.actors[numberOfActor].0 {
-            containActor = true
-            if item.opinion ?? true {
-              selectionArray.actors[numberOfActor].1 += 1
-            } else {
-              selectionArray.actors[numberOfActor].1 -= 1
-            }
+        for numberOfActor in 0..<selectionArray.actors.count where actor == selectionArray.actors[numberOfActor].0 {
+          containActor = true
+          if item.opinion ?? true {
+            selectionArray.actors[numberOfActor].1 += 1
+          } else {
+            selectionArray.actors[numberOfActor].1 -= 1
           }
         }
         if !containActor {
@@ -429,14 +443,12 @@ class AlgorithmResultViewController: UIViewController {
       // Genres
       for genre in item.genres {
         var containGenre = false
-        for numberOfGenre in 0..<selectionArray.genres.count {
-          if genre == selectionArray.genres[numberOfGenre].0 {
-            containGenre = true
-            if item.opinion ?? true {
-              selectionArray.genres[numberOfGenre].1 += 1
-            } else {
-              selectionArray.genres[numberOfGenre].1 -= 1
-            }
+        for numberOfGenre in 0..<selectionArray.genres.count where genre == selectionArray.genres[numberOfGenre].0 {
+          containGenre = true
+          if item.opinion ?? true {
+            selectionArray.genres[numberOfGenre].1 += 1
+          } else {
+            selectionArray.genres[numberOfGenre].1 -= 1
           }
         }
         if !containGenre {
@@ -450,14 +462,13 @@ class AlgorithmResultViewController: UIViewController {
       // Keywords
       for keyword in item.keywords ?? [] {
         var containKeyword = false
-        for numberOfKeyword in 0..<selectionArray.keywords.count {
-          if keyword == selectionArray.keywords[numberOfKeyword].0 {
-            containKeyword = true
-            if item.opinion ?? true {
-              selectionArray.keywords[numberOfKeyword].1 += 1
-            } else {
-              selectionArray.keywords[numberOfKeyword].1 -= 1
-            }
+        for numberOfKeyword in 0..<selectionArray.keywords.count where
+          keyword == selectionArray.keywords[numberOfKeyword].0 {
+          containKeyword = true
+          if item.opinion ?? true {
+            selectionArray.keywords[numberOfKeyword].1 += 1
+          } else {
+            selectionArray.keywords[numberOfKeyword].1 -= 1
           }
         }
         if !containKeyword {
@@ -496,8 +507,10 @@ class AlgorithmResultViewController: UIViewController {
     currentUserReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
       for item in snapshot.children {
-        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-        newItems.append(searchItem)
+        if let snapshot = item as? DataSnapshot {
+          let searchItem = SearchResultFire(snapshot: snapshot)
+          newItems.append(searchItem)
+        }
       }
       self.libraryItems = newItems
       if self.mustLoad {
@@ -522,8 +535,10 @@ class AlgorithmResultViewController: UIViewController {
       searchResultReference.observe(.value) { (snapshot) in
         var newItems: [SearchResultFire] = []
         for item in snapshot.children {
-          let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-          newItems.append(searchItem)
+          if let snapshot = item as? DataSnapshot {
+            let searchItem = SearchResultFire(snapshot: snapshot)
+            newItems.append(searchItem)
+          }
         }
         self.wholeData = newItems
         self.downloadLibrary()
@@ -570,6 +585,7 @@ class AlgorithmResultViewController: UIViewController {
 
   }
 
+  // swiftlint:disable:next function_body_length
   func updateUI() {
     if artwork.isHidden {
       let showLabel = false
@@ -693,8 +709,12 @@ class AlgorithmResultViewController: UIViewController {
   }
 
   @IBAction func chooseButton(_ sender: Any) {
-    let alert = UIAlertController(title: "Отлично!",
-                                  message: "Ваш фильм на сегодня: \(finishArray[filmNumber].nameRu) (\(finishArray[filmNumber].year)), \(finishArray[filmNumber].nameEn ?? "").\nНе забудьте оценить фильм после просмотра." ,
+    let nameRu = finishArray[filmNumber].nameRu
+    let year = finishArray[filmNumber].year
+    let nameEn = finishArray[filmNumber].nameEn ?? ""
+    let alert = UIAlertController(
+      title: "Отлично!",
+      message: "Ваш фильм на сегодня: \(nameRu) (\(year)), \(nameEn).\nНе забудьте оценить фильм после просмотра.",
       preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Спасибо", style: .default) { _ in
       self.dismiss(animated: true, completion: nil)
@@ -729,5 +749,5 @@ class AlgorithmResultViewController: UIViewController {
                                  Constants.opinion: itemForRecord.opinion ?? true]
     libraryItemReference.setValue(values)
   }
-
+  // swiftlint:disable:next file_length
 }

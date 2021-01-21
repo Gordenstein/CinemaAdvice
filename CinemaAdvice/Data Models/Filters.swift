@@ -33,7 +33,7 @@ struct Filters {
                             Constants.horror,
                             Constants.fantastique,
                             Constants.fantasy]
-  
+
   var startYear: Int
   var endYear: Int
   var startAge: Int
@@ -62,14 +62,14 @@ struct Filters {
                                 Constants.horror: false,
                                 Constants.fantastique: false,
                                 Constants.fantasy: false]
-  
+
   init () {
     startYear = 1939
     endYear = 2018
     startAge = 0
     endAge = 4
   }
-  
+
   func isEqual(to newFilrers: Filters) -> Bool {
     if self.startYear != newFilrers.startYear ||
         self.endYear != newFilrers.endYear ||
@@ -77,14 +77,12 @@ struct Filters {
         self.endAge != newFilrers.endAge {
       return false
     }
-    for key in genres.keys {
-      if self.genres[key] != newFilrers.genres[key] {
-        return false
-      }
+    for key in genres.keys where self.genres[key] != newFilrers.genres[key] {
+      return false
     }
     return true
   }
-  
+
   func isDefault() -> Bool {
     return self.isEqual(to: Filters())
   }

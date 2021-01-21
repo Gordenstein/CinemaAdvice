@@ -26,9 +26,11 @@ class MainAlgorithmViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     button.layer.cornerRadius = 100
-    warningLabel.text = NSLocalizedString("Counting films in the library...", comment: "Localized kind: Идет подсчет фильмов в библиотеке...")
+    warningLabel.text = NSLocalizedString(
+      "Counting films in the library...",
+      comment: "Localized kind: Идет подсчет фильмов в библиотеке...")
     buttonOff()
-    
+
     let userDefaults = UserDefaults.standard
     if let userFavoriteFilmsPath = userDefaults.object(forKey: Constants.userFavoriteFilmsPathKey) as? String {
       self.currentUserReference = self.libraryReference.child(userFavoriteFilmsPath)
@@ -45,7 +47,11 @@ class MainAlgorithmViewController: UIViewController {
         countFilms += 1
       }
       if countFilms < 20 {
-        self.warningLabel.text = NSLocalizedString("You didn't add enough movies to run the algorithm. \nYou added: ", comment: "Localized kind: Вы не отметили достаточное количество фильмов для работы алгоритма. \nВы отметили: ") + String(countFilms) + NSLocalizedString(" out of 20.", comment: "Localized kind: из 20.")
+        self.warningLabel.text = NSLocalizedString(
+          "You didn't add enough movies to run the algorithm. \nYou added: ",
+          comment: "Localized kind: Вы не отметили достаточное количество фильмов для работы алгоритма...") +
+          String(countFilms) +
+          NSLocalizedString(" out of 20.", comment: "Localized kind: из 20.")
         self.buttonOff()
       } else {
         self.warningLabel.text = ""

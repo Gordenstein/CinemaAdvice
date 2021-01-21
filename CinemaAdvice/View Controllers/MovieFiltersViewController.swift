@@ -12,7 +12,11 @@ protocol MovieFiltersViewControllerDelegate: class {
   func finishEditingFilters(_ controller: MovieFiltersViewController, newFilters: Filters)
 }
 
-class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, MovieGenresViewControllerDelegate {
+// swiftlint:disable:next type_body_length
+class MovieFiltersViewController: UITableViewController,
+                                  UIPickerViewDataSource,
+                                  UIPickerViewDelegate,
+                                  MovieGenresViewControllerDelegate {
   // MARK: Genres View Controller Delegate
   func finishEditingGenres(_ controller: MovieGenresViewController, newFilters: Filters) {
     filters = newFilters
@@ -30,7 +34,7 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
   weak var delegate: MovieFiltersViewControllerDelegate?
   var valuesForYearPicker: [Int] = []
   let valuesForAgePicker = ["0+", "6+", "12+", "16+", "18+"]
-  
+
   var openingGenres = false
 
   @IBOutlet weak var yearPickerCell: UITableViewCell!
@@ -58,7 +62,7 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
     updateResetButtonVisibility()
     super.viewWillAppear(animated)
   }
-  
+
   override func viewWillDisappear(_ animated: Bool) {
     // Workaround for system Back button 
     if !openingGenres {
@@ -75,27 +79,27 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
     updateLabelsAccordingToFilters()
     resetBarButton.isEnabled = false
   }
-  
+
   func setDelegates() {
     yearPicker.delegate = self
     yearPicker.dataSource = self
     agePicker.delegate = self
     agePicker.dataSource = self
   }
-  
+
   func updateLabelsAccordingToFilters() {
     startYearLabel.text = String(filters.startYear)
     endYearLabel.text = String(filters.endYear)
     startAgeLabel.text = valuesForAgePicker[filters.startAge]
     endAgeLabel.text = valuesForAgePicker[filters.endAge]
   }
-  
+
   func buildValuesForYearPicker() {
-    for i in 1939...2018 {
-      valuesForYearPicker.append(i)
+    for year in 1939...2018 {
+      valuesForYearPicker.append(year)
     }
   }
-  
+
   func updateResetButtonVisibility() {
     if !filters.isDefault() {
       resetBarButton.isEnabled = true
@@ -316,9 +320,9 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == Constants.showGenresSegueID {
+    if segue.identifier == Constants.showGenresSegueID,
+       let genresViewController = segue.destination as? MovieGenresViewController {
       openingGenres = true
-      let genresViewController = segue.destination as! MovieGenresViewController
       genresViewController.filters = filters
       genresViewController.delegate = self
     }

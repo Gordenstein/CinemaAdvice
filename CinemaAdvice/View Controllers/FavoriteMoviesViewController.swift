@@ -26,7 +26,7 @@ class FavoriteMoviesViewController: UIViewController {
     // Register nib files
     let cellNib = UINib(nibName: Constants.libraryCellID, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: Constants.libraryCellID)
-    
+
     let userDefaults = UserDefaults.standard
     if let userFavoriteFilmsPath = userDefaults.object(forKey: Constants.userFavoriteFilmsPathKey) as? String {
       self.currentUserReference = self.libraryReference.child(userFavoriteFilmsPath)
@@ -40,8 +40,10 @@ class FavoriteMoviesViewController: UIViewController {
     currentUserReference.observe(.value) { (snapshot) in
       var newItems: [SearchResultFire] = []
       for item in snapshot.children {
-        let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-        newItems.append(searchItem)
+        if let snapshot = item as? DataSnapshot {
+          let searchItem = SearchResultFire(snapshot: snapshot)
+          newItems.append(searchItem)
+        }
       }
       self.libraryItems = newItems
       self.hasSearched = true
@@ -86,14 +88,17 @@ extension FavoriteMoviesViewController: UITableViewDelegate, UITableViewDataSour
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if hasSearched {
-      let cell = tableView.dequeueReusableCell(withIdentifier: Constants.libraryCellID, for: indexPath) as! LibraryCell
+    if hasSearched,
+       let cell = tableView.dequeueReusableCell(withIdentifier: Constants.libraryCellID,
+                                                for: indexPath) as? LibraryCell {
       let libraryItem = libraryItems[indexPath.row]
       cell.configure(for: libraryItem)
       return cell
-    } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: Constants.libraryCellID, for: indexPath) as! LibraryCell
+    } else if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.libraryCellID,
+                                                       for: indexPath) as? LibraryCell {
       return cell
+    } else {
+      return UITableViewCell()
     }
   }
 
@@ -105,7 +110,9 @@ extension FavoriteMoviesViewController: UITableViewDelegate, UITableViewDataSour
     return indexPath
   }
 
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView,
+                 commit editingStyle: UITableViewCell.EditingStyle,
+                 forRowAt indexPath: IndexPath) {
     let item = libraryItems[indexPath.row]
     item.ref?.removeValue()
     if editingStyle == .delete {

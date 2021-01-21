@@ -16,21 +16,28 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var textFieldLoginPassword: UITextField!
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
-  
+
   private let userDefaults = UserDefaults.standard
 
   override func viewDidLoad() {
     super.viewDidLoad()
     signUpButton.layer.borderWidth = 1
     signUpButton.layer.borderColor = UIColor.label.cgColor
-    self.textFieldLoginEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "palceholder_color") ?? .yellow])
-    self.textFieldLoginPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "palceholder_color") ?? .yellow])
+    self.textFieldLoginEmail.attributedPlaceholder = NSAttributedString(
+      string: "Email",
+      attributes: [NSAttributedString.Key.foregroundColor: UIColor(
+                    named: "palceholder_color") ?? .yellow])
+    self.textFieldLoginPassword.attributedPlaceholder = NSAttributedString(
+      string: "Password",
+      attributes: [NSAttributedString.Key.foregroundColor: UIColor(
+                    named: "palceholder_color") ?? .yellow])
 
     Auth.auth().addStateDidChangeListener { _, user in
       if let user = user {
         self.userDefaults.set(user.uid, forKey: Constants.userIDKey)
         self.userDefaults.set(user.email, forKey: Constants.userEmailKey)
-        self.userDefaults.set(Constants.userFavoriteFilmsPathPrefix + user.uid, forKey: Constants.userFavoriteFilmsPathKey)
+        self.userDefaults.set(Constants.userFavoriteFilmsPathPrefix + user.uid,
+                              forKey: Constants.userFavoriteFilmsPathKey)
         self.performSegue(withIdentifier: Constants.loginToListSegueID, sender: nil)
       }
     }
@@ -53,12 +60,20 @@ class LoginViewController: UIViewController {
           self.performSegue(withIdentifier: Constants.loginToListSegueID, sender: nil)
           self.userDefaults.set(authResult.user.uid, forKey: Constants.userIDKey)
           self.userDefaults.set(authResult.user.email, forKey: Constants.userEmailKey)
-          self.userDefaults.set(Constants.userFavoriteFilmsPathPrefix + authResult.user.uid, forKey: Constants.userFavoriteFilmsPathKey)
+          self.userDefaults.set(Constants.userFavoriteFilmsPathPrefix + authResult.user.uid,
+                                forKey: Constants.userFavoriteFilmsPathKey)
         } else {
-          let alert = UIAlertController(title: NSLocalizedString("Login is not available", comment: "Localized kind: На данный момент вход невозможен"),
-                                        message: NSLocalizedString("A verification link has been send to your email account. Please click on the link that has been sent to your email.", comment: "Localized kind: Ваш email был зарегистрирован, но для входа необходимо его подтвердить. Пожалуйста, перейдите по ссылке в письме."),
-                                        preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: NSLocalizedString("Got it!", comment: "Localized kind: Хорошо!"), style: .default))
+          let alert = UIAlertController(
+            title: NSLocalizedString("Login is not available",
+                                     comment: "Localized kind: На данный момент вход невозможен"),
+            message: NSLocalizedString(
+              "A verification link has been send to your email account." +
+                "Please click on the link that has been sent to your email.",
+              comment: "Localized kind: Ваш email был зарегистрирован, но для входа необходимо его подтвердить..."),
+            preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: NSLocalizedString("Got it!",
+                                                                 comment: "Localized kind: Хорошо!"),
+                                        style: .default))
           self.present(alert, animated: true, completion: nil)
         }
       } else {
@@ -66,7 +81,8 @@ class LoginViewController: UIViewController {
         if let error = error {
           errorMessage = error.localizedDescription
         }
-        let alert = UIAlertController(title: NSLocalizedString("Authorisation Error", comment: "Localized kind: Ошибка авторизации"),
+        let alert = UIAlertController(title: NSLocalizedString("Authorisation Error",
+                                                               comment: "Localized kind: Ошибка авторизации"),
                                       message: errorMessage,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Localized kind: ОК"), style: .default))
@@ -76,9 +92,12 @@ class LoginViewController: UIViewController {
   }
 
   @IBAction func signUpDidTouch(_ sender: Any) {
-    let alert = UIAlertController(title: NSLocalizedString("Sign Up", comment: "Localized kind: Регистрация"),
-                                  message: NSLocalizedString("Please enter your email and password (more than 6 simbols).", comment: "Localized kind: Пожалуйста, введите Ваш настоящий email и пароль (более 6 символов)."),
-                                  preferredStyle: .alert)
+    let alert = UIAlertController(
+      title: NSLocalizedString("Sign Up", comment: "Localized kind: Регистрация"),
+      message: NSLocalizedString(
+        "Please enter your email and password (more than 6 simbols).",
+        comment: "Localized kind: Пожалуйста, введите Ваш настоящий email и пароль (более 6 символов)."),
+      preferredStyle: .alert)
 
     let saveAction = UIAlertAction(title: NSLocalizedString("Save", comment: "Localized kind: Сохранить"),
                                    style: .default) { _ in
@@ -107,7 +126,8 @@ class LoginViewController: UIViewController {
         }
       }
     }
-    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Localized kind: Отмена"), style: .default)
+    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Localized kind: Отмена"),
+                                     style: .default)
     alert.addTextField { textEmail in
       textEmail.placeholder = NSLocalizedString("Enter your email", comment: "Localized kind: Введите Ваш email")
     }

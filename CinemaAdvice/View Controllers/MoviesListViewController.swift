@@ -68,8 +68,10 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
       searchResultReference.observe(.value) { (snapshot) in
         var newItems: [SearchResultFire] = []
         for item in snapshot.children {
-          let searchItem = SearchResultFire(snapshot: item as! DataSnapshot)
-          newItems.append(searchItem)
+          if let snapshot = item as? DataSnapshot {
+            let searchItem = SearchResultFire(snapshot: snapshot)
+            newItems.append(searchItem)
+          }
         }
         self.wholeData = newItems
         self.setSearchResult()
@@ -88,33 +90,32 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
     collectionView.reloadData()
   }
 
+  // swiftlint:disable:next cyclomatic_complexity
   func applyingFilters() {
     var startAge = 0
     var endAge = 0
     switch filters.startAge {
-      case 0: startAge = 0
-      case 1: startAge = 6
-      case 2: startAge = 12
-      case 3: startAge = 16
-      case 4: startAge = 18
-      default: startAge = 0
+    case 0: startAge = 0
+    case 1: startAge = 6
+    case 2: startAge = 12
+    case 3: startAge = 16
+    case 4: startAge = 18
+    default: startAge = 0
     }
     switch filters.endAge {
-      case 0: endAge = 0
-      case 1: endAge = 6
-      case 2: endAge = 12
-      case 3: endAge = 16
-      case 4: endAge = 18
-      default: endAge = 0
+    case 0: endAge = 0
+    case 1: endAge = 6
+    case 2: endAge = 12
+    case 3: endAge = 16
+    case 4: endAge = 18
+    default: endAge = 0
     }
     var allowedGenres = Set<String>()
     let filterGenres = filters.genres
-    for genreKey in filters.genres.keys {
-      if filterGenres[genreKey] ?? false {
-        allowedGenres.insert(genreKey)
-      }
+    for genreKey in filters.genres.keys where filterGenres[genreKey] ?? false {
+      allowedGenres.insert(genreKey)
     }
-    
+
     showResults = []
     for film in wholeData {
       if !allowedGenres.isEmpty {
@@ -129,7 +130,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
           continue
         }
       }
-      
+
       if film.year >= filters.startYear,
          film.year <= filters.endYear,
          film.ageLimit ?? 0 >= startAge,
@@ -137,7 +138,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
         showResults.append(film)
       }
     }
-    
+
     if showResults.count > 0 {
       haveResults = true
     } else {
@@ -152,77 +153,18 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == Constants.showDetailViewSegueID {
-      if hasSearched {
-        let movieInfoViewController = segue.destination as! MovieInfoViewController
-        let indexPath = sender as! IndexPath
+      if hasSearched,
+         let movieInfoViewController = segue.destination as? MovieInfoViewController,
+         let indexPath = sender as? IndexPath {
+
         let searchResult = showResults[indexPath.row]
         movieInfoViewController.searchResult = searchResult
       }
     }
-    if segue.identifier == Constants.showFiltersSegueID {
-      let movieFiltersViewController = segue.destination as! MovieFiltersViewController
+    if segue.identifier == Constants.showFiltersSegueID,
+       let movieFiltersViewController = segue.destination as? MovieFiltersViewController {
       movieFiltersViewController.filters = filters
       movieFiltersViewController.delegate = self
-    }
-  }
-
-  // MARK: Private Methods
-  private func checkNil(in films: [SearchResultFire]) {
-    print("budget \n_________________________________________")
-    for item in films {
-      if item.budget == nil {
-        print(item.key, item.nameRu)
-      }
-    }
-    print("nameEn имя \n_________________________________________")
-    for item in films {
-      if item.nameEn == nil {
-        print(item.key, item.nameRu)
-      }
-    }
-    print("directors \n_________________________________________")
-    for item in films {
-      if item.directors == nil {
-        print(item.key, item.nameRu)
-      }
-    }
-    print("producers \n_________________________________________")
-    for item in films {
-      if item.producers == nil {
-        print(item.key, item.nameRu)
-      }
-    }
-    print("ratingMpaa \n_________________________________________")
-    for item in films {
-      if item.ratingMpaa == nil {
-        print(item.key, item.nameRu)
-      }
-    }
-    print("ageLimit \n_________________________________________")
-    for item in films {
-      if item.ageLimit == nil {
-        print(item.key, item.nameRu)
-      }
-    }
-    print("keywords \n_________________________________________")
-    for item in films {
-      if item.keywords == nil {
-        print(item.key, item.nameRu)
-      }
-    }
-  }
-
-  private func checkDeletedFilms() {
-    for film in wholeData {
-      var presence = false
-      for item in showResults {
-        if film.key == item.key {
-          presence = true
-        }
-      }
-      if !presence {
-        print(film.key, film.nameRu)
-      }
     }
   }
 }
@@ -280,11 +222,13 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if !hasSearched {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.loadingCellID, for: indexPath)
-      let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
-      spinner.startAnimating()
+      if let spinner = cell.viewWithTag(101) as? UIActivityIndicatorView {
+        spinner.startAnimating()
+      }
       return cell
-    } else if haveResults {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellID, for: indexPath) as! SearchResultCell
+    } else if haveResults,
+              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellID,
+                                                            for: indexPath) as? SearchResultCell {
       let searchResult = showResults[indexPath.row]
       cell.configure(for: searchResult)
       return cell
@@ -301,9 +245,13 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
   }
 
-  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
     if kind == UICollectionView.elementKindSectionHeader {
-      let headerView: UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.collectionViewHeaderID, for: indexPath)
+      let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: UICollectionView.elementKindSectionHeader,
+        withReuseIdentifier: Constants.collectionViewHeaderID, for: indexPath)
       return headerView
     }
     return UICollectionReusableView()

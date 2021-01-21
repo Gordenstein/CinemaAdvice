@@ -12,32 +12,32 @@ struct Constants {
   // App Setings
   static let checkEmailVerification = false
   static let loadOneFilmFromDB = false
-  
+
   // MARK: Identifiers
   // LoginViewController
   static let loginToListSegueID = "LoginToList"
-  
+
   // MoviesListViewController
   static let nothingFoundCellID = "NothingFoundCell"
   static let loadingCellID = "LoadingCell"
   static let collectionViewCellID = "CollectionViewCell"
   static let collectionViewHeaderID = "CollectionViewHeader"
-  
+
   static let showDetailViewSegueID = "ShowDetailView"
   static let showFiltersSegueID = "ShowFilters"
-  
+
   // MovieFiltersViewController
   static let showGenresSegueID = "ShowGenres"
-  
+
   // MovieGenresViewController
   static let genreItemCellID = "GenreItem"
-  
+
   // MainAlgorithmViewController
   static let showResultCellID = "ShowResult"
-  
+
   // FavoriteMoviesViewController
   static let libraryCellID = "LibraryCell"
-  
+
   // Search result
   static let nameRu = "nameRu"
   static let nameEn = "nameEn"
@@ -57,7 +57,7 @@ struct Constants {
   static let description = "description"
   static let opinion = "opinion"
   static let keywords = "keywords"
-  
+
   // Genres IDs
   static let anime = "аниме"
   static let biography = "биография"
@@ -83,12 +83,12 @@ struct Constants {
   static let horror = "ужасы"
   static let fantastique = "фантастика"
   static let fantasy = "фэнтези"
-  
+
   // UserDefaults
   static let userIDKey = "userUID"
   static let userEmailKey = "userEmail"
   static let userFavoriteFilmsPathKey = "userFavoriteFilmsPath"
-  
+
   // Firebase paths
   static let usersPath = "online"
   static let usersPathPrefix = "online/"
