@@ -81,24 +81,24 @@ class MovieInfoViewController: UIViewController {
 
   func recordItem( opinion: Bool) {
     let libraryItemReference = currentUserReference.child(searchResult.key)
-    let values: [String: Any] = ["nameRu": searchResult.nameRu,
-                                 "nameEn": searchResult.nameEn ?? "",
-                                 "imageUrl": searchResult.imageUrl,
-                                 "year": searchResult.year,
-                                 "countries": searchResult.countries,
-                                 "tagline": searchResult.tagline,
-                                 "directors": searchResult.directors ?? [],
-                                 "producers": searchResult.producers ?? [],
-                                 "genres": searchResult.genres,
-                                 "budget": searchResult.budget ?? "",
-                                 "ageLimit": searchResult.ageLimit ?? 0,
-                                 "ratingKinopoisk": searchResult.ratingKinopoisk,
-                                 "ratingMpaa": searchResult.ratingMpaa ?? "",
-                                 "duration": searchResult.duration,
-                                 "actors": searchResult.actors ?? [],
-                                 "description": searchResult.description,
-                                 "keywords": searchResult.keywords ?? [],
-                                 "opinion": searchResult.opinion ?? true]
+    let values: [String: Any] = [Constants.nameRu: searchResult.nameRu,
+                                 Constants.nameEn: searchResult.nameEn ?? "",
+                                 Constants.imageUrl: searchResult.imageUrl,
+                                 Constants.year: searchResult.year,
+                                 Constants.countries: searchResult.countries,
+                                 Constants.tagline: searchResult.tagline,
+                                 Constants.directors: searchResult.directors ?? [],
+                                 Constants.producers: searchResult.producers ?? [],
+                                 Constants.genres: searchResult.genres,
+                                 Constants.budget: searchResult.budget ?? "",
+                                 Constants.ageLimit: searchResult.ageLimit ?? 0,
+                                 Constants.ratingKinopoisk: searchResult.ratingKinopoisk,
+                                 Constants.ratingMpaa: searchResult.ratingMpaa ?? "",
+                                 Constants.duration: searchResult.duration,
+                                 Constants.actors: searchResult.actors ?? [],
+                                 Constants.description: searchResult.description,
+                                 Constants.keywords: searchResult.keywords ?? [],
+                                 Constants.opinion: searchResult.opinion ?? true]
     libraryItemReference.setValue(values)
 
   }

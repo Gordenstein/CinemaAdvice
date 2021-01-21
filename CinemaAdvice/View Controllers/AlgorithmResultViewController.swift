@@ -713,24 +713,24 @@ class AlgorithmResultViewController: UIViewController {
   func recordItem(opinion: Bool) {
     let itemForRecord = finishArray[filmNumber]
     let libraryItemReference = currentUserReference.child(itemForRecord.key)
-    let values: [String: Any] = ["nameRu": itemForRecord.nameRu,
-                                 "nameEn": itemForRecord.nameEn ?? "",
-                                 "imageUrl": itemForRecord.imageUrl,
-                                 "year": itemForRecord.year,
-                                 "countries": itemForRecord.countries,
-                                 "tagline": itemForRecord.tagline,
-                                 "directors": itemForRecord.directors ?? [],
-                                 "producers": itemForRecord.producers ?? [],
-                                 "genres": itemForRecord.genres,
-                                 "budget": itemForRecord.budget ?? "",
-                                 "ageLimit": itemForRecord.ageLimit ?? 0,
-                                 "ratingKinopoisk": itemForRecord.ratingKinopoisk,
-                                 "ratingMpaa": itemForRecord.ratingMpaa ?? "",
-                                 "duration": itemForRecord.duration,
-                                 "actors": itemForRecord.actors ?? [],
-                                 "description": itemForRecord.description,
-                                 "keywords": itemForRecord.keywords ?? [],
-                                 "opinion": itemForRecord.opinion ?? true]
+    let values: [String: Any] = [Constants.nameRu: itemForRecord.nameRu,
+                                 Constants.nameEn: itemForRecord.nameEn ?? "",
+                                 Constants.imageUrl: itemForRecord.imageUrl,
+                                 Constants.year: itemForRecord.year,
+                                 Constants.countries: itemForRecord.countries,
+                                 Constants.tagline: itemForRecord.tagline,
+                                 Constants.directors: itemForRecord.directors ?? [],
+                                 Constants.producers: itemForRecord.producers ?? [],
+                                 Constants.genres: itemForRecord.genres,
+                                 Constants.budget: itemForRecord.budget ?? "",
+                                 Constants.ageLimit: itemForRecord.ageLimit ?? 0,
+                                 Constants.ratingKinopoisk: itemForRecord.ratingKinopoisk,
+                                 Constants.ratingMpaa: itemForRecord.ratingMpaa ?? "",
+                                 Constants.duration: itemForRecord.duration,
+                                 Constants.actors: itemForRecord.actors ?? [],
+                                 Constants.description: itemForRecord.description,
+                                 Constants.keywords: itemForRecord.keywords ?? [],
+                                 Constants.opinion: itemForRecord.opinion ?? true]
     libraryItemReference.setValue(values)
   }
 

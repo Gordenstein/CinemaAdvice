@@ -292,7 +292,7 @@ class MovieFiltersViewController: UITableViewController, UIPickerViewDataSource,
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ShowGenres" {
+    if segue.identifier == Constants.showGenresSegueID {
       let genresViewController = segue.destination as! MovieGenresViewController
       genresViewController.filters = filters
       genresViewController.delegate = self

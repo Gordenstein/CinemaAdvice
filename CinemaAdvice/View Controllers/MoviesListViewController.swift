@@ -17,16 +17,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
     applyingFilters()
   }
 
-  // MARK: Start
-  struct CollectionViewCellIdentifiers {
-    static let nothingFoundCellIdentifier = "NothingFoundCell"
-    static let loadingCellIdentifier = "LoadingCell"
-    static let collectionViewCellIdentifier = "CollectionViewCell"
-  }
-
   @IBOutlet weak var collectionView: UICollectionView!
-
-  let testShot = false
 
   var filters = Filters()
   var showResults: [SearchResultFire] = []
@@ -44,10 +35,10 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
   }
 
   func cellRegistration() {
-    let loadingCell = UINib(nibName: CollectionViewCellIdentifiers.loadingCellIdentifier, bundle: nil)
-    collectionView.register(loadingCell, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.loadingCellIdentifier)
-    let nothingFoundCell = UINib(nibName: CollectionViewCellIdentifiers.nothingFoundCellIdentifier, bundle: nil)
-    collectionView.register(nothingFoundCell, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCellIdentifier)
+    let loadingCell = UINib(nibName: Constants.loadingCellID, bundle: nil)
+    collectionView.register(loadingCell, forCellWithReuseIdentifier: Constants.loadingCellID)
+    let nothingFoundCell = UINib(nibName: Constants.nothingFoundCellID, bundle: nil)
+    collectionView.register(nothingFoundCell, forCellWithReuseIdentifier: Constants.nothingFoundCellID)
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
 
@@ -64,7 +55,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
 
   func firstDownloadData() {
     var searchResultReference = Database.database().reference(withPath: "films")
-    if testShot {
+    if Constants.loadOneFilmFromDB {
       searchResultReference = searchResultReference.child("100")
       searchResultReference.observe(.value) { (snapshot) in
         var newItems: [SearchResultFire] = []
@@ -160,7 +151,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ShowDetailView" {
+    if segue.identifier == Constants.showDetailViewSegueID {
       if hasSearched {
         let movieInfoViewController = segue.destination as! MovieInfoViewController
         let indexPath = sender as! IndexPath
@@ -168,7 +159,7 @@ class MoviesListViewController: UIViewController, MovieFiltersViewControllerDele
         movieInfoViewController.searchResult = searchResult
       }
     }
-    if segue.identifier == "ShowFilters" {
+    if segue.identifier == Constants.showFiltersSegueID {
       let movieFiltersViewController = segue.destination as! MovieFiltersViewController
       movieFiltersViewController.filters = filters
       movieFiltersViewController.delegate = self
@@ -288,17 +279,17 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if !hasSearched {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.loadingCellIdentifier, for: indexPath)
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.loadingCellID, for: indexPath)
       let spinner = cell.viewWithTag(101) as! UIActivityIndicatorView
       spinner.startAnimating()
       return cell
     } else if haveResults {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.collectionViewCellIdentifier, for: indexPath) as! SearchResultCell
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellID, for: indexPath) as! SearchResultCell
       let searchResult = showResults[indexPath.row]
       cell.configure(for: searchResult)
       return cell
     } else {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.nothingFoundCellIdentifier, for: indexPath)
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.nothingFoundCellID, for: indexPath)
       return cell
     }
   }
@@ -306,13 +297,13 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if hasSearched && haveResults {
       collectionView.deselectItem(at: indexPath, animated: true)
-      performSegue(withIdentifier: "ShowDetailView", sender: indexPath)
+      performSegue(withIdentifier: Constants.showDetailViewSegueID, sender: indexPath)
     }
   }
 
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     if kind == UICollectionView.elementKindSectionHeader {
-      let headerView: UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeader", for: indexPath)
+      let headerView: UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.collectionViewHeaderID, for: indexPath)
       return headerView
     }
     return UICollectionReusableView()

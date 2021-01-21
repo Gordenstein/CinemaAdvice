@@ -11,13 +11,11 @@ import Firebase
 
 class FavoriteMoviesViewController: UIViewController {
 
-  let libraryCell = "LibraryCell"
   var libraryItems: [SearchResultFire] = []
   var hasSearched = false
   let libraryReference = Database.database().reference(withPath: "libraries")
   var currentUserReference = Database.database().reference()
   var user: User!
-//  var firstTime = true
 
   @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
 
@@ -27,8 +25,8 @@ class FavoriteMoviesViewController: UIViewController {
     super.viewDidLoad()
     tableView.rowHeight = 80
     // Register nib files
-    let cellNib = UINib(nibName: libraryCell, bundle: nil)
-    tableView.register(cellNib, forCellReuseIdentifier: libraryCell)
+    let cellNib = UINib(nibName: Constants.libraryCellID, bundle: nil)
+    tableView.register(cellNib, forCellReuseIdentifier: Constants.libraryCellID)
 
     Auth.auth().addStateDidChangeListener {
       _, user in
@@ -88,12 +86,12 @@ extension FavoriteMoviesViewController: UITableViewDelegate, UITableViewDataSour
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if hasSearched {
-      let cell = tableView.dequeueReusableCell(withIdentifier: libraryCell, for: indexPath) as! LibraryCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: Constants.libraryCellID, for: indexPath) as! LibraryCell
       let libraryItem = libraryItems[indexPath.row]
       cell.configure(for: libraryItem)
       return cell
     } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: libraryCell, for: indexPath) as! LibraryCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: Constants.libraryCellID, for: indexPath) as! LibraryCell
       return cell
     }
   }

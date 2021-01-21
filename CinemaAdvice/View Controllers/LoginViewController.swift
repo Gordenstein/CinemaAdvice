@@ -11,9 +11,6 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
-  let loginToList = "LoginToList"
-  var checkEmailVerification = false
-
   // MARK: Outlets
   @IBOutlet weak var textFieldLoginEmail: UITextField!
   @IBOutlet weak var textFieldLoginPassword: UITextField!
@@ -29,7 +26,7 @@ class LoginViewController: UIViewController {
 
     Auth.auth().addStateDidChangeListener { _, user in
       if user != nil {
-        self.performSegue(withIdentifier: self.loginToList, sender: nil)
+        self.performSegue(withIdentifier: Constants.loginToListSegueID, sender: nil)
         self.textFieldLoginEmail.text = nil
         self.textFieldLoginPassword.text = nil
       }
@@ -49,8 +46,8 @@ class LoginViewController: UIViewController {
     }
     Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
       if let authResult = authResult {
-        if !self.checkEmailVerification || authResult.user.isEmailVerified {
-          self.performSegue(withIdentifier: self.loginToList, sender: nil)
+        if !Constants.checkEmailVerification || authResult.user.isEmailVerified {
+          self.performSegue(withIdentifier: Constants.loginToListSegueID, sender: nil)
           self.textFieldLoginEmail.text = nil
           self.textFieldLoginPassword.text = nil
         } else {

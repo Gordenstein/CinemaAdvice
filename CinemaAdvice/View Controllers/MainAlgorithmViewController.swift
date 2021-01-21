@@ -16,7 +16,7 @@ class MainAlgorithmViewController: UIViewController {
 
   @IBAction func startSelection(_ sender: UIButton) {
     sender.fadeOut()
-    performSegue(withIdentifier: "ShowResult", sender: nil)
+    performSegue(withIdentifier: Constants.showResultCellID, sender: nil)
   }
 
   let libraryReference = Database.database().reference(withPath: "libraries")

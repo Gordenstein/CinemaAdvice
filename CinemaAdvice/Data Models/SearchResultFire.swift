@@ -37,24 +37,24 @@ struct SearchResultFire {
   init(snapshot: DataSnapshot) {
     key = snapshot.key
     let snapshotValue = snapshot.value as! [String: AnyObject]
-    nameRu = snapshotValue["nameRu"] as! String
-    nameEn = snapshotValue["nameEn"] as! String?
-    imageUrl = snapshotValue["imageUrl"] as! String
-    year = snapshotValue["year"] as! Int
-    countries = snapshotValue["countries"] as! [String]
-    tagline = snapshotValue["tagline"] as! String
-    directors = snapshotValue["directors"] as! [String]?
-    producers = snapshotValue["producers"] as! [String]?
-    genres = snapshotValue["genres"] as! [String]
-    budget = snapshotValue["budget"] as! String?
-    ageLimit = snapshotValue["ageLimit"] as! Int?
-    ratingKinopoisk = snapshotValue["ratingKinopoisk"] as! NSNumber
-    ratingMpaa = snapshotValue["ratingMpaa"] as! String?
-    duration = snapshotValue["duration"] as! Int
-    actors = snapshotValue["actors"] as! [String]?
-    description = snapshotValue["description"] as! String
-    opinion = snapshotValue["opinion"] as! Bool?
-    keywords = snapshotValue["keywords"] as! [String]?
+    nameRu = snapshotValue[Constants.nameRu] as! String
+    nameEn = snapshotValue[Constants.nameEn] as! String?
+    imageUrl = snapshotValue[Constants.imageUrl] as! String
+    year = snapshotValue[Constants.year] as! Int
+    countries = snapshotValue[Constants.countries] as! [String]
+    tagline = snapshotValue[Constants.tagline] as! String
+    directors = snapshotValue[Constants.directors] as! [String]?
+    producers = snapshotValue[Constants.producers] as! [String]?
+    genres = snapshotValue[Constants.genres] as! [String]
+    budget = snapshotValue[Constants.budget] as! String?
+    ageLimit = snapshotValue[Constants.ageLimit] as! Int?
+    ratingKinopoisk = snapshotValue[Constants.ratingKinopoisk] as! NSNumber
+    ratingMpaa = snapshotValue[Constants.ratingMpaa] as! String?
+    duration = snapshotValue[Constants.duration] as! Int
+    actors = snapshotValue[Constants.actors] as! [String]?
+    description = snapshotValue[Constants.description] as! String
+    opinion = snapshotValue[Constants.opinion] as! Bool?
+    keywords = snapshotValue[Constants.keywords] as! [String]?
     ref = snapshot.ref
   }
 

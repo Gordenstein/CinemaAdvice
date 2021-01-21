@@ -35,7 +35,7 @@ class MovieGenresViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "GenreItem", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.genreItemCellID, for: indexPath)
     let cellTitle = cell.viewWithTag(1002) as! UILabel
     cellTitle.text = filters.genres[indexPath.row].0
     if filters.genres[indexPath.row].1 {
