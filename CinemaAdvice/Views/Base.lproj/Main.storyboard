@@ -706,7 +706,7 @@
         <scene sceneID="uth-pw-PKq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H1R-c0-xNb" userLabel="Navigation Bar Controller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="search" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Xp3-md-V69">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -729,7 +729,7 @@
     <color key="tintColor" systemColor="systemOrangeColor"/>
     <resources>
         <image name="funnel" width="30" height="35"/>
-        <image name="search" width="30" height="30"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

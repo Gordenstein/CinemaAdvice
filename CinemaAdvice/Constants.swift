@@ -65,6 +65,7 @@ struct Constants {
   
   // Firebase paths
   static let usersPath = "online"
+  static let usersPathPrefix = "online/"
   static let moviesListPath = "films"
   static let usersFavoriteFilmsPath = "libraries"
   static let userFavoriteFilmsPathPrefix = "library-"

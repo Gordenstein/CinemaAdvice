@@ -38,7 +38,7 @@
                         <barButtonItem key="leftBarButtonItem" title="0" id="aw7-0j-tx5">
                             <color key="tintColor" systemColor="labelColor"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Exit" image="exit" id="9fC-hp-LrV" userLabel="Exit">
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="9fC-hp-LrV">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="signoutButtonPressed:" destination="ip4-Sd-oTf" id="h4b-wa-S9a"/>
@@ -58,7 +58,7 @@
         <scene sceneID="UYm-VK-jmt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nOb-K2-hIl" userLabel="Film library" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Film library" image="Movie" id="vl4-F2-mnv" userLabel="Film library"/>
+                    <tabBarItem key="tabBarItem" title="Film library" image="film" catalog="system" id="vl4-F2-mnv" userLabel="Film library"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="hhe-Bq-LXC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -78,8 +78,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Movie" width="30" height="30"/>
-        <image name="exit" width="30" height="30"/>
+        <image name="film" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

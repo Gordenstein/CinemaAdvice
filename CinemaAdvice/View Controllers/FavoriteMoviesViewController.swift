@@ -55,12 +55,15 @@ class FavoriteMoviesViewController: UIViewController {
   }
 
   @IBAction func signoutButtonPressed(_ sender: Any) {
-    let user = Auth.auth().currentUser!
-    let onlineRef = Database.database().reference(withPath: "online/\(user.uid)")
-    onlineRef.removeValue { (error, _) in
+    let userDefaults = UserDefaults.standard
+    guard let userID = userDefaults.object(forKey: Constants.userIDKey) as? String else {
+      self.dismiss(animated: true, completion: nil)
+      return
+    }
+    let onlineReference = Database.database().reference(withPath: Constants.usersPathPrefix + userID)
+    onlineReference.removeValue { (error, _) in
       if let error = error {
         print("Removing online failed: \(error)")
-        return
       }
       do {
         try Auth.auth().signOut()

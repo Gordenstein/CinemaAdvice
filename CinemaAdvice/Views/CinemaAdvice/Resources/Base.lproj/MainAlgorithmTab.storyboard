@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -74,7 +75,7 @@
                             <constraint firstItem="Zbw-Xj-hXL" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="oiR-Pq-3or"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="CinemaAdvice" image="genius" id="cPa-gy-q4n" userLabel="CinemaAdvice"/>
+                    <tabBarItem key="tabBarItem" title="CinemaAdvice" image="atom" catalog="system" id="cPa-gy-q4n" userLabel="CinemaAdvice"/>
                     <connections>
                         <outlet property="button" destination="nnT-KZ-y8m" id="ECX-AF-hF6"/>
                         <outlet property="warningLabel" destination="P2c-Oz-Sn5" id="gfW-PP-0oD"/>
@@ -214,7 +215,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gty-IV-gRO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gty-IV-gRO">
                                 <rect key="frame" x="145.5" y="571" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -222,12 +223,14 @@
                                     <constraint firstAttribute="width" constant="60" id="qHg-vO-vQp"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="refresh"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="arrow.2.circlepath" catalog="system" symbolScale="default"/>
+                                </state>
                                 <connections>
                                     <action selector="refresh:" destination="4L0-QX-wdB" eventType="touchUpInside" id="AJO-RH-2Wk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9X-cw-yLc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9X-cw-yLc">
                                 <rect key="frame" x="9.5" y="571" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -235,7 +238,7 @@
                                     <constraint firstAttribute="width" constant="60" id="x9e-Rd-RpF"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="invisible"/>
+                                <state key="normal" image="star" catalog="system"/>
                                 <connections>
                                     <action selector="noButton:" destination="4L0-QX-wdB" eventType="touchUpInside" id="5n7-9h-mdG"/>
                                 </connections>
@@ -268,7 +271,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBo-LU-gTW">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBo-LU-gTW">
                                 <rect key="frame" x="77.5" y="571" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.13725490196078433" green="0.15686274509803921" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -276,7 +279,7 @@
                                     <constraint firstAttribute="height" constant="60" id="jhy-Tb-aQU"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="heart"/>
+                                <state key="normal" image="star.fill" catalog="system"/>
                                 <connections>
                                     <action selector="yesButton:" destination="4L0-QX-wdB" eventType="touchUpInside" id="VEJ-Vz-PeQ"/>
                                 </connections>
@@ -377,10 +380,10 @@
     </scenes>
     <resources>
         <image name="CloseButton" width="32" height="32"/>
-        <image name="genius" width="30" height="30"/>
-        <image name="heart" width="30" height="30"/>
-        <image name="invisible" width="30" height="30"/>
-        <image name="refresh" width="30" height="30"/>
+        <image name="arrow.2.circlepath" catalog="system" width="128" height="101"/>
+        <image name="atom" catalog="system" width="119" height="128"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
