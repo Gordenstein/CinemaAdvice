@@ -548,7 +548,9 @@ class AlgorithmResultViewController: UIViewController {
   }
 
   func startLoading() {
-    pleaseWaitLabel.text = "Мы подбираем для Вас фильм. Это может занять некоторое время. Пожалуйста подождите."
+    pleaseWaitLabel.text = NSLocalizedString(
+      "We are selecting a film for you. This may take some time. Please wait.",
+      comment: "Мы подбираем для Вас фильм. Это может занять некоторое время. Пожалуйста подождите.")
     loadingSpinner.startAnimating()
 
     let showLabel = true
@@ -641,20 +643,23 @@ class AlgorithmResultViewController: UIViewController {
       ageAndMpaa.text = temporaryString
       ratingKinopoisk.text = String(round(Double(truncating: searchItem.ratingKinopoisk) * 10)/10)
       filmDescription.text = searchItem.description
+      let unkownString = NSLocalizedString(
+        "Unknown",
+        comment: "Неизвестно")
       if let directors = searchItem.directors {
         directorsLabel.text = fillString(directors)
       } else {
-        directorsLabel.text = "Неизвестно"
+        directorsLabel.text = unkownString
       }
       if let producers = searchItem.producers {
         producersLabel.text = fillString(producers)
       } else {
-        producersLabel.text = "Неизвестно"
+        producersLabel.text = unkownString
       }
       if let actors = searchItem.actors {
         actorsLabel.text = fillString(actors)
       } else {
-        actorsLabel.text = "Неизвестно"
+        actorsLabel.text = unkownString
       }
       if let largeURL = URL(string: searchItem.imageUrl) {
         downloadTask = artwork.loadImage(url: largeURL)
@@ -712,11 +717,16 @@ class AlgorithmResultViewController: UIViewController {
     let nameRu = finishArray[filmNumber].nameRu
     let year = finishArray[filmNumber].year
     let nameEn = finishArray[filmNumber].nameEn ?? ""
+    let alertTitle = NSLocalizedString("Amazing!", comment: "Отлично!")
+    let alertMessagePrefix = NSLocalizedString("Your film: ", comment: "Ваш фильм на сегодня: ")
+    let alertMessagePostfix = NSLocalizedString(
+      "Feel free to rate this title after watching", comment: "Не забудьте оценить фильм после просмотра")
+    let alertActionMessage = NSLocalizedString("Thanks", comment: "Спасибо")
     let alert = UIAlertController(
-      title: "Отлично!",
-      message: "Ваш фильм на сегодня: \(nameRu) (\(year)), \(nameEn).\nНе забудьте оценить фильм после просмотра.",
+      title: alertTitle,
+      message: alertMessagePrefix + "\(nameRu) (\(year)), \(nameEn).\n" + alertMessagePostfix,
       preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Спасибо", style: .default) { _ in
+    alert.addAction(UIAlertAction(title: alertActionMessage, style: .default) { _ in
       self.dismiss(animated: true, completion: nil)
     })
     present(alert, animated: true, completion: nil)
