@@ -40,7 +40,9 @@ class MovieGenresViewController: UITableViewController {
       return cell
     }
     let genreKey = Filters.genresOrder[indexPath.row]
-    cellLabel.text = genreKey
+    let internationalKey = getInternationalGenreName(genreID: genreKey)
+    let cellText = NSLocalizedString(internationalKey, comment: "Genre")
+    cellLabel.text = cellText
     if filters.genres[genreKey] ?? false {
       cell.accessoryType = .checkmark
     } else {
@@ -61,5 +63,61 @@ class MovieGenresViewController: UITableViewController {
       }
     }
     tableView.deselectRow(at: indexPath, animated: true)
+  }
+
+  // swiftlint:disable:next cyclomatic_complexity function_body_length
+  func getInternationalGenreName(genreID: String) -> String {
+    switch genreID {
+    case "аниме":
+      return "anime"
+    case "биография":
+      return "biography"
+    case "боевик":
+      return "action"
+    case "вестерн":
+      return "western"
+    case "военный":
+      return "wartime"
+    case "детектив":
+      return "detective"
+    case "документальный":
+      return "documentary"
+    case "драма":
+      return "drama"
+    case "история":
+      return "history"
+    case "комедия":
+      return "comedy"
+    case "короткометражка":
+      return "shortFilm"
+    case "криминал":
+      return "crime"
+    case "мелодрама":
+      return "melodrama"
+    case "музыка":
+      return "music"
+    case "мультфильм":
+      return "cartoon"
+    case "мюзикл":
+      return "musical"
+    case "приключения":
+      return "adventure"
+    case "семейный":
+      return "family"
+    case "сериал":
+      return "series"
+    case "спорт":
+      return "sport"
+    case "триллер":
+      return "thriller"
+    case "ужасы":
+      return "horror"
+    case "фантастика":
+      return "fantastique"
+    case "фэнтези":
+      return "fantasy"
+    default:
+      return "unknown"
+    }
   }
 }
