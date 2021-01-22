@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		4401152A25B8818000CE6522 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4401152925B8818000CE6522 /* Constants.swift */; };
 		443A29DE25B9AFC500309065 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A29DD25B9AFC500309065 /* Filters.swift */; };
-		443A29E125B9B08400309065 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A29E025B9B08400309065 /* Selection.swift */; };
+		443A29E125B9B08400309065 /* MainAlgorithmRecomendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A29E025B9B08400309065 /* MainAlgorithmRecomendations.swift */; };
 		64E20B299D23C1BD81A39BA8 /* libPods-CinemaAdvice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */; };
 		C42B28FF20ACB12E00D65452 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42B28FE20ACB12E00D65452 /* LoginViewController.swift */; };
 		C43E132820AB8F9B0008A275 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43E132720AB8F9A0008A275 /* Assets.xcassets */; };
 		C44E04F0208DD5770017D408 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */; };
 		C45DBA1520A734FD004F5711 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */; };
-		C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */; };
+		C45DBA1720A75FA1004F5711 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45DBA1620A75FA1004F5711 /* Movie.swift */; };
 		C45DBA1920A84B81004F5711 /* MovieFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45DBA1820A84B81004F5711 /* MovieFiltersViewController.swift */; };
 		C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */; };
 		C479AEEB207E6F1D00B8A1C9 /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479AEEA207E6F1D00B8A1C9 /* MoviesListViewController.swift */; };
@@ -41,7 +41,7 @@
 /* Begin PBXFileReference section */
 		4401152925B8818000CE6522 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		443A29DD25B9AFC500309065 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
-		443A29E025B9B08400309065 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		443A29E025B9B08400309065 /* MainAlgorithmRecomendations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAlgorithmRecomendations.swift; sourceTree = "<group>"; };
 		A4134CD04F57BA12A091F1DF /* libPods-CinemaAdvice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CinemaAdvice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42B28FE20ACB12E00D65452 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C43C81FF22897505007A9973 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		C44E04EF208DD5770017D408 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
 		C44FFEED2288C6D00010B5B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		C45DBA1420A734FD004F5711 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultFire.swift; sourceTree = "<group>"; };
+		C45DBA1620A75FA1004F5711 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		C45DBA1820A84B81004F5711 /* MovieFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFiltersViewController.swift; sourceTree = "<group>"; };
 		C479AEE5207E6F1D00B8A1C9 /* CinemaAdvice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinemaAdvice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C479AEE8207E6F1D00B8A1C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -181,9 +181,9 @@
 		C479AEFE207E70AA00B8A1C9 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				C45DBA1620A75FA1004F5711 /* SearchResultFire.swift */,
+				C45DBA1620A75FA1004F5711 /* Movie.swift */,
 				443A29DD25B9AFC500309065 /* Filters.swift */,
-				443A29E025B9B08400309065 /* Selection.swift */,
+				443A29E025B9B08400309065 /* MainAlgorithmRecomendations.swift */,
 				C479AF0E207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift */,
 			);
 			path = "Data Models";
@@ -330,8 +330,8 @@
 				C4E6C3AC20AADACB0038F5F7 /* MovieGenresViewController.swift in Sources */,
 				C42B28FF20ACB12E00D65452 /* LoginViewController.swift in Sources */,
 				C4CB6B36208B4E2200596266 /* AlgorithmResultViewController.swift in Sources */,
-				443A29E125B9B08400309065 /* Selection.swift in Sources */,
-				C45DBA1720A75FA1004F5711 /* SearchResultFire.swift in Sources */,
+				443A29E125B9B08400309065 /* MainAlgorithmRecomendations.swift in Sources */,
+				C45DBA1720A75FA1004F5711 /* Movie.swift in Sources */,
 				C479AF11207E8D3100B8A1C9 /* UIImageView+DownloadImage.swift in Sources */,
 				C479AEED207E6F1D00B8A1C9 /* MainAlgorithmViewController.swift in Sources */,
 				C479AEE9207E6F1D00B8A1C9 /* AppDelegate.swift in Sources */,

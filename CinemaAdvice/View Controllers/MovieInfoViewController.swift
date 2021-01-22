@@ -3,7 +3,7 @@
 //  CinemaAdvice
 //
 //  Created by Hero on 20.04.2018.
-//  Copyright © 2018 Eugene Gordeev. All rights reserved.
+//  Copyright © 2018 Eugene Gordenstein. All rights reserved.
 //
 
 import UIKit
@@ -50,8 +50,8 @@ class MovieInfoViewController: UIViewController {
 
   // MARK: Start
   var downloadTask: URLSessionDownloadTask?
-  var searchResult: SearchResultFire!
-  var libraryItems: [SearchResultFire] = []
+  var searchResult: Movie!
+  var libraryItems: [Movie] = []
 
   let libraryReference = Database.database().reference(withPath: Constants.usersFavoriteFilmsPath)
   var currentUserReference = Database.database().reference()

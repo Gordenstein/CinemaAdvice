@@ -3,7 +3,7 @@
 //  CinemaAdvice
 //
 //  Created by Hero on 16.05.2018.
-//  Copyright © 2018 Eugene Gordeev. All rights reserved.
+//  Copyright © 2018 Eugene Gordenstein. All rights reserved.
 //
 
 import UIKit

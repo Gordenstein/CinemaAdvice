@@ -3,7 +3,7 @@
 //  CinemaAdvice
 //
 //  Created by Hero on 11.04.2018.
-//  Copyright © 2018 Eugene Gordeev. All rights reserved.
+//  Copyright © 2018 Eugene Gordenstein. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import Firebase
 
 class FavoriteMoviesViewController: UIViewController {
 
-  var libraryItems: [SearchResultFire] = []
+  var libraryItems: [Movie] = []
   var hasSearched = false
   let libraryReference = Database.database().reference(withPath: Constants.usersFavoriteFilmsPath)
   var currentUserReference = Database.database().reference()
@@ -38,10 +38,10 @@ class FavoriteMoviesViewController: UIViewController {
 
   private func downloadData() {
     currentUserReference.observe(.value) { (snapshot) in
-      var newItems: [SearchResultFire] = []
+      var newItems: [Movie] = []
       for item in snapshot.children {
         if let snapshot = item as? DataSnapshot {
-          let searchItem = SearchResultFire(snapshot: snapshot)
+          let searchItem = Movie(snapshot: snapshot)
           newItems.append(searchItem)
         }
       }

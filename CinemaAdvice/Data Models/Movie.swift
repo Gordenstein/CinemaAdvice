@@ -3,13 +3,13 @@
 //  CinemaAdvice
 //
 //  Created by Hero on 12.05.2018.
-//  Copyright © 2018 Eugene Gordeev. All rights reserved.
+//  Copyright © 2018 Eugene Gordenstein. All rights reserved.
 //
 
 import Foundation
 import Firebase
 
-struct SearchResultFire {
+struct Movie {
   let nameRu: String
   let nameEn: String?
   let imageUrl: String

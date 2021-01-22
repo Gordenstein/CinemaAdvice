@@ -3,7 +3,7 @@
 //  StoreSearch
 //
 //  Created by Hero on 23.03.2018.
-//  Copyright © 2018 Eugene Gordeev. All rights reserved.
+//  Copyright © 2018 Eugene Gordenstein. All rights reserved.
 //
 
 import UIKit
@@ -35,7 +35,7 @@ class LibraryCell: UITableViewCell {
   }
 
   // MARK: Public Methods
-  func configure(for result: SearchResultFire) {
+  func configure(for result: Movie) {
     nameLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
     if #available(iOS 13.0, *) {

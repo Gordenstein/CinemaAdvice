@@ -3,7 +3,7 @@
 //  CinemaAdvice
 //
 //  Created by Hero on 12.04.2018.
-//  Copyright © 2018 Eugene Gordeev. All rights reserved.
+//  Copyright © 2018 Eugene Gordenstein. All rights reserved.
 //
 
 import UIKit
@@ -29,7 +29,7 @@ class SearchResultCell: UICollectionViewCell {
   }
 
   // MARK: Public Methods
-  func configure(for result: SearchResultFire) {
+  func configure(for result: Movie) {
     titleLabel.adjustsFontForContentSizeCategory = true
     genreLabel.adjustsFontForContentSizeCategory = true
     titleLabel.text = result.nameRu

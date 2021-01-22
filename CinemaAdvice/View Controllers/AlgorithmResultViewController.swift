@@ -3,7 +3,7 @@
 //  CinemaAdvice
 //
 //  Created by Hero on 21.04.2018.
-//  Copyright © 2018 Eugene Gordeev. All rights reserved.
+//  Copyright © 2018 Eugene Gordenstein. All rights reserved.
 //
 
 import UIKit
@@ -38,14 +38,14 @@ class AlgorithmResultViewController: UIViewController {
   @IBOutlet weak var chooseButton: UIButton!
   @IBOutlet weak var yesButton: UIButton!
 
-  var libraryItems: [SearchResultFire] = []
-  var wholeData: [SearchResultFire] = []
-  var finishArray: [SearchResultFire] = []
+  var libraryItems: [Movie] = []
+  var wholeData: [Movie] = []
+  var finishArray: [Movie] = []
   var filmNumber = -1
   var downloadTask: URLSessionDownloadTask?
   let libraryReference = Database.database().reference(withPath: Constants.usersFavoriteFilmsPath)
   var currentUserReference = Database.database().reference()
-  var selectionArray = Selection()
+  var selectionArray = MainAlgorithmRecomendations()
   var mustLoad = true
   var firstTime = true
 
@@ -130,9 +130,9 @@ class AlgorithmResultViewController: UIViewController {
     updateUI()
   }
 
-  func getResultAccordingToYear(numberOfYear: Int) -> [SearchResultFire] {
+  func getResultAccordingToYear(numberOfYear: Int) -> [Movie] {
     var yearsForSelection: [Int] = []
-    var yearResults: [SearchResultFire] = []
+    var yearResults: [Movie] = []
     // Year
     for item in 0..<numberOfYear {
       for year in selectionArray.years[item].0 - 5...selectionArray.years[item].0 + 5 {
@@ -157,9 +157,9 @@ class AlgorithmResultViewController: UIViewController {
 
   func getResultAccordingToDirectors(amountOfDirectors: Int,
                                      sampleSize: Int,
-                                     yearResults: [SearchResultFire]) -> [SearchResultFire] {
+                                     yearResults: [Movie]) -> [Movie] {
     var numberOfDirectors = amountOfDirectors
-    var directorsResults: [SearchResultFire] = []
+    var directorsResults: [Movie] = []
     var directorsForSelection: [String] = []
     // Directors
     while directorsResults.count > sampleSize || directorsResults.count == 0 {
@@ -190,9 +190,9 @@ class AlgorithmResultViewController: UIViewController {
 
   func getResultAccordingToActors(amountOfActors: Int,
                                   sampleSize: Int,
-                                  yearResults: [SearchResultFire]) -> [SearchResultFire] {
+                                  yearResults: [Movie]) -> [Movie] {
     var numberOfActors = amountOfActors
-    var actorsResults: [SearchResultFire] = []
+    var actorsResults: [Movie] = []
     var actorsForSelection: [String] = []
     // Actors
     while actorsResults.count > sampleSize || actorsResults.count == 0 {
@@ -222,8 +222,8 @@ class AlgorithmResultViewController: UIViewController {
   }
 
   func getResultAccordingToGenres(numberOfGenres: Int,
-                                  yearResults: [SearchResultFire]) -> [SearchResultFire] {
-    var genresResults: [SearchResultFire] = []
+                                  yearResults: [Movie]) -> [Movie] {
+    var genresResults: [Movie] = []
     var genresForSelection: [String] = []
     // Genres
     for item in 0..<numberOfGenres {
@@ -260,9 +260,9 @@ class AlgorithmResultViewController: UIViewController {
 
   func getResultAccordingToKeywords(amountOfKeywords: Int,
                                     sampleSize: Int,
-                                    yearResults: [SearchResultFire]) -> [SearchResultFire] {
+                                    yearResults: [Movie]) -> [Movie] {
     var numberOfKeywords = amountOfKeywords
-    var keywordsResults: [SearchResultFire] = []
+    var keywordsResults: [Movie] = []
     var keywordsForSelection: [String] = []
     // Keywords
     while keywordsResults.count > sampleSize || keywordsResults.count == 0 {
@@ -296,8 +296,8 @@ class AlgorithmResultViewController: UIViewController {
     return keywordsResults
   }
 
-  func sumResult(for filmArray1: [SearchResultFire], and filmArray2: [SearchResultFire]) -> [SearchResultFire] {
-    var sumResultArray: [SearchResultFire] = []
+  func sumResult(for filmArray1: [Movie], and filmArray2: [Movie]) -> [Movie] {
+    var sumResultArray: [Movie] = []
     for film1 in filmArray1 {
       sumResultArray.append(film1)
     }
@@ -308,8 +308,8 @@ class AlgorithmResultViewController: UIViewController {
     return sumResultArray
   }
 
-  func crossResult(for filmArray1: [SearchResultFire], and filmArray2: [SearchResultFire]) -> [SearchResultFire] {
-    var newArray: [SearchResultFire] = []
+  func crossResult(for filmArray1: [Movie], and filmArray2: [Movie]) -> [Movie] {
+    var newArray: [Movie] = []
     for film1 in filmArray1 {
       for film2 in filmArray2 where film1.key == film2.key {
         newArray.append(film1)
@@ -318,7 +318,7 @@ class AlgorithmResultViewController: UIViewController {
     return newArray
   }
 
-  func excludeViewed(in filmsArray: [SearchResultFire]) -> [SearchResultFire] {
+  func excludeViewed(in filmsArray: [Movie]) -> [Movie] {
     var itemsResult = filmsArray
     var numberOfFilmsForDelete: [Int] = []
     for numberOfFilm in 0..<itemsResult.count {
@@ -336,7 +336,7 @@ class AlgorithmResultViewController: UIViewController {
     return itemsResult
   }
 
-  func excludeRepeat(in filmArray: [SearchResultFire]) -> [SearchResultFire] {
+  func excludeRepeat(in filmArray: [Movie]) -> [Movie] {
     var itemsResult = filmArray
     var keyArray: [Int] = []
     var keyForDelete: [Int] = []
@@ -505,10 +505,10 @@ class AlgorithmResultViewController: UIViewController {
 
   func downloadLibrary() {
     currentUserReference.observe(.value) { (snapshot) in
-      var newItems: [SearchResultFire] = []
+      var newItems: [Movie] = []
       for item in snapshot.children {
         if let snapshot = item as? DataSnapshot {
-          let searchItem = SearchResultFire(snapshot: snapshot)
+          let searchItem = Movie(snapshot: snapshot)
           newItems.append(searchItem)
         }
       }
@@ -525,18 +525,18 @@ class AlgorithmResultViewController: UIViewController {
     if Constants.loadOneFilmFromDB {
       searchResultReference = searchResultReference.child("100")
       searchResultReference.observe(.value) { (snapshot) in
-        var newItems: [SearchResultFire] = []
-        let searchItem = SearchResultFire(snapshot: snapshot)
+        var newItems: [Movie] = []
+        let searchItem = Movie(snapshot: snapshot)
         newItems.append(searchItem)
         self.wholeData = newItems
         self.downloadLibrary()
       }
     } else {
       searchResultReference.observe(.value) { (snapshot) in
-        var newItems: [SearchResultFire] = []
+        var newItems: [Movie] = []
         for item in snapshot.children {
           if let snapshot = item as? DataSnapshot {
-            let searchItem = SearchResultFire(snapshot: snapshot)
+            let searchItem = Movie(snapshot: snapshot)
             newItems.append(searchItem)
           }
         }

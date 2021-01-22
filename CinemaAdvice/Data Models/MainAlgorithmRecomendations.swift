@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Selection {
+struct MainAlgorithmRecomendations {
   var years: [(Int, Int)]
   var directors: [(String, Int)]
   var countries: [(String, Int)]
