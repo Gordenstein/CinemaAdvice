@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibraryCell" id="5aO-BH-q19" customClass="LibraryCell" customModule="CinemaAdvice" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5aO-BH-q19" id="hjX-sY-x3W">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="q7T-Am-Hrn">
+                        <rect key="frame" x="16" y="10" width="42" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="rEE-qN-HTe"/>
+                            <constraint firstAttribute="width" constant="42" id="wfI-dR-EIi"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ffE-gI-fz8">
+                        <rect key="frame" x="66" y="19" width="81.5" height="42.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsk-8j-mvu">
+                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4A-hR-mMc">
+                                <rect key="frame" x="0.0" y="24.5" width="81.5" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ife-1c-t27" userLabel="Opinion Image View">
+                        <rect key="frame" x="272" y="24" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="Ag3-gt-dqs"/>
+                            <constraint firstAttribute="height" constant="32" id="BXy-n5-BKx"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="q7T-Am-Hrn" firstAttribute="top" secondItem="hjX-sY-x3W" secondAttribute="top" constant="10" id="0IB-uM-fOx"/>
+                    <constraint firstItem="Ife-1c-t27" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ffE-gI-fz8" secondAttribute="trailing" constant="16" id="N3e-sG-dn2"/>
+                    <constraint firstItem="Ife-1c-t27" firstAttribute="centerY" secondItem="hjX-sY-x3W" secondAttribute="centerY" id="dFf-2t-sLW"/>
+                    <constraint firstItem="ffE-gI-fz8" firstAttribute="centerY" secondItem="hjX-sY-x3W" secondAttribute="centerY" id="m3n-I4-ekl"/>
+                    <constraint firstAttribute="trailing" secondItem="Ife-1c-t27" secondAttribute="trailing" constant="16" id="roG-6W-RfB"/>
+                    <constraint firstItem="ffE-gI-fz8" firstAttribute="leading" secondItem="q7T-Am-Hrn" secondAttribute="trailing" constant="8" id="uyW-UY-8oc"/>
+                    <constraint firstItem="q7T-Am-Hrn" firstAttribute="leading" secondItem="hjX-sY-x3W" secondAttribute="leading" constant="16" id="wb5-x9-ngz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="artworkImageView" destination="q7T-Am-Hrn" id="hJA-6B-LKY"/>
+                <outlet property="genreLabel" destination="i4A-hR-mMc" id="mld-L9-bGI"/>
+                <outlet property="nameLabel" destination="Wsk-8j-mvu" id="TpO-9g-aIt"/>
+                <outlet property="opinionImageView" destination="Ife-1c-t27" id="sXN-e7-ZLp"/>
+            </connections>
+            <point key="canvasLocation" x="26" y="-55"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Placeholder" width="60" height="60"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

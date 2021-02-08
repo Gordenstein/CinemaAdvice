@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nOb-K2-hIl">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorite Movies-->
+        <scene sceneID="ljI-Xi-891">
+            <objects>
+                <viewController id="ip4-Sd-oTf" userLabel="Favorite Movies" customClass="FavoriteMoviesViewController" customModule="CinemaAdvice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8q7-eI-Z9X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="urm-yR-lq4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ip4-Sd-oTf" id="oOL-lc-65M"/>
+                                    <outlet property="delegate" destination="ip4-Sd-oTf" id="xOW-gw-n07"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fiq-Bz-euQ"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="urm-yR-lq4" firstAttribute="leading" secondItem="fiq-Bz-euQ" secondAttribute="leading" id="8bz-B0-bVY"/>
+                            <constraint firstItem="fiq-Bz-euQ" firstAttribute="trailing" secondItem="urm-yR-lq4" secondAttribute="trailing" id="TBD-YR-5hY"/>
+                            <constraint firstItem="urm-yR-lq4" firstAttribute="top" secondItem="fiq-Bz-euQ" secondAttribute="top" id="i3M-mo-BN9"/>
+                            <constraint firstItem="fiq-Bz-euQ" firstAttribute="bottom" secondItem="urm-yR-lq4" secondAttribute="bottom" id="sR8-jX-Upm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Watched movies" id="KcI-JP-mp2" userLabel="Watched movies">
+                        <barButtonItem key="leftBarButtonItem" title="0" id="aw7-0j-tx5">
+                            <color key="tintColor" systemColor="labelColor"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="9fC-hp-LrV">
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="signoutButtonPressed:" destination="ip4-Sd-oTf" id="h4b-wa-S9a"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="leftBarButtonItem" destination="aw7-0j-tx5" id="8wm-yT-pBk"/>
+                        <outlet property="tableView" destination="urm-yR-lq4" id="bts-XM-BGS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="flU-XY-Qx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936.79999999999995" y="957.57121439280365"/>
+        </scene>
+        <!--Film library-->
+        <scene sceneID="UYm-VK-jmt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nOb-K2-hIl" userLabel="Film library" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Film library" image="film" catalog="system" id="vl4-F2-mnv" userLabel="Film library"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="hhe-Bq-LXC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ip4-Sd-oTf" kind="relationship" relationship="rootViewController" id="qTm-yc-mFa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fiw-Vb-yBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2.3999999999999999" y="957.57121439280365"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="film" catalog="system" width="128" height="93"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
